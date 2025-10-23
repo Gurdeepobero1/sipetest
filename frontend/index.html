@@ -6,25 +6,20 @@
   <title>SIPE - Society of Innovation and Professional Excellence</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
-    /* STEP 1: Professional Dark Theme Variables */
     :root {
-      --primary-blue: #007aff; /* Brighter blue for dark mode */
+      --primary-blue: #007aff;
       --light-blue: #3b82f6;
-      --bg-dark: #111827;      /* Main background */
-      --bg-light-dark: #1f2937; /* Card/Section background */
-      --border-dark: #374151;   /* Borders */
-      --text-primary: #f9fafb;   /* Headings, bright text */
-      --text-secondary: #d1d5db; /* Body text, subtitles */
-      
+      --bg-dark: #111827;
+      --bg-light-dark: #1f2937;
+      --border-dark: #374151;
+      --text-primary: #f9fafb;
+      --text-secondary: #d1d5db;
       --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.2);
       --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -4px rgba(0,0,0,0.2);
       --radius: 12px;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    
-    /* Apply Dark Theme to Body */
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-dark);
@@ -37,32 +32,28 @@
       text-wrap: balance; 
       font-weight: 700; 
       letter-spacing: -0.025em;
-      color: var(--text-primary); /* Dark Theme */
+      color: var(--text-primary);
     }
     .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
     .section { padding: 6rem 2rem; }
-    
     .section-title { 
       font-size: clamp(2.2rem, 4vw, 3rem); 
       text-align: center; 
       margin-bottom: 1rem; 
-      color: var(--text-primary); /* Dark Theme */
+      color: var(--text-primary);
     }
     .section-subtitle { 
       font-size: 1.2rem; 
       text-align: center; 
-      color: var(--text-secondary); /* Dark Theme */
+      color: var(--text-secondary);
       margin-bottom: 4rem; 
       max-width: 700px; 
       margin-left: auto; 
       margin-right: auto; 
     }
-    
-    /* Dark Theme for .bg-light */
     .bg-light { 
       background-color: var(--bg-light-dark); 
     }
-    
     .btn {
       display: inline-block;
       background-color: var(--primary-blue); color: var(--text-primary); padding: 0.85rem 2rem;
@@ -77,18 +68,16 @@
 
     /* Header */
     .header {
-      /* Dark Theme */
-      background: rgba(17, 24, 39, 0.8); /* --bg-dark with opacity */
+      background: rgba(17, 24, 39, 0.8);
       backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
       position: sticky; top: 0; z-index: 100;
-      border-bottom: 1px solid var(--border-dark); /* Dark Theme */
+      border-bottom: 1px solid var(--border-dark);
     }
     .header-content { display: flex; justify-content: space-between; align-items: center; height: 80px; }
     .logo { font-size: 1.8rem; font-weight: 800; color: var(--primary-blue); text-decoration: none; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    
     .nav-links a { 
-      color: var(--text-secondary); /* Dark Theme */
+      color: var(--text-secondary);
       text-decoration: none; 
       font-weight: 500; 
       transition: color 0.3s ease; 
@@ -104,7 +93,7 @@
         justify-content: center;
         text-align: center;
         min-height: 90vh;
-        color: var(--text-primary); /* Dark Theme */
+        color: var(--text-primary);
         overflow: hidden;
     }
     .hero-background {
@@ -119,7 +108,7 @@
     .hero-overlay {
         position: absolute;
         top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(17, 24, 39, 0.7); /* Darker overlay for better text contrast */
+        background: rgba(17, 24, 39, 0.7);
         z-index: 2;
     }
     .hero-content { position: relative; z-index: 3; }
@@ -157,17 +146,16 @@
     /* General Card Grid */
     .cards-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
     .card {
-      /* Dark Theme */
       background: var(--bg-light-dark); 
       padding: 2.5rem 2rem; 
       border-radius: var(--radius);
       border: 1px solid var(--border-dark);
-      box-shadow: none; /* Cleaner look on dark */
+      box-shadow: none;
       text-align: center;
       transition: all 0.3s ease;
-      opacity: 0; transform: translateY(40px); /* Initial state for animation */
+      opacity: 0; transform: translateY(40px);
     }
-    .card.is-visible { opacity: 1; transform: translateY(0); } /* Animation end state */
+    .card.is-visible { opacity: 1; transform: translateY(0); }
     .card:hover { 
       transform: translateY(-10px); 
       box-shadow: var(--shadow-lg); 
@@ -176,39 +164,33 @@
     .card .icon { height: 48px; margin-bottom: 1.5rem; color: var(--primary-blue); }
     .card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--text-primary); }
     
-    /* Mentor Card (Now part of slideshow) */
+    /* Mentor Card (Slideshow) - UNCHANGED */
     .person-card img {
       width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1.5rem;
       object-fit: cover; margin-left: auto; margin-right: auto;
-      border: 4px solid var(--bg-light-dark); /* Dark Theme */
+      border: 4px solid var(--bg-light-dark);
       box-shadow: var(--shadow-md);
     }
     .person-card h4 { font-size: 1.2rem; margin-bottom: 0.25rem; }
     .person-card p { font-size: 0.95rem; color: var(--text-secondary); }
 
-    /* STEP 2: CSS for new Mentor Slideshow */
     .mentor-slideshow {
       position: relative;
-      max-width: 400px; /* Width of a single card */
-      min-height: 450px; /* Adjust to fit card content */
-      margin: 0 auto; /* Center the slideshow */
+      max-width: 400px;
+      min-height: 450px;
+      margin: 0 auto;
       overflow: hidden;
       border-radius: var(--radius);
     }
     .mentor-slideshow .person-card {
-      /* All cards are stacked on top of each other */
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      opacity: 0; /* Hidden by default */
-      
-      /* Remove conflicting styles from .card */
+      opacity: 0;
       transform: none;
       transition: none;
-      
-      /* Add card styling back */
       background: var(--bg-light-dark); 
       padding: 2.5rem 2rem; 
       border-radius: var(--radius);
@@ -216,48 +198,57 @@
       text-align: center;
     }
 
-    /* STEP 2: CSS for new ImpactCon Gallery */
+    
+    /* --- CSS: New Styles for ImpactCon 1-on-1 Slideshow --- */
+    
+    /* This is the "stage" for the slideshow */
     #impactcon-gallery {
-      display: grid;
-      /* Responsive grid: 
-         - 2 columns on small screens
-         - 3 columns on medium screens
-         - 4 columns on large screens
-      */
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
-      padding: 20px 0;
-      
       /* This is CRITICAL for the 3D effect! */
       perspective: 1500px;
+      
+      /* This is the container for the SINGLE card */
+      position: relative;
+      width: 100%;
+      /* Making the card larger and circular */
+      max-width: 400px; 
+      height: 400px;
+      margin: 0 auto; /* Center the whole slideshow */
     }
 
+    /* This is the card for EACH of the 9 photos */
     .impactcon-card {
-      width: 200px;
-      height: 200px;
-      margin: 0 auto; /* Center in grid cell */
+      /* All 9 cards are stacked on top of each other */
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;  /* Card is 400px (from parent) */
+      height: 100%; /* Card is 400px (from parent) */
+      
       border-radius: 50%; /* This makes it a circle */
       box-shadow: var(--shadow-lg);
       
       /* Tells the browser to treat this as a 3D object */
       transform-style: preserve-3d;
       
-      /* Initial state for anime.js */
+      /* All cards are hidden and flipped by default */
       opacity: 0; 
-      transform: scale(0.5) rotateY(180deg);
+      /* We will set the initial state in JS, but this is a good fallback */
+      transform: scale(0.5) rotateY(180deg); 
     }
 
     .impactcon-card img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Ensures the image fills the circle */
+      object-fit: cover;
       border-radius: 50%; /* Clips the image to the circle shape */
     }
+    /* --- End of New CSS --- */
+
 
     /* Footer */
     .footer { 
-      background: var(--bg-light-dark); /* Dark Theme */
-      color: var(--text-secondary); /* Dark Theme */
+      background: var(--bg-light-dark);
+      color: var(--text-secondary);
       text-align: center; 
       padding: 4rem 2rem; 
       border-top: 1px solid var(--border-dark);
@@ -265,12 +256,11 @@
 
     @media (max-width: 768px) {
         .nav-links, .header-content .btn { display: none; }
+        
+        /* Adjusting slideshow card size for mobile */
         #impactcon-gallery {
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        }
-        .impactcon-card {
-            width: 150px;
-            height: 150px;
+            max-width: 300px;
+            height: 300px;
         }
     }
   </style>
@@ -348,7 +338,7 @@
             <p class="section-subtitle">A glimpse from our event featuring Lt. Gen. Sanjay Sethi and other esteemed guests.</p>
             
             <div id="impactcon-gallery">
-                <div class="impactcon-card"><img src="impactcon9.png" alt="ImpactCon Photo 1"></div>
+                <div class="impactcon-card"><img src="impactcon1.png" alt="ImpactCon Photo 1"></div>
                 <div class="impactcon-card"><img src="impactcon2.png" alt="ImpactCon Photo 2"></div>
                 <div class="impactcon-card"><img src="impactcon3.png" alt="ImpactCon Photo 3"></div>
                 <div class="impactcon-card"><img src="impactcon4.png" alt="ImpactCon Photo 4"></div>
@@ -356,7 +346,7 @@
                 <div class="impactcon-card"><img src="impactcon6.png" alt="ImpactCon Photo 6"></div>
                 <div class="impactcon-card"><img src="impactcon7.png" alt="ImpactCon Photo 7"></div>
                 <div class="impactcon-card"><img src="impactcon8.png" alt="ImpactCon Photo 8"></div>
-                <div class="impactcon-card"><img src="impactcon1.png" alt="ImpactCon Photo 9"></div>
+                <div class="impactcon-card"><img src="impactcon9.png" alt="ImpactCon Photo 9"></div>
             </div>
         </div>
     </section>
@@ -399,82 +389,116 @@
     document.addEventListener('DOMContentLoaded', () => {
         
         // --- Animation 1: General Card Fade-in on Scroll ---
-        const cardObserver = new IntersectionObserver((entries) => {
+        const cardObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    cardObserver.unobserve(entry.target);
+                    observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1 });
 
-        // IMPORTANT: Only select cards in these sections, not the mentor cards
+        // Observe only the 'about' and 'programs' cards
         document.querySelectorAll('#about .card, #programs .card').forEach(el => {
             cardObserver.observe(el);
         });
 
         
-        // --- Animation 2: ImpactCon 3D Flip Animation ---
+        // --- Animation 2: ImpactCon 3D "1-on-1" Slideshow ---
+        function initImpactConSlideshow() {
+            const images = document.querySelectorAll('#impactcon-gallery .impactcon-card');
+            if (images.length === 0) return;
+
+            let currentImage = 0;
+
+            // Set initial state for the first image
+            anime.set(images[0], { 
+                opacity: 1, 
+                scale: 1, 
+                rotateY: '0deg' 
+            });
+
+            // Start the slideshow loop
+            setInterval(() => {
+                const outgoingImage = images[currentImage];
+                
+                // Get next image index, looping back to 0
+                currentImage = (currentImage + 1) % images.length;
+                const incomingImage = images[currentImage];
+
+                // Use anime.js timeline for a clean in/out animation
+                const tl = anime.timeline({
+                    easing: 'easeInOutSine',
+                    duration: 1200 // Total duration for the transition
+                });
+
+                tl.add({
+                    targets: outgoingImage,
+                    opacity: 0,
+                    scale: 0.5,
+                    rotateY: '-180deg', // Flip backward
+                    duration: 600 // 600ms to animate out
+                })
+                .add({
+                    targets: incomingImage,
+                    opacity: [0, 1],
+                    scale: [0.5, 1],
+                    rotateY: ['180deg', '0deg'], // Flip in from "behind"
+                    duration: 600 // 600ms to animate in
+                }, '-=300'); // Overlap animations by 300ms for a smoother transition
+
+            }, 4000); // Change slide every 4 seconds
+        }
+
+        // Use IntersectionObserver to start the animation only when visible
         const gallery = document.getElementById('impactcon-gallery');
         if (gallery) {
-            const impactObserver = new IntersectionObserver((entries) => {
+            const impactObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        anime({
-                            targets: '.impactcon-card',
-                            opacity: 1,
-                            scale: 1,
-                            rotateY: '0deg',
-                            duration: 1500,
-                            easing: 'spring(1, 80, 10, 0)',
-                            delay: anime.stagger(150) // Stagger for each of the 9 photos
-                        });
-                        impactObserver.unobserve(entry.target); // Animate only once
+                        initImpactConSlideshow(); // Start the slideshow
+                        observer.unobserve(entry.target); // Stop observing
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.5 }); // Start when 50% is visible
             impactObserver.observe(gallery);
         }
 
         
-        // --- Animation 3: Mentor Slideshow ---
+        // --- Animation 3: Mentor Slideshow (Unchanged) ---
         function initMentorSlideshow() {
             const mentors = document.querySelectorAll('#mentors .person-card');
             if (mentors.length === 0) return;
             
             let currentMentor = 0;
-
-            // Set initial state for the first mentor
+            // Set initial state for first mentor
             anime.set(mentors[0], { opacity: 1, translateX: 0 });
 
             setInterval(() => {
                 const outgoingMentor = mentors[currentMentor];
-                
-                // Get next mentor index, looping back to 0
                 currentMentor = (currentMentor + 1) % mentors.length;
                 const incomingMentor = mentors[currentMentor];
 
-                // Use anime.js timeline for a clean in/out animation
                 const tl = anime.timeline({
                     easing: 'easeOutExpo',
-                    duration: 800 // Duration for each fade
+                    duration: 800
                 });
 
                 tl.add({
                     targets: outgoingMentor,
-                    translateX: -40, // Move out to the left
+                    translateX: -40,
                     opacity: 0
                 })
                 .add({
                     targets: incomingMentor,
-                    translateX: [40, 0], // Come in from the right
+                    translateX: [40, 0],
                     opacity: [0, 1]
-                }, '-=600'); // Overlap animations for a smoother crossfade
+                }, '-=600'); // Overlap for crossfade
 
-            }, 4000); // Change slide every 4 seconds
+            }, 4000); // Change every 4 seconds
         }
-
-        // Start the mentor slideshow
+        
+        // Start the mentor slideshow immediately
         initMentorSlideshow();
 
     });
