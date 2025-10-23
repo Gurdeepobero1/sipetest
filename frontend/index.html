@@ -199,61 +199,54 @@
     }
 
     
-    /* --- CSS: CORRECTED Styles for ImpactCon 1-on-1 Slideshow --- */
+    /* --- CSS: NEW 3D Continuous Carousel --- */
     
-    /* This is the "stage" for the slideshow */
+    /* This is the "stage" for the 3D effect */
     #impactcon-gallery {
-      /* This is CRITICAL for the 3D effect! */
-      perspective: 1500px;
-      
-      /* This is the container for the SINGLE card */
-      position: relative;
+      perspective: 2500px; /* Deeper 3D space */
       width: 100%;
-      
-      /* NEW: Applying your 987x556 resolution.
-        - Sets the max width to 987px.
-        - Forces the aspect ratio to 987 / 556 (approx 16:9).
-        - This replaces the old static height: 400px.
-      */
-      max-width: 987px; 
-      aspect-ratio: 987 / 556;
-      
-      margin: 0 auto; /* Center the whole slideshow */
+      height: 400px; /* Give the stage a fixed height */
+      position: relative;
+      margin: 4rem auto 0;
+      max-width: 987px;
     }
 
-    /* This is the card for EACH of the 9 photos */
-    .impactcon-card {
-      /* All 9 cards are stacked on top of each other */
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;  
+    /* This is the new wrapper that we will spin */
+    .carousel-ring {
+      width: 100%;
       height: 100%;
+      position: absolute;
+      transform-style: preserve-3d;
+      /* The animation will be applied here by anime.js */
+    }
+    
+    .impactcon-card {
+      position: absolute;
+      /* Position cards in the center of the ring */
+      top: 50%;
+      left: 50%;
+
+      /* Using your 987x556 aspect ratio at a smaller size */
+      width: 440px; 
+      height: 248px; 
+      margin-left: -220px; /* -(width/2) */
+      margin-top: -124px;  /* -(height/2) */
       
-      /* NEW: REMOVED border-radius: 50%. Using standard theme radius. */
-      border-radius: var(--radius); 
+      border-radius: var(--radius);
+      overflow: hidden;
       box-shadow: var(--shadow-lg);
       
-      /* Tells the browser to treat this as a 3D object */
-      transform-style: preserve-3d;
-      
-      /* All cards are hidden and flipped by default */
-      opacity: 0; 
-      transform: scale(0.5) rotateY(180deg); 
-      
-      /* Added to ensure image corners are clipped */
-      overflow: hidden;
+      /* Add a reflection effect */
+      -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, rgba(0,0,0,0.4));
     }
 
     .impactcon-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      
-      /* NEW: REMOVED border-radius: 50%. */
-      border-radius: var(--radius); 
+      border-radius: var(--radius);
     }
-    /* --- End of Corrected CSS --- */
+    /* --- End of New CSS --- */
 
 
     /* Footer */
@@ -268,9 +261,16 @@
     @media (max-width: 768px) {
         .nav-links, .header-content .btn { display: none; }
         
-        /* The old #impactcon-gallery mobile styles are no longer needed.
-          The aspect-ratio property handles responsiveness perfectly.
-        */
+        /* On mobile, shrink the carousel */
+        #impactcon-gallery {
+            height: 250px;
+        }
+        .impactcon-card {
+            width: 220px;
+            height: 124px;
+            margin-left: -110px;
+            margin-top: -62px;
+        }
     }
   </style>
 </head>
@@ -347,15 +347,17 @@
             <p class="section-subtitle">A glimpse from our event featuring Lt. Gen. Sanjay Sethi and other esteemed guests.</p>
             
             <div id="impactcon-gallery">
-                <div class="impactcon-card"><img src="impactcon1.png" alt="ImpactCon Photo 1"></div>
-                <div class="impactcon-card"><img src="impactcon2.png" alt="ImpactCon Photo 2"></div>
-                <div class="impactcon-card"><img src="impactcon3.png" alt="ImpactCon Photo 3"></div>
-                <div class="impactcon-card"><img src="impactcon4.png" alt="ImpactCon Photo 4"></div>
-                <div class="impactcon-card"><img src="impactcon5.png" alt="ImpactCon Photo 5"></div>
-                <div class="impactcon-card"><img src="impactcon6.png" alt="ImpactCon Photo 6"></div>
-                <div class="impactcon-card"><img src="impactcon7.png" alt="ImpactCon Photo 7"></div>
-                <div class="impactcon-card"><img src="impactcon8.png" alt="ImpactCon Photo 8"></div>
-                <div class="impactcon-card"><img src="impactcon9.png" alt="ImpactCon Photo 9"></div>
+                <div class="carousel-ring">
+                    <div class="impactcon-card"><img src="impactcon1.png" alt="ImpactCon Photo 1"></div>
+                    <div class="impactcon-card"><img src="impactcon2.png" alt="ImpactCon Photo 2"></div>
+                    <div class="impactcon-card"><img src="impactcon3.png" alt="ImpactCon Photo 3"></div>
+                    <div class="impactcon-card"><img src="impactcon4.png" alt="ImpactCon Photo 4"></div>
+                    <div class="impactcon-card"><img src="impactcon5.png" alt="ImpactCon Photo 5"></div>
+                    <div class="impactcon-card"><img src="impactcon6.png" alt="ImpactCon Photo 6"></div>
+                    <div class="impactcon-card"><img src="impactcon7.png" alt="ImpactCon Photo 7"></div>
+                    <div class="impactcon-card"><img src="impactcon8.png" alt="ImpactCon Photo 8"></div>
+                    <div class="impactcon-card"><img src="impactcon9.png" alt="ImpactCon Photo 9"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -413,50 +415,41 @@
         });
 
         
-        // --- Animation 2: ImpactCon 3D "1-on-1" Slideshow ---
+        // --- Animation 2: NEW ImpactCon 3D Continuous Carousel ---
         function initImpactConSlideshow() {
+            const ring = document.querySelector('#impactcon-gallery .carousel-ring');
             const images = document.querySelectorAll('#impactcon-gallery .impactcon-card');
             if (images.length === 0) return;
 
-            let currentImage = 0;
+            const numImages = images.length;
+            const anglePerImage = 360 / numImages; // 40 degrees for 9 images
+            
+            // Calculate the radius of the ring.
+            // A larger value makes the ring wider.
+            // A smaller value makes it tighter.
+            const radius = 550; // You can adjust this value
 
-            // Set initial state for the first image
-            anime.set(images[0], { 
-                opacity: 1, 
-                scale: 1, 
-                rotateY: '0deg' 
+            // 1. Position all 9 cards in the 3D ring
+            images.forEach((img, i) => {
+                const rotationAngle = i * anglePerImage;
+                anime.set(img, {
+                    // Fan them out in a circle around the Y-axis
+                    rotateY: rotationAngle, 
+                    // Push them out from the center to form the ring
+                    translateZ: radius,
+                    // Optional: Tilt them back slightly
+                    rotateX: -10, 
+                });
             });
 
-            // Start the slideshow loop
-            setInterval(() => {
-                const outgoingImage = images[currentImage];
-                
-                // Get next image index, looping back to 0
-                currentImage = (currentImage + 1) % images.length;
-                const incomingImage = images[currentImage];
-
-                // Use anime.js timeline for a clean in/out animation
-                const tl = anime.timeline({
-                    easing: 'easeInOutSine',
-                    duration: 1200 // Total duration for the transition
-                });
-
-                tl.add({
-                    targets: outgoingImage,
-                    opacity: 0,
-                    scale: 0.5,
-                    rotateY: '-180deg', // Flip backward
-                    duration: 600 // 600ms to animate out
-                })
-                .add({
-                    targets: incomingImage,
-                    opacity: [0, 1],
-                    scale: [0.5, 1],
-                    rotateY: ['180deg', '0deg'], // Flip in from "behind"
-                    duration: 600 // 600ms to animate in
-                }, '-=300'); // Overlap animations by 300ms for a smoother transition
-
-            }, 4000); // Change slide every 4 seconds
+            // 2. Start the continuous rotation animation
+            anime({
+                targets: ring,      // Animate the ring container
+                rotateY: '-=360deg',// Spin it 360 degrees
+                duration: 30000,    // 30 seconds for one full rotation
+                easing: 'linear',   // A smooth, constant speed
+                loop: true,         // Loop forever
+            });
         }
 
         // Use IntersectionObserver to start the animation only when visible
@@ -469,7 +462,7 @@
                         observer.unobserve(entry.target); // Stop observing
                     }
                 });
-            }, { threshold: 0.5 }); // Start when 50% is visible
+            }, { threshold: 0.1 }); // Start when 10% is visible
             impactObserver.observe(gallery);
         }
 
@@ -480,7 +473,6 @@
             if (mentors.length === 0) return;
             
             let currentMentor = 0;
-            // Set initial state for first mentor
             anime.set(mentors[0], { opacity: 1, translateX: 0 });
 
             setInterval(() => {
@@ -502,12 +494,11 @@
                     targets: incomingMentor,
                     translateX: [40, 0],
                     opacity: [0, 1]
-                }, '-=600'); // Overlap for crossfade
+                }, '-=600');
 
-            }, 4000); // Change every 4 seconds
+            }, 4000); 
         }
         
-        // Start the mentor slideshow immediately
         initMentorSlideshow();
 
     });
