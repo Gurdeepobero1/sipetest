@@ -85,48 +85,44 @@
     .nav-links a:hover { color: var(--primary-blue); }
     .hamburger { display: none; }
 
-    /* --- NEW CSS: Movie-Style Announcement Banner --- */
+    /* --- CSS: Movie-Style Announcement Banner --- */
     .announcement-banner {
-      background: linear-gradient(90deg, #1a202c, #2d3748, #1a202c); /* Darker, more cinematic gradient */
+      background: linear-gradient(90deg, #1a202c, #2d3748, #1a202c);
       color: var(--text-primary);
       text-align: center;
-      padding: 1.5rem 1rem; /* More padding for impact */
-      font-weight: 800; /* Bolder text */
-      font-size: clamp(1.2rem, 3vw, 1.8rem); /* Larger and responsive */
+      padding: 1.5rem 1rem;
+      font-weight: 800;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
       position: relative;
       overflow: hidden; 
       z-index: 50; 
-      letter-spacing: 0.05em; /* Spaced out letters */
-      border-bottom: 3px solid var(--primary-blue); /* Stronger border */
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Deeper shadow */
+      letter-spacing: 0.05em;
+      border-bottom: 3px solid var(--primary-blue);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     }
-
-    /* Anime.js targets will be individual characters (spans) for text reveal */
     .announcement-text span {
-      display: inline-block; /* Allows individual character animation */
+      display: inline-block;
       opacity: 0;
       transform: translateY(20px) scale(0.9);
       filter: blur(5px);
     }
-
-    /* Shine effect for the whole banner, subtle and continuous */
     .announcement-banner::before {
       content: '';
       position: absolute;
       top: 0;
-      left: -200%; /* Start further left */
+      left: -200%;
       width: 100%;
       height: 100%;
       background: linear-gradient(
         90deg, 
         rgba(255, 255, 255, 0) 0%, 
-        rgba(255, 255, 255, 0.1) 40%, /* Less intense shine */
+        rgba(255, 255, 255, 0.1) 40%,
         rgba(255, 255, 255, 0.15) 50%, 
         rgba(255, 255, 255, 0.1) 60%,
         rgba(255, 255, 255, 0) 100%
       );
       transform: skewX(-20deg);
-      animation: bannerShine 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite; /* Slower, smoother shine */
+      animation: bannerShine 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
     }
     @keyframes bannerShine {
       from { left: -200%; }
@@ -248,19 +244,21 @@
     }
 
     
-    /* --- CSS: Perfected 3D Continuous Carousel --- */
+    /* --- CSS: 3D Continuous Carousel (FIXED) --- */
     #impactcon-gallery {
       perspective: 2500px;
       width: 100%;
       height: 400px; 
       position: relative;
       margin: 4rem auto 0;
-      max-width: 987px; /* Still respecting overall max width */
+      max-width: 987px;
     }
     .carousel-ring {
       width: 100%;
       height: 100%;
       position: absolute;
+      
+      /* THIS WAS THE BUG. Corrected to 'preserve-3d' */
       transform-style: preserve-3d;
     }
     .impactcon-card {
@@ -268,7 +266,6 @@
       top: 50%;
       left: 50%;
 
-      /* Adjusted for a tighter, more cohesive ring */
       width: 360px; 
       height: 240px; 
       margin-left: -180px; 
@@ -333,6 +330,7 @@
   <div class="announcement-banner">
     <div class="announcement-text">New sessions for the Local Chapter are coming soon!</div>
   </div>
+
   <main>
     <section class="hero" id="home">
         <div class="hero-background"></div>
@@ -454,29 +452,28 @@
             cardObserver.observe(el);
         });
 
-        // --- NEW JS: Movie-Style Announcement Banner ---
+        // --- JS: Movie-Style Announcement Banner ---
         const announcementText = document.querySelector('.announcement-text');
         if (announcementText) {
-            // Split text into individual characters for animation
             announcementText.innerHTML = announcementText.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
             anime.timeline({loop: false})
               .add({
                 targets: '.announcement-text .letter',
                 opacity: [0,1],
-                translateX: [20,0], // Appear from slightly right
-                translateY: [20,0], // Appear from slightly down
-                scale: [0.9,1],     // Scale up slightly
-                filter: ['blur(5px)', 'blur(0px)'], // Unblur
+                translateX: [20,0],
+                translateY: [20,0],
+                scale: [0.9,1],
+                filter: ['blur(5px)', 'blur(0px)'],
                 easing: "easeOutExpo",
                 duration: 1200,
-                delay: (el, i) => 50 * i // Staggered delay for each letter
+                delay: (el, i) => 50 * i
               });
         }
         // --- End of Banner JS ---
 
 
-        // --- Animation 2: Perfected 3D Continuous Carousel ---
+        // --- Animation 2: 3D Continuous Carousel (FIXED) ---
         function initImpactConSlideshow() {
             const ring = document.querySelector('#impactcon-gallery .carousel-ring');
             const images = document.querySelectorAll('#impactcon-gallery .impactcon-card');
@@ -484,8 +481,6 @@
 
             const numImages = images.length;
             const anglePerImage = 360 / numImages;
-            
-            // Adjusted radius for a tighter, more cohesive ring
             const radius = 450; 
 
             // 1. Position all 9 cards in the 3D ring
@@ -494,7 +489,7 @@
                 anime.set(img, {
                     rotateY: rotationAngle, 
                     translateZ: radius,
-                    rotateX: -10, // Slight tilt
+                    rotateX: -10,
                 });
             });
 
