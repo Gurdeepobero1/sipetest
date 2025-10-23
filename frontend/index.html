@@ -6,57 +6,95 @@
   <title>SIPE - Society of Innovation and Professional Excellence</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
+    /* STEP 1: Professional Dark Theme Variables */
     :root {
-      --primary-blue: #0052cc;
-      --light-blue: #f0f6ff;
-      --dark-blue: #071d49;
-      --white: #ffffff;
-      --gray-50: #f8fafc;
-      --gray-100: #eef2f6;
-      --gray-600: #4b5563;
-      --gray-900: #111827;
-      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
-      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+      --primary-blue: #007aff; /* Brighter blue for dark mode */
+      --light-blue: #3b82f6;
+      --bg-dark: #111827;      /* Main background */
+      --bg-light-dark: #1f2937; /* Card/Section background */
+      --border-dark: #374151;   /* Borders */
+      --text-primary: #f9fafb;   /* Headings, bright text */
+      --text-secondary: #d1d5db; /* Body text, subtitles */
+      
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.2);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -4px rgba(0,0,0,0.2);
       --radius: 12px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    
+    /* Apply Dark Theme to Body */
     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--white);
-      color: var(--gray-900);
+      background-color: var(--bg-dark);
+      color: var(--text-secondary);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-    h1, h2, h3 { text-wrap: balance; font-weight: 700; letter-spacing: -0.025em; }
+    h1, h2, h3 { 
+      text-wrap: balance; 
+      font-weight: 700; 
+      letter-spacing: -0.025em;
+      color: var(--text-primary); /* Dark Theme */
+    }
     .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
     .section { padding: 6rem 2rem; }
-    .section-title { font-size: clamp(2.2rem, 4vw, 3rem); text-align: center; margin-bottom: 1rem; color: var(--dark-blue); }
-    .section-subtitle { font-size: 1.2rem; text-align: center; color: var(--gray-600); margin-bottom: 4rem; max-width: 700px; margin-left: auto; margin-right: auto; }
-    .bg-light { background-color: var(--gray-50); }
+    
+    .section-title { 
+      font-size: clamp(2.2rem, 4vw, 3rem); 
+      text-align: center; 
+      margin-bottom: 1rem; 
+      color: var(--text-primary); /* Dark Theme */
+    }
+    .section-subtitle { 
+      font-size: 1.2rem; 
+      text-align: center; 
+      color: var(--text-secondary); /* Dark Theme */
+      margin-bottom: 4rem; 
+      max-width: 700px; 
+      margin-left: auto; 
+      margin-right: auto; 
+    }
+    
+    /* Dark Theme for .bg-light */
+    .bg-light { 
+      background-color: var(--bg-light-dark); 
+    }
+    
     .btn {
       display: inline-block;
-      background-color: var(--primary-blue); color: var(--white); padding: 0.85rem 2rem;
+      background-color: var(--primary-blue); color: var(--text-primary); padding: 0.85rem 2rem;
       border-radius: 8px; font-weight: 600; cursor: pointer;
       transition: all 0.3s ease; text-decoration: none;
     }
-    .btn:hover { background-color: var(--dark-blue); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .btn:hover { 
+      background-color: var(--light-blue); 
+      transform: translateY(-3px); 
+      box-shadow: var(--shadow-lg); 
+    }
 
     /* Header */
     .header {
-      background: rgba(255, 255, 255, 0.8);
+      /* Dark Theme */
+      background: rgba(17, 24, 39, 0.8); /* --bg-dark with opacity */
       backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
       position: sticky; top: 0; z-index: 100;
-      border-bottom: 1px solid var(--gray-100);
+      border-bottom: 1px solid var(--border-dark); /* Dark Theme */
     }
     .header-content { display: flex; justify-content: space-between; align-items: center; height: 80px; }
     .logo { font-size: 1.8rem; font-weight: 800; color: var(--primary-blue); text-decoration: none; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a { color: var(--gray-600); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+    
+    .nav-links a { 
+      color: var(--text-secondary); /* Dark Theme */
+      text-decoration: none; 
+      font-weight: 500; 
+      transition: color 0.3s ease; 
+    }
     .nav-links a:hover { color: var(--primary-blue); }
-    .hamburger { display: none; } /* Mobile menu styles can be added if needed */
+    .hamburger { display: none; }
 
     /* Hero */
     .hero {
@@ -66,7 +104,7 @@
         justify-content: center;
         text-align: center;
         min-height: 90vh;
-        color: var(--white);
+        color: var(--text-primary); /* Dark Theme */
         overflow: hidden;
     }
     .hero-background {
@@ -81,7 +119,7 @@
     .hero-overlay {
         position: absolute;
         top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(7, 29, 73, 0.7); /* Darker overlay for better text contrast */
+        background: rgba(17, 24, 39, 0.7); /* Darker overlay for better text contrast */
         z-index: 2;
     }
     .hero-content { position: relative; z-index: 3; }
@@ -119,31 +157,121 @@
     /* General Card Grid */
     .cards-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
     .card {
-      background: var(--white); padding: 2.5rem 2rem; border-radius: var(--radius);
-      box-shadow: var(--shadow-md); text-align: center; border: 1px solid var(--gray-100);
+      /* Dark Theme */
+      background: var(--bg-light-dark); 
+      padding: 2.5rem 2rem; 
+      border-radius: var(--radius);
+      border: 1px solid var(--border-dark);
+      box-shadow: none; /* Cleaner look on dark */
+      text-align: center;
       transition: all 0.3s ease;
       opacity: 0; transform: translateY(40px); /* Initial state for animation */
     }
     .card.is-visible { opacity: 1; transform: translateY(0); } /* Animation end state */
-    .card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+    .card:hover { 
+      transform: translateY(-10px); 
+      box-shadow: var(--shadow-lg); 
+      border-color: var(--primary-blue);
+    }
     .card .icon { height: 48px; margin-bottom: 1.5rem; color: var(--primary-blue); }
-    .card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--dark-blue); }
+    .card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--text-primary); }
     
-    /* Mentor Card */
+    /* Mentor Card (Now part of slideshow) */
     .person-card img {
       width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1.5rem;
       object-fit: cover; margin-left: auto; margin-right: auto;
-      border: 4px solid var(--white); box-shadow: var(--shadow-md);
+      border: 4px solid var(--bg-light-dark); /* Dark Theme */
+      box-shadow: var(--shadow-md);
     }
     .person-card h4 { font-size: 1.2rem; margin-bottom: 0.25rem; }
-    .person-card p { font-size: 0.95rem; color: var(--gray-600); }
+    .person-card p { font-size: 0.95rem; color: var(--text-secondary); }
+
+    /* STEP 2: CSS for new Mentor Slideshow */
+    .mentor-slideshow {
+      position: relative;
+      max-width: 400px; /* Width of a single card */
+      min-height: 450px; /* Adjust to fit card content */
+      margin: 0 auto; /* Center the slideshow */
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+    .mentor-slideshow .person-card {
+      /* All cards are stacked on top of each other */
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0; /* Hidden by default */
+      
+      /* Remove conflicting styles from .card */
+      transform: none;
+      transition: none;
+      
+      /* Add card styling back */
+      background: var(--bg-light-dark); 
+      padding: 2.5rem 2rem; 
+      border-radius: var(--radius);
+      border: 1px solid var(--border-dark);
+      text-align: center;
+    }
+
+    /* STEP 2: CSS for new ImpactCon Gallery */
+    #impactcon-gallery {
+      display: grid;
+      /* Responsive grid: 
+         - 2 columns on small screens
+         - 3 columns on medium screens
+         - 4 columns on large screens
+      */
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      padding: 20px 0;
+      
+      /* This is CRITICAL for the 3D effect! */
+      perspective: 1500px;
+    }
+
+    .impactcon-card {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto; /* Center in grid cell */
+      border-radius: 50%; /* This makes it a circle */
+      box-shadow: var(--shadow-lg);
+      
+      /* Tells the browser to treat this as a 3D object */
+      transform-style: preserve-3d;
+      
+      /* Initial state for anime.js */
+      opacity: 0; 
+      transform: scale(0.5) rotateY(180deg);
+    }
+
+    .impactcon-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensures the image fills the circle */
+      border-radius: 50%; /* Clips the image to the circle shape */
+    }
 
     /* Footer */
-    .footer { background: var(--dark-blue); color: var(--gray-100); text-align: center; padding: 4rem 2rem; }
+    .footer { 
+      background: var(--bg-light-dark); /* Dark Theme */
+      color: var(--text-secondary); /* Dark Theme */
+      text-align: center; 
+      padding: 4rem 2rem; 
+      border-top: 1px solid var(--border-dark);
+    }
 
     @media (max-width: 768px) {
         .nav-links, .header-content .btn { display: none; }
-        /* Add mobile hamburger styles here if needed */
+        #impactcon-gallery {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+        .impactcon-card {
+            width: 150px;
+            height: 150px;
+        }
     }
   </style>
 </head>
@@ -156,6 +284,7 @@
         <ul class="nav-links">
           <li><a href="#about">Our Aim</a></li>
           <li><a href="#programs">Programs</a></li>
+          <li><a href="#impactcon">ImpactCon</a></li>
           <li><a href="#mentors">Mentors</a></li>
         </ul>
       </nav>
@@ -179,17 +308,17 @@
             <h2 class="section-title">Our Aim</h2>
             <p class="section-subtitle">To establish a premier innovation network connecting students, faculty, and industry professionals across India, bridging the gap between academia and real-world application.</p>
             <div class="cards-grid">
-                <div class="card" style="transition-delay: 0s;">
+                <div class="card">
                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z"></path></svg>
                     <h3>Our Mission</h3>
                     <p>Create a standardized yet adaptable innovation and excellence framework in every campus, starting with Jabalpur Engineering College (pilot) and scaling to other institutions.</p>
                 </div>
-                <div class="card" style="transition-delay: 0.1s;">
+                <div class="card">
                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path></svg>
                     <h3>Our Vision</h3>
                     <p>To establish SIPE as the premier innovation network connecting students, faculty, industry mentors, and research professionals across Indian colleges and universities.</p>
                 </div>
-                <div class="card" style="transition-delay: 0.2s;">
+                <div class="card">
                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12l-2.44-2.78.34-3.68-3.61-.82-1.89-3.18L12 3 8.6 1.54 6.71 4.72l-3.61.81.34 3.68L1 12l2.44 2.78-.34 3.69 3.61.82 1.89 3.18L12 21l3.4 1.46 1.89-3.18 3.61-.82-.34-3.68L23 12zm-10 5h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
                     <h3>Our Approach</h3>
                     <p>Student-driven initiatives supported by experienced mentors, creating sustainable innovation ecosystems that bridge the gap between academia and industry.</p>
@@ -203,32 +332,52 @@
             <h2 class="section-title">Programs & Offerings</h2>
             <p class="section-subtitle">Comprehensive initiatives to foster innovation from the classroom to the marketplace.</p>
             <div class="cards-grid">
-                <div class="card" style="transition-delay: 0s;"><h3>Guest Lecture Series</h3><p>Gain insights on industry expectations, research impact, and startup journeys from experts.</p></div>
-                <div class="card" style="transition-delay: 0.1s;"><h3>Innovation Index</h3><p>We measure and track R&D activity and IP filings to rank and recognize institutions.</p></div>
-                <div class="card" style="transition-delay: 0.2s;"><h3>Mentor Connect</h3><p>Get matched with industry mentors and investors through our cross-institutional network.</p></div>
-                <div class="card" style="transition-delay: 0s;"><h3>IP to Impact Bootcamps</h3><p>Learn patent commercialization, business model development, and market validation.</p></div>
-                <div class="card" style="transition-delay: 0.1s;"><h3>Startup Clinics</h3><p>Receive assistance with incubator partnerships, investor matchmaking, and funding.</p></div>
-                <div class="card" style="transition-delay: 0.2s;"><h3>Job Placement</h3><p>We leverage our network to help you find meaningful employment after graduation.</p></div>
+                <div class="card"><h3>Guest Lecture Series</h3><p>Gain insights on industry expectations, research impact, and startup journeys from experts.</p></div>
+                <div class="card"><h3>Innovation Index</h3><p>We measure and track R&D activity and IP filings to rank and recognize institutions.</p></div>
+                <div class="card"><h3>Mentor Connect</h3><p>Get matched with industry mentors and investors through our cross-institutional network.</p></div>
+                <div class="card"><h3>IP to Impact Bootcamps</h3><p>Learn patent commercialization, business model development, and market validation.</p></div>
+                <div class="card"><h3>Startup Clinics</h3><p>Receive assistance with incubator partnerships, investor matchmaking, and funding.</p></div>
+                <div class="card"><h3>Job Placement</h3><p>We leverage our network to help you find meaningful employment after graduation.</p></div>
             </div>
         </div>
     </section>
   
-    <section id="mentors" class="section">
+    <section id="impactcon" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Flagship Event: ImpactCon</h2>
+            <p class="section-subtitle">A glimpse from our event featuring Lt. Gen. Sanjay Sethi and other esteemed guests.</p>
+            
+            <div id="impactcon-gallery">
+                <div class="impactcon-card"><img src="impactcon9.png" alt="ImpactCon Photo 1"></div>
+                <div class="impactcon-card"><img src="impactcon2.png" alt="ImpactCon Photo 2"></div>
+                <div class="impactcon-card"><img src="impactcon3.png" alt="ImpactCon Photo 3"></div>
+                <div class="impactcon-card"><img src="impactcon4.png" alt="ImpactCon Photo 4"></div>
+                <div class="impactcon-card"><img src="impactcon5.png" alt="ImpactCon Photo 5"></div>
+                <div class="impactcon-card"><img src="impactcon6.png" alt="ImpactCon Photo 6"></div>
+                <div class="impactcon-card"><img src="impactcon7.png" alt="ImpactCon Photo 7"></div>
+                <div class="impactcon-card"><img src="impactcon8.png" alt="ImpactCon Photo 8"></div>
+                <div class="impactcon-card"><img src="impactcon1.png" alt="ImpactCon Photo 9"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mentors" class="section bg-light">
       <div class="container">
         <h2 class="section-title">Our Esteemed Mentors</h2>
         <p class="section-subtitle">Learn from leaders and visionaries dedicated to nurturing the next generation of innovators.</p>
-        <div class="cards-grid">
-            <div class="card person-card" style="transition-delay: 0s;"><img src="skbhola.png"/><h4>Mr. Sanjeev Bhola</h4><p>Chief General Manager, VFJ AVNL, Ministry of Defence</p></div>
-            <div class="card person-card" style="transition-delay: 0.1s;"><img src="ofb.png"/><h4>Mr. E R Sheikh</h4><p>Ex. Director General, Ordinance Factory Board</p></div>
-            <div class="card person-card" style="transition-delay: 0.2s;"><img src="Atul Singh.png" alt="Mr. Atul Singh (IPS)"/><h4>Mr. Atul Singh (IPS)</h4><p>Deputy Inspector General, Jabalpur Range</p></div>
-            <div class="card person-card" style="transition-delay: 0s;"><img src="sipe.png" alt="Dr. Rajeev Chandak"/><h4>Dr. Rajeev Chandak</h4><p>Principal, JEC Jabalpur</p></div>
-            <div class="card person-card" style="transition-delay: 0.1s;"><img src="DSC_0573.JPG"/><h4>Dr. Sudhir Mishra</h4><p>Ex. DG DRDO, CEO & MD, BrahMos</p></div>
-            <div class="card person-card" style="transition-delay: 0.2s;"><img src="Prof. Bhartendu K Singh.jpg"/><h4>Prof. Bhartendu K Singh</h4><p>Director, IIITDM Jabalpur</p></div>
+        
+        <div class="mentor-slideshow">
+            <div class="person-card"><img src="skbhola.png"/><h4>Mr. Sanjeev Bhola</h4><p>Chief General Manager, VFJ AVNL, Ministry of Defence</p></div>
+            <div class="person-card"><img src="ofb.png"/><h4>Mr. E R Sheikh</h4><p>Ex. Director General, Ordinance Factory Board</p></div>
+            <div class="person-card"><img src="Atul Singh.png" alt="Mr. Atul Singh (IPS)"/><h4>Mr. Atul Singh (IPS)</h4><p>Deputy Inspector General, Jabalpur Range</p></div>
+            <div class="person-card"><img src="sipe.png" alt="Dr. Rajeev Chandak"/><h4>Dr. Rajeev Chandak</h4><p>Principal, JEC Jabalpur</p></div>
+            <div class="person-card"><img src="DSC_0573.JPG"/><h4>Dr. Sudhir Mishra</h4><p>Ex. DG DRDO, CEO & MD, BrahMos</p></div>
+            <div class="person-card"><img src="Prof. Bhartendu K Singh.jpg"/><h4>Prof. Bhartendu K Singh</h4><p>Director, IIITDM Jabalpur</p></div>
         </div>
       </div> 
     </section>
     
-     <section id="get-involved" class="section bg-light">
+     <section id="get-involved" class="section">
         <div class="container" style="text-align: center;">
             <h2 class="section-title">Get Involved</h2>
             <p class="section-subtitle">Ready to join the innovation revolution? Become a part of our growing network today.</p>
@@ -244,18 +393,90 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
   <script>
-    // Scroll Animation
     document.addEventListener('DOMContentLoaded', () => {
-        const observer = new IntersectionObserver((entries) => {
+        
+        // --- Animation 1: General Card Fade-in on Scroll ---
+        const cardObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
+                    cardObserver.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.card').forEach(el => observer.observe(el));
+        // IMPORTANT: Only select cards in these sections, not the mentor cards
+        document.querySelectorAll('#about .card, #programs .card').forEach(el => {
+            cardObserver.observe(el);
+        });
+
+        
+        // --- Animation 2: ImpactCon 3D Flip Animation ---
+        const gallery = document.getElementById('impactcon-gallery');
+        if (gallery) {
+            const impactObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        anime({
+                            targets: '.impactcon-card',
+                            opacity: 1,
+                            scale: 1,
+                            rotateY: '0deg',
+                            duration: 1500,
+                            easing: 'spring(1, 80, 10, 0)',
+                            delay: anime.stagger(150) // Stagger for each of the 9 photos
+                        });
+                        impactObserver.unobserve(entry.target); // Animate only once
+                    }
+                });
+            }, { threshold: 0.1 });
+            impactObserver.observe(gallery);
+        }
+
+        
+        // --- Animation 3: Mentor Slideshow ---
+        function initMentorSlideshow() {
+            const mentors = document.querySelectorAll('#mentors .person-card');
+            if (mentors.length === 0) return;
+            
+            let currentMentor = 0;
+
+            // Set initial state for the first mentor
+            anime.set(mentors[0], { opacity: 1, translateX: 0 });
+
+            setInterval(() => {
+                const outgoingMentor = mentors[currentMentor];
+                
+                // Get next mentor index, looping back to 0
+                currentMentor = (currentMentor + 1) % mentors.length;
+                const incomingMentor = mentors[currentMentor];
+
+                // Use anime.js timeline for a clean in/out animation
+                const tl = anime.timeline({
+                    easing: 'easeOutExpo',
+                    duration: 800 // Duration for each fade
+                });
+
+                tl.add({
+                    targets: outgoingMentor,
+                    translateX: -40, // Move out to the left
+                    opacity: 0
+                })
+                .add({
+                    targets: incomingMentor,
+                    translateX: [40, 0], // Come in from the right
+                    opacity: [0, 1]
+                }, '-=600'); // Overlap animations for a smoother crossfade
+
+            }, 4000); // Change slide every 4 seconds
+        }
+
+        // Start the mentor slideshow
+        initMentorSlideshow();
+
     });
   </script>
 </body>
