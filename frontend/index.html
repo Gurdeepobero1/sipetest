@@ -246,7 +246,8 @@
     
     /* --- CSS: 3D Continuous Carousel (with new gap changes) --- */
     #impactcon-gallery {
-      perspective: 2500px;
+      /* NEW: Stronger perspective for a more "bended" look */
+      perspective: 1500px; 
       width: 100%;
       height: 400px; 
       position: relative;
@@ -263,17 +264,13 @@
       position: absolute;
       top: 50%;
       left: 50%;
-
-      /* NEW: Narrower cards for a better "bended" look */
       width: 320px; 
       height: 240px; 
-      margin-left: -160px; /* -(320/2) */
+      margin-left: -160px;
       margin-top: -120px;  
-      
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: var(--shadow-lg);
-      
       -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, rgba(0,0,0,0.4));
     }
     .impactcon-card img {
@@ -370,7 +367,7 @@
             <h2 class="section-title">Programs & Offerings</h2>
             <p class="section-subtitle">Comprehensive initiatives to foster innovation from the classroom to the marketplace.</p>
             <div class="cards-grid">
-                <div class="card"><h3>Guest Lecture Series</h3><p>Gain insights on industry expectations, research impact, and startup journeys from experts.</p></div>
+                <div class="card"><h3>Guest Lecture Series</h3><p>Gain insights on industry expectations, research-impact, and startup journeys from experts.</p></div>
                 <div class="card"><h3>Innovation Index</h3><p>We measure and track R&D activity and IP filings to rank and recognize institutions.</p></div>
                 <div class="card"><h3>Mentor Connect</h3><p>Get matched with industry mentors and investors through our cross-institutional network.</p></div>
                 <div class="card"><h3>IP to Impact Bootcamps</h3><p>Learn patent commercialization, business model development, and market validation.</p></div>
@@ -481,8 +478,8 @@
             const numImages = images.length;
             const anglePerImage = 360 / numImages;
             
-            // NEW: Increased radius for a wider ring and more "gap"
-            const radius = 650; 
+            // NEW: Drastically increased radius for a very wide gap.
+            const radius = 800; 
 
             // 1. Position all 9 cards in the 3D ring
             images.forEach((img, i) => {
