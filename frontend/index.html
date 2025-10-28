@@ -250,12 +250,12 @@
     .logo-item img {
         height: 45px;
         max-width: 150px;
-        filter: grayscale(100%);
-        opacity: 0.6;
-        transition: filter 0.3s var(--transition-curve), opacity 0.3s var(--transition-curve);
+        /* filter: grayscale(100%); REMOVED */
+        opacity: 0.8; /* Slightly increased default opacity */
+        transition: /* filter 0.3s var(--transition-curve), REMOVED */ opacity 0.3s var(--transition-curve);
     }
     .logo-item:hover img {
-      filter: grayscale(0%);
+      /* filter: grayscale(0%); REMOVED */
       opacity: 1;
     }
 
@@ -271,15 +271,13 @@
     /* --- Events & Gallery Section --- */
     .event-portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      /* Adjusted to fit 5 items better on large screens */
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
       gap: 2rem;
     }
-    @media (max-width: 968px) {
-      .event-portfolio-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-     @media (max-width: 768px) {
-      .event-portfolio-grid { grid-template-columns: 1fr; }
-    }
+    /* Keep 2 columns for medium screens */
+    /* Keep 1 column for small screens */
+    
     .event-card {
       position: relative;
       aspect-ratio: 4 / 3;
@@ -774,27 +772,28 @@
         <div class="event-portfolio-grid">
           <!-- Event 1: ImpactCon -->
           <div class="event-card animate-on-scroll" data-gallery="gallery-1">
-            <!-- Updated image src and alt -->
             <img src="impactcon1.png" alt="ImpactCon Event" class="event-card-img"> 
             <div class="event-card-overlay"><h3>ImpactCon</h3></div>
           </div>
           <!-- Event 2: Sudhir Mishra Visit -->
           <div class="event-card animate-on-scroll" data-gallery="gallery-2">
-            <!-- Updated image src -->
             <img src="SM1.png" alt="Lecture by Dr. Sudhir Mishra" class="event-card-img"> 
             <div class="event-card-overlay"><h3>Lecture by Dr. Sudhir Mishra</h3></div>
           </div>
           <!-- Event 3: Praveen Sir Session -->
           <div class="event-card animate-on-scroll" data-gallery="gallery-3">
-             <!-- Updated image src and alt -->
             <img src="P1.jpeg" alt="Session with Praveen Sir" class="event-card-img">
-             <!-- Updated title -->
             <div class="event-card-overlay"><h3>Session with Praveen Sir</h3></div>
           </div>
-          <!-- Event 4: Placeholder (Robotics Workshop) -->
+          <!-- Event 4: Robotics Workshop -->
           <div class="event-card animate-on-scroll" data-gallery="gallery-4">
-            <img src="skbhola.png" alt="Robotics Workshop" class="event-card-img">
+            <img src="R1.png" alt="Robotics Workshop" class="event-card-img">
             <div class="event-card-overlay"><h3>Robotics & Drive Systems Workshop</h3></div>
+          </div>
+          <!-- Event 5: Times Jabalpur -->
+          <div class="event-card animate-on-scroll" data-gallery="gallery-5">
+            <img src="T1.png" alt="Times Jabalpur Coverage" class="event-card-img">
+            <div class="event-card-overlay"><h3>Times Jabalpur Coverage</h3></div>
           </div>
         </div>
       </div>
@@ -910,15 +909,17 @@
             'gallery-2': [ 
                 'SM1.png', 'SM2.png', 'SM3.png', 'SM4.png' 
             ],
-            // Praveen Sir Event (Assuming 4 photos with PS prefix)
+            // Praveen Sir Event
             'gallery-3': [ 
-                'P1.jpeg', 'P2.jpeg'
-                // Note: Ensure these files exist or update filenames
+                'P1.jpeg', 'P2.jpeg' 
             ],
-            // Placeholder for 4th Event Card
+            // Robotics Workshop (Placeholder - Assuming 3 images R1, R2, R3)
             'gallery-4': [ 
-                'skbhola.png', 'ofb.png', 'Inaugural ceremony of s.i.p.e(2).png', 
-                'sipe.png', 'Atul Singh.png', 'Prof. Bhartendu K Singh.jpg' 
+                'R1.png', 'R2.png', 'R3.png', 
+            ],
+            // Times Jabalpur Event
+            'gallery-5': [
+                'T1.png', 'T2.png', 'T3.png'
             ]
         };
 
@@ -947,7 +948,7 @@
                 };
                 img.onerror = () => { // Handle cases where an image might be missing
                     console.error("Error loading image:", currentGallery[currentIndex]);
-                    lightboxImg.src = 'https://placehold.co/800x600/1f2937/d1d5db?text=Image+Not+Found'; // Placeholder
+                    lightboxImg.src = 'https://placehold.co/800x600/eeeeee/aaaaaa?text=Image+Not+Found'; // Placeholder
                     lightboxImg.style.opacity = 1;
                     lightboxCounter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
                 };
@@ -961,7 +962,7 @@
             } else {
                  console.error("Invalid gallery state:", currentGallery, currentIndex);
                  // Optionally show a general error in the lightbox
-                 lightboxImg.src = 'https://placehold.co/800x600/1f2937/d1d5db?text=Gallery+Error';
+                 lightboxImg.src = 'https://placehold.co/800x600/eeeeee/aaaaaa?text=Gallery+Error';
                  lightboxImg.style.opacity = 1;
                  lightboxCounter.textContent = `Error`;
             }
