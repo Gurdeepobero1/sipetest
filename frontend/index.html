@@ -176,7 +176,7 @@
       color: var(--dark-blue); 
     }
     
-    /* Mentor Card (Slideshow) */
+    /* Mentor Card Styling */
     .person-card img {
       width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1.5rem;
       object-fit: cover; margin-left: auto; margin-right: auto;
@@ -186,30 +186,7 @@
     .person-card h4 { font-size: 1.2rem; margin-bottom: 0.25rem; }
     .person-card p { font-size: 0.95rem; color: var(--gray-600); }
 
-    /* Mentor Slideshow CSS (Kept) */
-    .mentor-slideshow {
-      position: relative;
-      max-width: 400px;
-      min-height: 450px;
-      margin: 0 auto;
-      overflow: hidden;
-      border-radius: var(--radius);
-    }
-    .mentor-slideshow .person-card {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transform: none;
-      transition: none;
-      background: var(--white); 
-      padding: 2.5rem 2rem; 
-      border-radius: var(--radius);
-      border: 1px solid var(--gray-100);
-      text-align: center;
-    }
+    /* Removed Mentor Slideshow CSS */
 
     /* Footer */
     .footer { 
@@ -221,6 +198,7 @@
 
     @media (max-width: 768px) {
         .nav-links, .header-content .btn { display: none; }
+        /* Add mobile hamburger styles here if needed */
     }
   </style>
 </head>
@@ -228,7 +206,6 @@
   
   <header class="header">
     <div class="header-content container">
-      <!-- Changed href to index.html -->
       <a href="index.html" class="logo">SIPE</a> 
       <nav>
         <ul class="nav-links">
@@ -292,19 +269,21 @@
         </div>
     </section>
 
-    <!-- Mentor Section (Kept) -->
+    <!-- Mentor Section (Now using cards-grid) -->
     <section id="mentors" class="section bg-light">
       <div class="container">
         <h2 class="section-title">Our Esteemed Mentors</h2>
         <p class="section-subtitle">Learn from leaders and visionaries dedicated to nurturing the next generation of innovators.</p>
         
-        <div class="mentor-slideshow">
-            <div class="person-card"><img src="skbhola.png"/><h4>Mr. Sanjeev Bhola</h4><p>Chief General Manager, VFJ AVNL, Ministry of Defence</p></div>
-            <div class="person-card"><img src="ofb.png"/><h4>Mr. E R Sheikh</h4><p>Ex. Director General, Ordinance Factory Board</p></div>
-            <div class="person-card"><img src="Atul Singh.png" alt="Mr. Atul Singh (IPS)"/><h4>Mr. Atul Singh (IPS)</h4><p>Deputy Inspector General, Jabalpur Range</p></div>
-            <div class="person-card"><img src="sipe.png" alt="Dr. Rajeev Chandak"/><h4>Dr. Rajeev Chandak</h4><p>Principal, JEC Jabalpur</p></div>
-            <div class="person-card"><img src="DSC_0573.JPG"/><h4>Dr. Sudhir Mishra</h4><p>Ex. DG DRDO, CEO & MD, BrahMos</p></div>
-            <div class="person-card"><img src="Prof. Bhartendu K Singh.jpg"/><h4>Prof. Bhartendu K Singh</h4><p>Director, IIITDM Jabalpur</p></div>
+        <!-- Changed class from mentor-slideshow to cards-grid -->
+        <div class="cards-grid"> 
+            <!-- Added base 'card' class to each mentor for styling and animation -->
+            <div class="card person-card"><img src="skbhola.png"/><h4>Mr. Sanjeev Bhola</h4><p>Chief General Manager, VFJ AVNL, Ministry of Defence</p></div>
+            <div class="card person-card"><img src="ofb.png"/><h4>Mr. E R Sheikh</h4><p>Ex. Director General, Ordinance Factory Board</p></div>
+            <div class="card person-card"><img src="Atul Singh.png" alt="Mr. Atul Singh (IPS)"/><h4>Mr. Atul Singh (IPS)</h4><p>Deputy Inspector General, Jabalpur Range</p></div>
+            <div class="card person-card"><img src="sipe.png" alt="Dr. Rajeev Chandak"/><h4>Dr. Rajeev Chandak</h4><p>Principal, JEC Jabalpur</p></div>
+            <div class="card person-card"><img src="DSC_0573.JPG"/><h4>Dr. Sudhir Mishra</h4><p>Ex. DG DRDO, CEO & MD, BrahMos</p></div>
+            <div class="card person-card"><img src="Prof. Bhartendu K Singh.jpg"/><h4>Prof. Bhartendu K Singh</h4><p>Director, IIITDM Jabalpur</p></div>
         </div>
       </div> 
     </section>
@@ -325,10 +304,10 @@
     </div>
   </footer>
 
-  <!-- anime.js Library (Kept for mentor slideshow) -->
+  <!-- anime.js Library (No longer needed for mentors, but kept in case needed elsewhere) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
-  <!-- JS: All Animations -->
+  <!-- JS: Simplified Animations -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
         
@@ -341,44 +320,13 @@
                 }
             });
         }, { threshold: 0.1 });
-        // We only animate the cards in these two sections now
-        document.querySelectorAll('#about .card, #programs .card').forEach(el => {
+        
+        // NOW observes ALL card sections, including mentors
+        document.querySelectorAll('.card').forEach(el => {
             cardObserver.observe(el);
         });
         
-        // --- Animation 3: Mentor Slideshow (Kept) ---
-        function initMentorSlideshow() {
-            const mentors = document.querySelectorAll('#mentors .person-card');
-            if (mentors.length === 0) return;
-            
-            let currentMentor = 0;
-            anime.set(mentors[0], { opacity: 1, translateX: 0 });
-
-            setInterval(() => {
-                const outgoingMentor = mentors[currentMentor];
-                currentMentor = (currentMentor + 1) % mentors.length;
-                const incomingMentor = mentors[currentMentor];
-
-                const tl = anime.timeline({
-                    easing: 'easeOutExpo',
-                    duration: 800
-                });
-
-                tl.add({
-                    targets: outgoingMentor,
-                    translateX: -40,
-                    opacity: 0
-                })
-                .add({
-                    targets: incomingMentor,
-                    translateX: [40, 0],
-                    opacity: [0, 1]
-                }, '-=600');
-
-            }, 4000); 
-        }
-        
-        initMentorSlideshow();
+        // --- Removed Mentor Slideshow JS ---
 
     });
   </script>
