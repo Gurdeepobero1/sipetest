@@ -6,7 +6,7 @@
   <title>SIPE - Society of Innovation and Professional Excellence</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
-    /* Light Theme Variables */
+    /* --- CSS Variables --- */
     :root {
       --primary-blue: #0052cc;
       --light-blue: #f0f6ff;
@@ -21,43 +21,45 @@
       --radius: 12px;
     }
 
+    /* --- Global Reset & Base --- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-     body {
+    body {
       font-family: 'Inter', sans-serif;
       background-color: var(--white);
       color: var(--gray-900);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden; /* Prevent horizontal scroll */
     }
     
-    h1, h2, h3 { 
-      text-wrap: balance; 
-      font-weight: 700; 
-      letter-spacing: -0.025em; 
+    h1, h2, h3, h4 {  
+      text-wrap: balance;  
+      font-weight: 700;  
+      letter-spacing: -0.025em;  
     }
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
-    .section { padding: 6rem 2rem; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 6rem 1.5rem; overflow: hidden; } /* Added overflow:hidden for animations */
     
-    .section-title { 
-      font-size: clamp(2.2rem, 4vw, 3rem); 
-      text-align: center; 
-      margin-bottom: 1rem; 
-      color: var(--dark-blue); 
+    .section-title {  
+      font-size: clamp(2rem, 4vw, 2.8rem);  
+      text-align: center;  
+      margin-bottom: 1rem;  
+      color: var(--dark-blue);  
     }
-    .section-subtitle { 
-      font-size: 1.2rem; 
-      text-align: center; 
-      color: var(--gray-600); 
-      margin-bottom: 4rem; 
-      max-width: 700px; 
-      margin-left: auto; 
-      margin-right: auto; 
+    .section-subtitle {  
+      font-size: 1.15rem;  
+      text-align: center;  
+      color: var(--gray-600);  
+      margin-bottom: 4rem;  
+      max-width: 700px;  
+      margin-left: auto;  
+      margin-right: auto;  
     }
     
-    .bg-light { 
-      background-color: var(--gray-50); 
+    .bg-light {  
+      background-color: var(--gray-50);  
     }
     
     .btn {
@@ -65,140 +67,343 @@
       background-color: var(--primary-blue); color: var(--white); padding: 0.85rem 2rem;
       border-radius: 8px; font-weight: 600; cursor: pointer;
       transition: all 0.3s ease; text-decoration: none;
+      border: none;
     }
-    .btn:hover { 
-      background-color: var(--dark-blue); 
-      transform: translateY(-3px); 
-      box-shadow: var(--shadow-lg); 
+    .btn:hover {  
+      background-color: var(--dark-blue);  
+      transform: translateY(-3px);  
+      box-shadow: var(--shadow-lg);  
     }
 
-    /* Header */
+    /* --- Header & Navigation --- */
     .header {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      position: sticky; top: 0; z-index: 100;
+      position: sticky; top: 0; z-index: 1000;
       border-bottom: 1px solid var(--gray-100);
     }
-    .header-content { display: flex; justify-content: space-between; align-items: center; height: 80px; }
-    .logo { font-size: 1.8rem; font-weight: 800; color: var(--primary-blue); text-decoration: none; }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    
-    .nav-links a { 
-      color: var(--gray-600); 
+    .header-content { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      height: 80px; 
+    }
+    .logo { 
+      font-size: 1.8rem; 
+      font-weight: 800; 
+      color: var(--primary-blue); 
       text-decoration: none; 
-      font-weight: 500; 
-      transition: color 0.3s ease; 
+    }
+    .nav-links { 
+      display: flex; 
+      gap: 2.5rem; 
+      list-style: none; 
+    }
+    .nav-links a {  
+      color: var(--gray-600);  
+      text-decoration: none;  
+      font-weight: 500;  
+      transition: color 0.3s ease;  
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-blue);
+      transition: width 0.3s ease;
     }
     .nav-links a:hover { color: var(--primary-blue); }
-    .hamburger { display: none; }
+    .nav-links a:hover::after { width: 100%; }
+    
+    .hamburger { 
+      display: none; /* Hidden on desktop */
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 1001;
+    }
+    .hamburger-icon {
+      width: 28px;
+      height: 28px;
+      stroke: var(--dark-blue);
+      stroke-width: 2;
+      transition: all 0.3s ease;
+    }
+    .hamburger-icon .line-top {
+        transform-origin: center;
+        transition: transform 0.3s ease-out;
+    }
+    .hamburger-icon .line-mid {
+        transition: opacity 0.3s ease-out;
+    }
+    .hamburger-icon .line-bot {
+        transform-origin: center;
+        transition: transform 0.3s ease-out;
+    }
+    /* Hamburger 'X' state */
+    body.mobile-nav-open .hamburger-icon .line-top {
+        transform: translateY(7px) rotate(45deg);
+    }
+    body.mobile-nav-open .hamburger-icon .line-mid {
+        opacity: 0;
+    }
+     body.mobile-nav-open .hamburger-icon .line-bot {
+        transform: translateY(-7px) rotate(-45deg);
+    }
 
-    /* Hero */
+
+    /* --- Hero Section --- */
     .hero {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        min-height: 90vh;
-        color: var(--white);
-        overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 90vh;
+      color: var(--white);
+      overflow: hidden;
+      padding: 6rem 1.5rem;
     }
     .hero-background {
-        position: absolute;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background-image: url('Inaugural ceremony of s.i.p.e(2).png');
-        background-size: cover;
-        background-position: center;
-        animation: zoom-in 20s ease-out infinite;
-        z-index: 1;
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url('Inaugural ceremony of s.i.p.e(2).png');
+      background-size: cover;
+      background-position: center;
+      animation: zoom-in 20s ease-out infinite;
+      z-index: 1;
     }
     .hero-overlay {
-        position: absolute;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(7, 29, 73, 0.7);
-        z-index: 2;
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(7, 29, 73, 0.75); /* Slightly darker overlay */
+      z-index: 2;
     }
     .hero-content { position: relative; z-index: 3; }
     .hero-content h1 {
-        font-size: clamp(2.8rem, 6vw, 4.5rem);
-        margin-bottom: 1.5rem;
-        font-weight: 800;
-        animation: slide-up 1s ease-out forwards;
-        color: var(--white);
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      margin-bottom: 1.5rem;
+      font-weight: 800;
+      animation: slide-up 1s ease-out forwards;
+      color: var(--white);
     }
     .hero-content p {
-        font-size: 1.25rem;
-        margin-bottom: 2.5rem;
-        max-width: 650px;
-        margin-left: auto;
-        margin-right: auto;
-        opacity: 0.9;
-        animation: slide-up 1s ease-out 0.3s forwards;
-        opacity: 0;
+      font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+      margin-bottom: 2.5rem;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: slide-up 1s ease-out 0.3s forwards;
+      opacity: 0;
     }
     .hero-content .btn {
-        animation: slide-up 1s ease-out 0.6s forwards;
-        opacity: 0;
+      animation: slide-up 1s ease-out 0.6s forwards;
+      opacity: 0;
     }
-
+    
     @keyframes zoom-in {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-        100% { transform: scale(1); }
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
     @keyframes slide-up {
-        from { transform: translateY(30px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
-    /* General Card Grid */
-    .cards-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    /* --- General Card Grid --- */
+    .cards-grid { 
+      display: grid; 
+      gap: 2rem; 
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    }
     
     .card {
-      background: var(--white); 
-      padding: 2.5rem 2rem; 
+      background: var(--white);  
+      padding: 2.5rem 2rem;  
       border-radius: var(--radius);
-      box-shadow: var(--shadow-md); 
-      text-align: center; 
+      box-shadow: var(--shadow-md);  
+      text-align: center;  
       border: 1px solid var(--gray-100);
       transition: all 0.3s ease;
-      opacity: 0; transform: translateY(40px);
+      /* Animation hook */
+      opacity: 0; 
+      transform: translateY(40px);
     }
-    .card.is-visible { opacity: 1; transform: translateY(0); }
-    .card:hover { 
-      transform: translateY(-10px); 
-      box-shadow: var(--shadow-lg); 
-    }
-    .card .icon { height: 48px; margin-bottom: 1.5rem; color: var(--primary-blue); }
-    .card h3 { 
-      font-size: 1.3rem; 
-      margin-bottom: 0.5rem; 
-      color: var(--dark-blue); 
+    /* Animation state */
+    .card.is-visible { 
+      opacity: 1; 
+      transform: translateY(0); 
+      transition-delay: var(--delay, 0s);
     }
     
-    /* Mentor Card Styling */
+    .card:hover {  
+      transform: translateY(-10px);  
+      box-shadow: var(--shadow-lg);  
+    }
+    .card .icon { 
+      height: 48px; 
+      width: 48px;
+      margin-bottom: 1.5rem; 
+      color: var(--primary-blue); 
+    }
+    .card h3 {  
+      font-size: 1.3rem;  
+      margin-bottom: 0.5rem;  
+      color: var(--dark-blue);  
+    }
+    
+    /* --- Mentor Card (Tiles) --- */
+    .person-card {
+      /* Inherits .card styles */
+      padding-top: 2rem;
+    }
     .person-card img {
       width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1.5rem;
       object-fit: cover; margin-left: auto; margin-right: auto;
       border: 4px solid var(--white);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .person-card h4 { 
+      font-size: 1.2rem; 
+      margin-bottom: 0.25rem; 
+      color: var(--dark-blue);
+    }
+    .person-card p { 
+      font-size: 0.95rem; 
+      color: var(--gray-600); 
+    }
+
+    /* --- NEW: Gallery Section --- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .gallery-item {
+      border-radius: var(--radius);
+      overflow: hidden;
       box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+      aspect-ratio: 4 / 3;
+      position: relative;
+      cursor: pointer;
+      /* Animation hook */
+      opacity: 0;
+      transform: translateY(40px);
     }
-    .person-card h4 { font-size: 1.2rem; margin-bottom: 0.25rem; }
-    .person-card p { font-size: 0.95rem; color: var(--gray-600); }
-
-    /* Removed Mentor Slideshow CSS */
-
-    /* Footer */
-    .footer { 
-      background: var(--dark-blue); 
-      color: var(--gray-100); 
-      text-align: center; 
-      padding: 4rem 2rem; 
+    /* Animation state */
+    .gallery-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: var(--delay, 0s);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .gallery-item-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(0deg, rgba(7, 29, 73, 0.8) 0%, rgba(7, 29, 73, 0) 100%);
+      color: var(--white);
+      padding: 2.5rem 1.5rem 1.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s ease;
+    }
+     .gallery-item-caption h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+     }
+    .gallery-item:hover {
+      box-shadow: var(--shadow-lg);
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    .gallery-item:hover .gallery-item-caption {
+      opacity: 1;
+      transform: translateY(0);
     }
 
+
+    /* --- Footer --- */
+    .footer {  
+      background: var(--dark-blue);  
+      color: var(--gray-100);  
+      padding: 4rem 1.5rem;  
+    }
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    .footer .logo {
+      color: var(--white);
+      opacity: 0.9;
+    }
+    .footer p {
+      text-align: center;
+      opacity: 0.8;
+    }
+
+    /* --- Responsive (Mobile) --- */
     @media (max-width: 768px) {
-        .nav-links, .header-content .btn { display: none; }
-        /* Add mobile hamburger styles here if needed */
+      .section { padding: 4rem 1.5rem; }
+      
+      .header-content .btn { display: none; }
+      
+      .hamburger { 
+        display: block; 
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 80px; /* Below header */
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: var(--white);
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        padding-top: 3rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-out;
+      }
+      
+      body.mobile-nav-open .nav-links {
+        transform: translateX(0);
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+      }
+      /* Prevent scrolling when mobile nav is open */
+      body.mobile-nav-open {
+        overflow: hidden;
+      }
+      
+      .nav-links a {
+        font-size: 1.2rem;
+        color: var(--dark-blue);
+      }
+      
+      .hero { min-height: 70vh; }
+      
+      .cards-grid, .gallery-grid {
+        grid-template-columns: 1fr; /* Stack cards on mobile */
+      }
     }
   </style>
 </head>
@@ -206,16 +411,24 @@
   
   <header class="header">
     <div class="header-content container">
-      <a href="index.html" class="logo">SIPE</a> 
+      <a href="index.html" class="logo">SIPE</a>  
       <nav>
-        <ul class="nav-links">
+        <ul class="nav-links" id="nav-links">
           <li><a href="#about">Our Aim</a></li>
           <li><a href="#programs">Programs</a></li>
           <li><a href="#mentors">Mentors</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="#gallery">Gallery</a></li>
         </ul>
       </nav>
       <a href="loginstudent.html" class="btn">Join Now</a>
+      
+      <button class="hamburger" id="hamburger-btn" aria-label="Open navigation menu" aria-expanded="false">
+        <svg class="hamburger-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <path class="line-top" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16" />
+            <path class="line-mid" stroke-linecap="round" stroke-linejoin="round" d="M4 12h16" />
+            <path class="line-bot" stroke-linecap="round" stroke-linejoin="round" d="M4 18h16" />
+        </svg>
+      </button>
     </div>
   </header>
 
@@ -235,18 +448,29 @@
             <h2 class="section-title">Our Aim</h2>
             <p class="section-subtitle">To establish a premier innovation network connecting students, faculty, and industry professionals across India, bridging the gap between academia and real-world application.</p>
             <div class="cards-grid">
+                
                 <div class="card">
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z"></path></svg>
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
+                    </svg>
                     <h3>Our Mission</h3>
                     <p>Create a standardized yet adaptable innovation and excellence framework in every campus, starting with Jabalpur Engineering College (pilot) and scaling to other institutions.</p>
                 </div>
+                
                 <div class="card">
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path></svg>
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
                     <h3>Our Vision</h3>
                     <p>To establish SIPE as the premier innovation network connecting students, faculty, industry mentors, and research professionals across Indian colleges and universities.</p>
                 </div>
+                
                 <div class="card">
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12l-2.44-2.78.34-3.68-3.61-.82-1.89-3.18L12 3 8.6 1.54 6.71 4.72l-3.61.81.34 3.68L1 12l2.44 2.78-.34 3.69 3.61.82 1.89 3.18L12 21l3.4 1.46 1.89-3.18 3.61-.82-.34-3.68L23 12zm-10 5h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18c-2.305 0-4.408.867-6 2.292m0-14.25v14.25" />
+                    </svg>
                     <h3>Our Approach</h3>
                     <p>Student-driven initiatives supported by experienced mentors, creating sustainable innovation ecosystems that bridge the gap between academia and industry.</p>
                 </div>
@@ -269,15 +493,12 @@
         </div>
     </section>
 
-    <!-- Mentor Section (Now using cards-grid) -->
-    <section id="mentors" class="section bg-light">
+    <section id="mentors" class="section">
       <div class="container">
         <h2 class="section-title">Our Esteemed Mentors</h2>
         <p class="section-subtitle">Learn from leaders and visionaries dedicated to nurturing the next generation of innovators.</p>
         
-        <!-- Changed class from mentor-slideshow to cards-grid -->
-        <div class="cards-grid"> 
-            <!-- Added base 'card' class to each mentor for styling and animation -->
+        <div class="cards-grid">
             <div class="card person-card"><img src="skbhola.png"/><h4>Mr. Sanjeev Bhola</h4><p>Chief General Manager, VFJ AVNL, Ministry of Defence</p></div>
             <div class="card person-card"><img src="ofb.png"/><h4>Mr. E R Sheikh</h4><p>Ex. Director General, Ordinance Factory Board</p></div>
             <div class="card person-card"><img src="Atul Singh.png" alt="Mr. Atul Singh (IPS)"/><h4>Mr. Atul Singh (IPS)</h4><p>Deputy Inspector General, Jabalpur Range</p></div>
@@ -285,7 +506,40 @@
             <div class="card person-card"><img src="DSC_0573.JPG"/><h4>Dr. Sudhir Mishra</h4><p>Ex. DG DRDO, CEO & MD, BrahMos</p></div>
             <div class="card person-card"><img src="Prof. Bhartendu K Singh.jpg"/><h4>Prof. Bhartendu K Singh</h4><p>Director, IIITDM Jabalpur</p></div>
         </div>
-      </div> 
+      </div>  
+    </section>
+    
+    <section id="gallery" class="section bg-light">
+      <div class="container">
+          <h2 class="section-title">Gallery</h2>
+          <p class="section-subtitle">Moments from our inaugural events, workshops, and mentor sessions.</p>
+          <div class="gallery-grid">
+              <div class="gallery-item">
+                  <img src="Inaugural ceremony of s.i.p.e(2).png" alt="SIPE Inaugural Event">
+                  <div class="gallery-item-caption"><h4>Inaugural Ceremony</h4></div>
+              </div>
+              <div class="gallery-item">
+                  <img src="DSC_0573.JPG" alt="Dr. Sudhir Mishra at SIPE event">
+                  <div class="gallery-item-caption"><h4>Mentor Session: Dr. Sudhir Mishra</h4></div>
+              </div>
+              <div class="gallery-item">
+                  <img src="Atul Singh.png" alt="Mentor Mr. Atul Singh (IPS)">
+                  <div class="gallery-item-caption"><h4>Guest Lecture: Mr. Atul Singh (IPS)</h4></div>
+              </div>
+              <div class="gallery-item">
+                  <img src="sipe.png" alt="Mentor Dr. Rajeev Chandak">
+                  <div class="gallery-item-caption"><h4>Campus Partnership: Dr. Rajeev Chandak</h4></div>
+              </div>
+              <div class="gallery-item">
+                  <img src="skbhola.png" alt="Mentor Mr. Sanjeev Bhola">
+                   <div class="gallery-item-caption"><h4>Industry Talk: Mr. Sanjeev Bhola</h4></div>
+              </div>
+              <div class="gallery-item">
+                  <img src="Prof. Bhartendu K Singh.jpg" alt="Mentor Prof. Bhartendu K Singh">
+                  <div class="gallery-item-caption"><h4>Academic Keynote: Prof. B. K. Singh</h4></div>
+              </div>
+          </div>
+      </div>
     </section>
     
      <section id="get-involved" class="section">
@@ -299,36 +553,53 @@
   </main>
 
   <footer class="footer">
-    <div class="container">
+    <div class="container footer-content">
+        <a href="#home" class="logo">SIPE</a>
         <p>&copy; 2025 Society of Innovation and Professional Excellence. All Rights Reserved.</p>
     </div>
   </footer>
 
-  <!-- anime.js Library (No longer needed for mentors, but kept in case needed elsewhere) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-
-  <!-- JS: Simplified Animations -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
         
         // --- Animation 1: General Card Fade-in on Scroll ---
+        const animatedElements = document.querySelectorAll('.card, .gallery-item');
+
         const cardObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach((entry) => {
+            entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
+                    // Set a staggered delay
+                    entry.target.style.transitionDelay = `${index * 100}ms`;
                     entry.target.classList.add('is-visible');
                     observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1 });
         
-        // NOW observes ALL card sections, including mentors
-        document.querySelectorAll('.card').forEach(el => {
+        animatedElements.forEach(el => {
             cardObserver.observe(el);
         });
         
-        // --- Removed Mentor Slideshow JS ---
+        
+        // --- NEW: Mobile Menu Toggle ---
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const navLinksContainer = document.getElementById('nav-links');
+        
+        // Toggle menu on hamburger click
+        hamburgerBtn.addEventListener('click', () => {
+            const isOpened = document.body.classList.toggle('mobile-nav-open');
+            hamburgerBtn.setAttribute('aria-expanded', isOpened);
+        });
+        
+        // Close menu when a nav link is clicked (for single-page anchors)
+        navLinksContainer.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.body.classList.remove('mobile-nav-open');
+                hamburgerBtn.setAttribute('aria-expanded', false);
+            });
+        });
 
     });
   </script>
-</body>
+  </body>
 </html>
