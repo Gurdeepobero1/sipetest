@@ -6,7 +6,6 @@
   <title>SIPE - Society of Innovation and Professional Excellence</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
-    /* --- CSS Variables --- */
     :root {
       --primary-blue: #0052cc;
       --light-blue: #f0f6ff;
@@ -16,12 +15,13 @@
       --gray-100: #eef2f6;
       --gray-600: #4b5563;
       --gray-900: #111827;
+      --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
       --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
       --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
       --radius: 12px;
     }
 
-    /* --- Global Reset & Base --- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
@@ -29,577 +29,619 @@
       background-color: var(--white);
       color: var(--gray-900);
       line-height: 1.7;
+      font-size: 17px;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden; /* Prevent horizontal scroll */
+      overflow-x: hidden;
     }
-    
-    h1, h2, h3, h4 {  
-      text-wrap: balance;  
-      font-weight: 700;  
-      letter-spacing: -0.025em;  
-    }
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
-    .section { padding: 6rem 1.5rem; overflow: hidden; } /* Added overflow:hidden for animations */
-    
-    .section-title {  
-      font-size: clamp(2rem, 4vw, 2.8rem);  
-      text-align: center;  
-      margin-bottom: 1rem;  
-      color: var(--dark-blue);  
-    }
-    .section-subtitle {  
-      font-size: 1.15rem;  
-      text-align: center;  
-      color: var(--gray-600);  
-      margin-bottom: 4rem;  
-      max-width: 700px;  
-      margin-left: auto;  
-      margin-right: auto;  
-    }
-    
-    .bg-light {  
-      background-color: var(--gray-50);  
-    }
-    
-    .btn {
-      display: inline-block;
-      background-color: var(--primary-blue); color: var(--white); padding: 0.85rem 2rem;
-      border-radius: 8px; font-weight: 600; cursor: pointer;
-      transition: all 0.3s ease; text-decoration: none;
-      border: none;
-    }
-    .btn:hover {  
-      background-color: var(--dark-blue);  
-      transform: translateY(-3px);  
-      box-shadow: var(--shadow-lg);  
-    }
+    h1, h2, h3 { text-wrap: balance; font-weight: 700; letter-spacing: -0.025em; }
 
-    /* --- Header & Navigation --- */
+    /* --- Header --- */
     .header {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      position: sticky; top: 0; z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      position: sticky; top: 0; z-index: 100;
       border-bottom: 1px solid var(--gray-100);
     }
-    .header-content { 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      height: 80px; 
+    .header-content {
+      max-width: 1280px; margin: 0 auto; padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      height: 80px;
     }
-    .logo { 
-      font-size: 1.8rem; 
-      font-weight: 800; 
-      color: var(--primary-blue); 
-      text-decoration: none; 
+    .logo {
+      font-size: 1.8rem; font-weight: 800; color: var(--primary-blue);
+      transition: transform 0.3s ease; text-decoration: none;
     }
-    .nav-links { 
-      display: flex; 
-      gap: 2.5rem; 
-      list-style: none; 
-    }
-    .nav-links a {  
-      color: var(--gray-600);  
-      text-decoration: none;  
-      font-weight: 500;  
-      transition: color 0.3s ease;  
-      position: relative;
-      padding: 0.5rem 0;
+    .logo:hover { transform: scale(1.05); }
+    .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
+    .nav-links a {
+      color: var(--gray-600); text-decoration: none; font-weight: 500; font-size: 1rem;
+      padding: 0.5rem 0; transition: color 0.3s ease; position: relative;
     }
     .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: var(--primary-blue);
-      transition: width 0.3s ease;
+        content: ''; position: absolute; width: 0; height: 2px;
+        bottom: -4px; left: 0;
+        background: var(--primary-blue); transition: width 0.3s ease;
     }
     .nav-links a:hover { color: var(--primary-blue); }
     .nav-links a:hover::after { width: 100%; }
+    .join-btn {
+      background-color: var(--primary-blue); color: var(--white); padding: 0.75rem 1.5rem;
+      border: none; border-radius: 8px; font-weight: 600; cursor: pointer;
+      transition: all 0.3s ease; text-decoration: none; display: inline-block;
+    }
+    .join-btn:hover { background-color: var(--dark-blue); transform: translateY(-2px); }
     
-    .hamburger { 
-      display: none; /* Hidden on desktop */
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.5rem;
-      z-index: 1001;
+    /* --- Mobile Menu --- */
+    .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; order: 3; }
+    .hamburger span { width: 25px; height: 2px; background: var(--gray-900); border-radius: 2px; transition: all 0.3s ease; }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+    .mobile-menu {
+      display: none; position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--white); box-shadow: var(--shadow-lg); padding: 1rem;
     }
-    .hamburger-icon {
-      width: 28px;
-      height: 28px;
-      stroke: var(--dark-blue);
-      stroke-width: 2;
-      transition: all 0.3s ease;
-    }
-    .hamburger-icon .line-top {
-        transform-origin: center;
-        transition: transform 0.3s ease-out;
-    }
-    .hamburger-icon .line-mid {
-        transition: opacity 0.3s ease-out;
-    }
-    .hamburger-icon .line-bot {
-        transform-origin: center;
-        transition: transform 0.3s ease-out;
-    }
-    /* Hamburger 'X' state */
-    body.mobile-nav-open .hamburger-icon .line-top {
-        transform: translateY(7px) rotate(45deg);
-    }
-    body.mobile-nav-open .hamburger-icon .line-mid {
-        opacity: 0;
-    }
-     body.mobile-nav-open .hamburger-icon .line-bot {
-        transform: translateY(-7px) rotate(-45deg);
-    }
+    .mobile-menu.active { display: block; }
+    .mobile-menu a { display: block; padding: 1rem; color: var(--gray-900); text-decoration: none; border-radius: 8px; font-weight: 500; }
+    .mobile-menu a:hover { background: var(--light-blue); color: var(--primary-blue); }
+    body.mobile-menu-open { overflow: hidden; }
 
-
-    /* --- Hero Section --- */
+    /* --- New Hero Section --- */
     .hero {
-      position: relative;
+      background-color: var(--white);
+      padding: 4rem 2rem;
+      min-height: calc(90vh - 80px);
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      min-height: 90vh;
-      color: var(--white);
-      overflow: hidden;
-      padding: 6rem 1.5rem;
     }
-    .hero-background {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
+    .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        max-width: 1280px;
+        margin: 0 auto;
+    }
+    .hero-text {
+        opacity: 0;
+        animation: slide-in 1s ease-out forwards;
+    }
+    @keyframes slide-in {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    .hero-text h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        color: var(--dark-blue);
+        margin-bottom: 1.5rem;
+        font-weight: 800;
+    }
+    .hero-text p {
+        font-size: 1.15rem;
+        color: var(--gray-600);
+        margin-bottom: 2.5rem;
+        max-width: 500px;
+    }
+    .hero-slideshow-container {
+        position: relative;
+        height: 500px;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow-xl);
+        opacity: 0;
+        animation: slide-in 1s ease-out 0.2s forwards;
+    }
+    .hero-slide {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background-size: cover; background-position: center;
+        opacity: 0;
+        animation-name: crossfade-hero;
+        animation-duration: 9s; /* 3 images * 3s = 9s total */
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+    }
+    /* Images for hero slideshow */
+    .hero-slide:nth-child(1) { background-image: url('Inaugural ceremony of s.i.p.e(2).png'); animation-delay: 0s; }
+    .hero-slide:nth-child(2) { background-image: url('DSC_0573.JPG'); animation-delay: 3s; }
+    .hero-slide:nth-child(3) { background-image: url('Prof. Bhartendu K Singh.jpg'); animation-delay: 6s; }
+
+    @keyframes crossfade-hero {
+        0%   { opacity: 1; transform: scale(1.05); }
+        28%  { opacity: 1; transform: scale(1.05); }
+        33%  { opacity: 0; transform: scale(1.1); }
+        100% { opacity: 0; }
+    }
+    .hero-text .join-btn {
+        animation: slide-in 1s ease-out 0.4s forwards;
+        opacity: 0;
+    }
+
+    /* --- General Section Styling --- */
+    .section { padding: 6rem 2rem; }
+    .section-content { max-width: 1280px; margin: 0 auto; }
+    .section-title { font-size: clamp(2.2rem, 4vw, 3rem); text-align: center; margin-bottom: 1rem; color: var(--dark-blue); }
+    .section-subtitle { font-size: 1.2rem; text-align: center; color: var(--gray-600); margin-bottom: 4rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .bg-light { background-color: var(--gray-50); }
+
+    /* --- About Section Slideshow --- */
+    .about-slideshow-container {
+        position: relative;
+        height: 400px;
+        margin-top: 3rem;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+    }
+    .about-slide {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background-size: cover; background-position: center;
+        opacity: 0;
+        animation-name: crossfade-about;
+        animation-duration: 9s; /* 3 images * 3s = 9s total */
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+    }
+    .about-slide:nth-child(1) { background-image: url('sipe.png'); animation-delay: 0s; }
+    .about-slide:nth-child(2) { background-image: url('ofb.png'); animation-delay: 3s; }
+    .about-slide:nth-child(3) { background-image: url('Atul Singh.png'); animation-delay: 6s; }
+
+    @keyframes crossfade-about {
+        0%   { opacity: 1; transform: scale(1.05); }
+        28%  { opacity: 1; transform: scale(1.05); }
+        33%  { opacity: 0; transform: scale(1.1); }
+        100% { opacity: 0; }
+    }
+
+    /* --- NEW Flagship Conference Section --- */
+    .conference-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--gray-100);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    @media (min-width: 992px) {
+      .conference-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .conference-text {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .conference-text h3 {
+      font-size: 1.5rem;
+      color: var(--dark-blue);
+      margin-bottom: 1rem;
+    }
+    .conference-text ul {
+      list-style-position: inside;
+      padding-left: 0.5rem;
+      margin-top: 1rem;
+    }
+     .conference-text li {
+      margin-bottom: 0.75rem;
+      color: var(--gray-600);
+     }
+    .conference-image {
       background-image: url('Inaugural ceremony of s.i.p.e(2).png');
       background-size: cover;
       background-position: center;
-      animation: zoom-in 20s ease-out infinite;
-      z-index: 1;
-    }
-    .hero-overlay {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(7, 29, 73, 0.75); /* Slightly darker overlay */
-      z-index: 2;
-    }
-    .hero-content { position: relative; z-index: 3; }
-    .hero-content h1 {
-      font-size: clamp(2.5rem, 6vw, 4.2rem);
-      margin-bottom: 1.5rem;
-      font-weight: 800;
-      animation: slide-up 1s ease-out forwards;
-      color: var(--white);
-    }
-    .hero-content p {
-      font-size: clamp(1.1rem, 2.5vw, 1.25rem);
-      margin-bottom: 2.5rem;
-      max-width: 650px;
-      margin-left: auto;
-      margin-right: auto;
-      animation: slide-up 1s ease-out 0.3s forwards;
-      opacity: 0;
-    }
-    .hero-content .btn {
-      animation: slide-up 1s ease-out 0.6s forwards;
-      opacity: 0;
+      min-height: 400px;
     }
     
-    @keyframes zoom-in {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
+    /* --- Membership / Get Involved Section (Pricing Removed) --- */
+    .membership-container {
+        display: grid; grid-template-columns: 1fr; gap: 2rem;
+        align-items: stretch; max-width: 1000px; margin: 0 auto;
     }
-    @keyframes slide-up {
-      from { transform: translateY(30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    @media (min-width: 992px) { .membership-container { grid-template-columns: 1fr 1fr; } }
+    .membership-card {
+        background: var(--white); border-radius: var(--radius);
+        border: 1px solid var(--gray-100);
+        box-shadow: var(--shadow-md); transition: all 0.3s ease; 
+        display: flex; flex-direction: column;
+        opacity: 0; transform: translateY(30px);
     }
+    .membership-card.is-visible { opacity: 1; transform: translateY(0); transition-delay: 0.2s;}
+    .membership-card-header { padding: 2rem; }
+    .membership-card-body { padding: 0 2rem; flex-grow: 1; }
+    .membership-card-footer { padding: 2rem; }
 
-    /* --- General Card Grid --- */
-    .cards-grid { 
-      display: grid; 
-      gap: 2rem; 
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    .membership-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+    .membership-card .title { font-size: 1.5rem; font-weight: 600; color: var(--dark-blue); }
+    .membership-card .level-title { font-size: 1.8rem; font-weight: 800; margin: 0.5rem 0; color: var(--dark-blue); }
+    .membership-card .description { color: var(--gray-600); min-height: 70px;}
+    .membership-card .perks-list { list-style: none; margin: 2rem 0; }
+    .membership-card .perk-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; text-align: left; }
+    .membership-card .perk-item svg { flex-shrink: 0; width: 22px; height: 22px; color: var(--primary-blue); }
+    .membership-card .cta-button {
+        display: block; width: 100%; padding: 1rem; border-radius: 8px; text-decoration: none;
+        font-size: 1rem; font-weight: 600; text-align: center; transition: all 0.3s ease;
     }
-    
+    .basic .cta-button { background-color: var(--white); color: var(--primary-blue); border: 1px solid var(--gray-100); }
+    .basic .cta-button:hover { background-color: var(--light-blue); }
+    .premium { border-top: 4px solid var(--primary-blue); }
+    .premium .cta-button { background-color: var(--primary-blue); color: var(--white); }
+    .premium .cta-button:hover { background-color: var(--dark-blue); }
+
+    /* --- General Cards --- */
+    .cards-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
     .card {
-      background: var(--white);  
-      padding: 2.5rem 2rem;  
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-md);  
-      text-align: center;  
-      border: 1px solid var(--gray-100);
-      transition: all 0.3s ease;
-      /* Animation hook */
-      opacity: 0; 
-      transform: translateY(40px);
+      background: var(--white); padding: 2rem; border-radius: var(--radius);
+      box-shadow: var(--shadow-md); text-align: center; border: 1px solid var(--gray-100);
+      transition: all 0.3s ease; opacity: 0; transform: translateY(30px);
     }
-    /* Animation state */
-    .card.is-visible { 
-      opacity: 1; 
-      transform: translateY(0); 
-      transition-delay: var(--delay, 0s);
-    }
-    
-    .card:hover {  
-      transform: translateY(-10px);  
-      box-shadow: var(--shadow-lg);  
-    }
-    .card .icon { 
-      height: 48px; 
-      width: 48px;
-      margin-bottom: 1.5rem; 
-      color: var(--primary-blue); 
-    }
-    .card h3 {  
-      font-size: 1.3rem;  
-      margin-bottom: 0.5rem;  
-      color: var(--dark-blue);  
-    }
-    
-    /* --- Mentor Card (Tiles) --- */
-    .person-card {
-      /* Inherits .card styles */
-      padding-top: 2rem;
-    }
+    .card.is-visible { opacity: 1; transform: translateY(0); }
+    .card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+    .card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--dark-blue); }
+    .card p { min-height: 90px; color: var(--gray-600); }
+    .card .icon { height: 40px; margin-bottom: 1rem; }
+    .person-card p { min-height: 0; } /* Override for mentor cards */
     .person-card img {
-      width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1.5rem;
+      width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem;
       object-fit: cover; margin-left: auto; margin-right: auto;
-      border: 4px solid var(--white);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border: 4px solid var(--white); box-shadow: var(--shadow-md);
     }
-    .person-card h4 { 
-      font-size: 1.2rem; 
-      margin-bottom: 0.25rem; 
-      color: var(--dark-blue);
-    }
-    .person-card p { 
-      font-size: 0.95rem; 
-      color: var(--gray-600); 
-    }
+    .person-card h4 { font-size: 1.2rem; margin-bottom: 0.25rem; }
 
-    /* --- NEW: Gallery Section --- */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+    /* --- FAQ --- */
+    .faq { max-width: 800px; margin: 0 auto; }
+    .faq-item { background: var(--white); margin-bottom: 1rem; border-radius: var(--radius); border: 1px solid var(--gray-100); }
+    .faq-question {
+        background: transparent; padding: 1.25rem 1.5rem; font-size: 1.1rem; font-weight: 600;
+        color: var(--gray-900); cursor: pointer; border: none; width: 100%; text-align: left;
+        display: flex; justify-content: space-between; align-items: center;
     }
-    .gallery-item {
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow-md);
-      transition: all 0.3s ease;
-      aspect-ratio: 4 / 3;
-      position: relative;
-      cursor: pointer;
-      /* Animation hook */
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    /* Animation state */
-    .gallery-item.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: var(--delay, 0s);
-    }
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s ease;
-    }
-    .gallery-item-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: linear-gradient(0deg, rgba(7, 29, 73, 0.8) 0%, rgba(7, 29, 73, 0) 100%);
-      color: var(--white);
-      padding: 2.5rem 1.5rem 1.5rem;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.4s ease;
-    }
-     .gallery-item-caption h4 {
-        font-size: 1.1rem;
-        font-weight: 600;
-     }
-    .gallery-item:hover {
-      box-shadow: var(--shadow-lg);
-    }
-    .gallery-item:hover img {
-      transform: scale(1.05);
-    }
-    .gallery-item:hover .gallery-item-caption {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-
+    .faq-question::after { content: "+"; font-size: 1.5rem; color: var(--primary-blue); transition: transform 0.3s ease; }
+    .faq-question.active::after { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, padding 0.5s ease; color: var(--gray-600); }
+    .faq-answer p { padding: 0 1.5rem 1.5rem 1.5rem; border-top: 1px solid var(--gray-100); padding-top: 1.5rem; }
+    .faq-answer.show { max-height: 200px; }
+    
     /* --- Footer --- */
-    .footer {  
-      background: var(--dark-blue);  
-      color: var(--gray-100);  
-      padding: 4rem 1.5rem;  
-    }
+    .footer { background: var(--dark-blue); color: var(--gray-100); padding: 5rem 2rem 3rem; }
     .footer-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
+      max-width: 1280px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr; gap: 2.5rem; text-align: center;
     }
-    .footer .logo {
-      color: var(--white);
-      opacity: 0.9;
+    @media (min-width: 768px) {
+      .footer-content { grid-template-columns: 2fr 1fr 1fr; text-align: left; }
     }
-    .footer p {
-      text-align: center;
-      opacity: 0.8;
+    .footer-about .footer-logo {
+      font-size: 2rem; font-weight: 800; margin-bottom: 1rem; color: var(--white);
     }
-
-    /* --- Responsive (Mobile) --- */
+    .footer-about p { opacity: 0.7; max-width: 350px; }
+    .footer-links h4, .footer-contact h4 {
+      font-size: 1.1rem; font-weight: 600; color: var(--white);
+      margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .footer-links ul { list-style: none; }
+    .footer-links li { margin-bottom: 0.5rem; }
+    .footer-links a {
+      color: var(--gray-100); opacity: 0.7; text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+    .footer-links a:hover { opacity: 1; }
+    .footer-contact p {
+      color: var(--gray-100); opacity: 0.7; margin-bottom: 0.5rem;
+      word-break: break-all;
+    }
+    .social-links { margin-top: 1.5rem; display: flex; gap: 1.5rem; }
+    .footer-contact .social-links { justify-content: flex-start; }
+    @media (max-width: 767px) {
+      .footer-contact .social-links { justify-content: center; }
+    }
+    .social-links a { color: var(--white); text-decoration: none; transition: all 0.3s ease; opacity: 0.8; }
+    .social-links a:hover { transform: scale(1.1); opacity: 1; }
+    .social-links svg { width: 28px; height: 28px; }
+    .footer-bottom {
+      max-width: 1280px; margin: 3rem auto 0; padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center; opacity: 0.7; font-size: 0.9rem;
+    }
+    
+    /* --- Responsive --- */
+    @media (max-width: 968px) {
+        .nav-links { display: none; }
+        .hamburger { display: flex; }
+        .join-btn { display: none; } /* Hide main Join button */
+        .mobile-menu .join-btn { display: block; text-align: center; margin-top: 1rem; } /* Show in mobile menu */
+        .hero-grid { grid-template-columns: 1fr; text-align: center; }
+        .hero-text { order: 2; }
+        .hero-slideshow-container { order: 1; height: 350px; }
+        .hero-text p { margin-left: auto; margin-right: auto; }
+    }
     @media (max-width: 768px) {
-      .section { padding: 4rem 1.5rem; }
-      
-      .header-content .btn { display: none; }
-      
-      .hamburger { 
-        display: block; 
-      }
-      
-      .nav-links {
-        position: fixed;
-        top: 80px; /* Below header */
-        left: 0;
-        width: 100%;
-        height: calc(100vh - 80px);
-        background: var(--white);
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-        padding-top: 3rem;
-        transform: translateX(100%);
-        transition: transform 0.3s ease-out;
-      }
-      
-      body.mobile-nav-open .nav-links {
-        transform: translateX(0);
-        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-      }
-      /* Prevent scrolling when mobile nav is open */
-      body.mobile-nav-open {
-        overflow: hidden;
-      }
-      
-      .nav-links a {
-        font-size: 1.2rem;
-        color: var(--dark-blue);
-      }
-      
-      .hero { min-height: 70vh; }
-      
-      .cards-grid, .gallery-grid {
-        grid-template-columns: 1fr; /* Stack cards on mobile */
-      }
+        .section { padding: 4rem 1rem; }
+        .cards-grid { grid-template-columns: 1fr; }
+        .card p { min-height: 0; } /* Remove min-height on mobile */
+        .about-slideshow-container { height: 250px; }
+        .membership-card .description { min-height: 0; }
+        .conference-text { padding: 2rem; }
     }
   </style>
 </head>
 <body>
   
   <header class="header">
-    <div class="header-content container">
-      <a href="index.html" class="logo">SIPE</a>  
+    <div class="header-content"> <a href="#home" class="logo">SIPE</a>
       <nav>
-        <ul class="nav-links" id="nav-links">
-          <li><a href="#about">Our Aim</a></li>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
           <li><a href="#programs">Programs</a></li>
+          <li><a href="#model">Our Model</a></li>
+          <li><a href="#conference">Conference</a></li>
           <li><a href="#mentors">Mentors</a></li>
-          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#faq">FAQs</a></li>
         </ul>
       </nav>
-      <a href="loginstudent.html" class="btn">Join Now</a>
-      
-      <button class="hamburger" id="hamburger-btn" aria-label="Open navigation menu" aria-expanded="false">
-        <svg class="hamburger-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <path class="line-top" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16" />
-            <path class="line-mid" stroke-linecap="round" stroke-linejoin="round" d="M4 12h16" />
-            <path class="line-bot" stroke-linecap="round" stroke-linejoin="round" d="M4 18h16" />
-        </svg>
-      </button>
+      <a href="loginstudent.html" class="join-btn">Join Now</a>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+    <div class="mobile-menu">
+      <a href="#about">About</a>
+      <a href="#programs">Programs</a>
+      <a href="#model">Our Model</a>
+      <a href="#conference">Conference</a>
+      <a href="#mentors">Mentors</a>
+      <a href="#faq">FAQs</a>
+      <a href="#involve">Get Involved</a>
+      <a href="loginstudent.html" class="join-btn">Join Now</a>
     </div>
   </header>
 
   <main>
     <section class="hero" id="home">
-        <div class="hero-background"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content container">
-            <h1>Empowering Student Innovation Across Indian Colleges</h1>
-            <p>A student-driven, mentor-supported startup creating standardized innovation frameworks for educational institutions nationwide.</p>
-            <a href="loginstudent.html" class="btn">Get Started</a>
+        <div class="hero-grid">
+            <div class="hero-text">
+                <h1>Empowering Student Innovation Across Indian Colleges</h1>
+                <p>A student-driven, mentor-supported startup creating standardized innovation frameworks for educational institutions nationwide.</p>
+                <a href="loginstudent.html" class="join-btn">Get Started</a>
+            </div>
+            <div class="hero-slideshow-container">
+                <div class="hero-slide"></div>
+                <div class="hero-slide"></div>
+                <div class="hero-slide"></div>
+            </div>
         </div>
     </section>
     
     <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title">Our Aim</h2>
-            <p class="section-subtitle">To establish a premier innovation network connecting students, faculty, and industry professionals across India, bridging the gap between academia and real-world application.</p>
-            <div class="cards-grid">
-                
-                <div class="card">
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
-                    </svg>
-                    <h3>Our Mission</h3>
-                    <p>Create a standardized yet adaptable innovation and excellence framework in every campus, starting with Jabalpur Engineering College (pilot) and scaling to other institutions.</p>
-                </div>
-                
-                <div class="card">
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <h3>Our Vision</h3>
-                    <p>To establish SIPE as the premier innovation network connecting students, faculty, industry mentors, and research professionals across Indian colleges and universities.</p>
-                </div>
-                
-                <div class="card">
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18c-2.305 0-4.408.867-6 2.292m0-14.25v14.25" />
-                    </svg>
-                    <h3>Our Approach</h3>
-                    <p>Student-driven initiatives supported by experienced mentors, creating sustainable innovation ecosystems that bridge the gap between academia and industry.</p>
-                </div>
+        <div class="section-content">
+            <h2 class="section-title">Bridging Academia & Industry</h2>
+            <p class="section-subtitle">SIPE's primary goal is to create a standardized, nationwide framework for fostering innovation and entrepreneurship within educational institutions. We connect students with industry mentors, resources, and real-world projects to transform groundbreaking ideas into impactful ventures.</p>
+            
+            <div class="about-slideshow-container">
+                <div class="about-slide"></div>
+                <div class="about-slide"></div>
+                <div class="about-slide"></div>
             </div>
         </div>
     </section>
-
+    
     <section id="programs" class="section bg-light">
-        <div class="container">
-            <h2 class="section-title">Programs & Offerings</h2>
-            <p class="section-subtitle">Comprehensive initiatives to foster innovation from the classroom to the marketplace.</p>
-            <div class="cards-grid">
-                <div class="card"><h3>Guest Lecture Series</h3><p>Gain insights on industry expectations, research impact, and startup journeys from experts.</p></div>
-                <div class="card"><h3>Innovation Index</h3><p>We measure and track R&D activity and IP filings to rank and recognize institutions.</p></div>
-                <div class="card"><h3>Mentor Connect</h3><p>Get matched with industry mentors and investors through our cross-institutional network.</p></div>
-                <div class="card"><h3>IP to Impact Bootcamps</h3><p>Learn patent commercialization, business model development, and market validation.</p></div>
-                <div class="card"><h3>Startup Clinics</h3><p>Receive assistance with incubator partnerships, investor matchmaking, and funding.</p></div>
-                <div class="card"><h3>Job Placement</h3><p>We leverage our network to help you find meaningful employment after graduation.</p></div>
+      <div class="section-content">
+        <h2 class="section-title">Programs & Offerings</h2>
+        <p class="section-subtitle">Comprehensive initiatives to foster innovation from the classroom to the marketplace.</p>
+        <div class="cards-grid">
+            <div class="card"><h3>Guest Lecture Series</h3><p>Gain insights on industry-academia synergy, IP commercialization, startup journeys, and cutting-edge research from expert leaders.</p></div>
+            <div class="card"><h3>Innovation Index</h3><p>Our annual scoring of college R&D, IP, and startup activity, driving healthy competition and national recognition for institutions.</p></div>
+            <div class="card"><h3>Mentor Connect</h3><p>A cross-college platform giving students direct access to a national network of industry mentors, research advisors, and investors.</p></div>
+            <div class="card"><h3>IP to Impact Bootcamps</h3><p>Specialized training to help students and faculty turn patents and research ideas into viable, market-ready ventures.</p></div>
+            <div class="card"><h3>Startup Clinics</h3><p>Hands-on assistance with incubator partnerships, investor matchmaking, and corporate accelerator programs to get your venture funded.</p></div>
+            <div class="card"><h3>Scalable SIPE Model</h3><p>We deploy student chapters with dedicated cells for events, outreach, and fundraising, creating a sustainable innovation ecosystem on campus.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="model" class="section">
+      <div class="section-content">
+        <h2 class="section-title">The SIPE Model</h2>
+        <p class="section-subtitle">Our ecosystem is powered by six specialized committees, driving innovation at every level.</p>
+        <div class="cards-grid">
+            <div class="card"><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230052cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2'%3E%3C/path%3E%3Ccircle cx='9' cy='7' r='4'%3E%3C/circle%3E%3Cpath d='M23 21v-2a4 4 0 0 0-3-3.87'%3E%3C/path%3E%3Cpath d='M16 3.13a4 4 0 0 1 0 7.75'%3E%3C/path%3E%3C/svg%3E" alt="Icon"><h3>Mentors Circle</h3><p>Industry & research professionals guiding projects with real-world expertise.</p></div>
+            <div class="card"><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230052cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'%3E%3C/polygon%3E%3C/svg%3E" alt="Icon"><h3>Core Group</h3><p>Faculty and student leaders curating events, lectures, and collaborations.</p></div>
+            <div class="card"><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230052cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='1' x2='12' y2='23'%3E%3C/line%3E%3Cpath d='M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6'%3E%3C/path%3E%3C/svg%3E" alt="Icon"><h3>Fundraising Cell</h3><p>Securing local CSR, sponsorships, and project funding to support initiatives.</p></div>
+            <div class="card"><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230052cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cline x1='2' y1='12' x2='22' y2='12'%3E%3C/line%3E%3Cpath d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'%3E%3C/path%3E%3C/svg%3E" alt="Icon"><h3>Outreach Cell</h3><p>Managing membership drives, alumni connections, and inter-college relations.</p></div>
+            <div class="card"><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230052cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Ccircle cx='12' cy='12' r='6'%3E%3C/circle%3E%3Ccircle cx='12' cy='12' r='2'%3E%3C/circle%3E%3C/svg%3E" alt="Icon"><h3>Event Cell</h3><p>Organizing hackathons, research conclaves, and industrial visits.</p></div>
+            <div class="card"><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230052cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6'%3E%3C/path%3E%3Cline x1='2' y1='20' x2='2.01' y2='20'%3E%3C/line%3E%3C/svg%3E" alt="Icon"><h3>Media & Publishing</h3><p>Amplifying impact through newsletters, podcasts, and innovation showcases.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="conference" class="section bg-light">
+      <div class="section-content">
+        <h2 class="section-title">Our Flagship Event</h2>
+        <p class="section-subtitle">National Conference on Advancing Research and Innovation for Institutional Excellence</p>
+        
+        <div class="conference-grid">
+          <div class="conference-text">
+            <h3>Purpose & Vision</h3>
+            <p>To create a conducive atmosphere for enhancing research, encouraging innovation, and facilitating the translation of ideas into commercially viable products. We bring faculty, students, and expert researchers together to share knowledge, collaborate, and inspire new ideas.</p>
+            <ul>
+              <li>Promote interdisciplinary research</li>
+              <li>Expose participants to advanced methodologies</li>
+              <li>Facilitate industry-academia collaboration</li>
+              <li>Inspire commercially viable solutions</li>
+              <li>Build a sustainable innovation ecosystem</li>
+            </ul>
+          </div>
+          <div class="conference-image">
             </div>
         </div>
+      </div>
     </section>
 
     <section id="mentors" class="section">
-      <div class="container">
+      <div class="section-content">
         <h2 class="section-title">Our Esteemed Mentors</h2>
         <p class="section-subtitle">Learn from leaders and visionaries dedicated to nurturing the next generation of innovators.</p>
-        
         <div class="cards-grid">
-            <div class="card person-card"><img src="skbhola.png"/><h4>Mr. Sanjeev Bhola</h4><p>Chief General Manager, VFJ AVNL, Ministry of Defence</p></div>
-            <div class="card person-card"><img src="ofb.png"/><h4>Mr. E R Sheikh</h4><p>Ex. Director General, Ordinance Factory Board</p></div>
-            <div class="card person-card"><img src="Atul Singh.png" alt="Mr. Atul Singh (IPS)"/><h4>Mr. Atul Singh (IPS)</h4><p>Deputy Inspector General, Jabalpur Range</p></div>
-            <div class="card person-card"><img src="sipe.png" alt="Dr. Rajeev Chandak"/><h4>Dr. Rajeev Chandak</h4><p>Principal, JEC Jabalpur</p></div>
-            <div class="card person-card"><img src="DSC_0573.JPG"/><h4>Dr. Sudhir Mishra</h4><p>Ex. DG DRDO, CEO & MD, BrahMos</p></div>
-            <div class="card person-card"><img src="Prof. Bhartendu K Singh.jpg"/><h4>Prof. Bhartendu K Singh</h4><p>Director, IIITDM Jabalpur</p></div>
+            <div class="card person-card"><img src="skbhola.png"/><h4>Mr. Sanjeev Bhola</h4><p>Chief General Manager, VFJ AVNL<br/>Ministry of Defence</p></div>
+            <div class="card person-card"><img src="ofb.png"/><h4>Mr. E R Sheikh</h4><p>Ex. Director General<br/>Ordinance Factory Board</p></div>
+            <div class="card person-card"><img src="Atul Singh.png" alt="Mr. Atul Singh (IPS)"/><h4>Mr. Atul Singh (IPS)</h4><p>Deputy Inspector General <br/>Jabalpur Range</p></div>
+            <div class="card person-card"><img src="sipe.png" alt="Dr. Rajeev Chandak"/><h4>Dr. Rajeev Chandak</h4><p>Principal<br/>JEC Jabalpur</p></div>
+            <div class="card person-card"><img src="DSC_0573.JPG"/><h4>Dr. Sudhir Mishra</h4><p>Ex. DG DRDO, CEO & MD<br/>BrahMos</p></div>
+            <div class="card person-card"><img src="Prof. Bhartendu K Singh.jpg"/><h4>Prof. Bhartendu K Singh</h4><p>Director<br/>IIITDM Jabalpur</p></div>
         </div>
-      </div>  
+      </div> 
     </section>
     
-    <section id="gallery" class="section bg-light">
-      <div class="container">
-          <h2 class="section-title">Gallery</h2>
-          <p class="section-subtitle">Moments from our inaugural events, workshops, and mentor sessions.</p>
-          <div class="gallery-grid">
-              <div class="gallery-item">
-                  <img src="Inaugural ceremony of s.i.p.e(2).png" alt="SIPE Inaugural Event">
-                  <div class="gallery-item-caption"><h4>Inaugural Ceremony</h4></div>
-              </div>
-              <div class="gallery-item">
-                  <img src="DSC_0573.JPG" alt="Dr. Sudhir Mishra at SIPE event">
-                  <div class="gallery-item-caption"><h4>Mentor Session: Dr. Sudhir Mishra</h4></div>
-              </div>
-              <div class="gallery-item">
-                  <img src="Atul Singh.png" alt="Mentor Mr. Atul Singh (IPS)">
-                  <div class="gallery-item-caption"><h4>Guest Lecture: Mr. Atul Singh (IPS)</h4></div>
-              </div>
-              <div class="gallery-item">
-                  <img src="sipe.png" alt="Mentor Dr. Rajeev Chandak">
-                  <div class="gallery-item-caption"><h4>Campus Partnership: Dr. Rajeev Chandak</h4></div>
-              </div>
-              <div class="gallery-item">
-                  <img src="skbhola.png" alt="Mentor Mr. Sanjeev Bhola">
-                   <div class="gallery-item-caption"><h4>Industry Talk: Mr. Sanjeev Bhola</h4></div>
-              </div>
-              <div class="gallery-item">
-                  <img src="Prof. Bhartendu K Singh.jpg" alt="Mentor Prof. Bhartendu K Singh">
-                  <div class="gallery-item-caption"><h4>Academic Keynote: Prof. B. K. Singh</h4></div>
-              </div>
+    <section id="involve" class="section bg-light">
+      <div class="section-content">
+        <h2 class="section-title">Get Involved</h2>
+        <p class="section-subtitle">We offer multiple levels of engagement to kickstart your journey. Select the one that's right for you.</p>
+        <div class="membership-container">
+          <div class="membership-card basic">
+            <div class="membership-card-header">
+              <h3 class="title">Basic Access</h3>
+              <p class="level-title">Community Member</p>
+              <p class="description">Get started with essential resources and access to our national community.</p>
+            </div>
+            <div class="membership-card-body">
+              <ul class="perks-list">
+                <li class="perk-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>Mentorship for competitive exams</li>
+                <li class="perk-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>Career counselling sessions</li>
+                <li class="perk-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>Basic CV maker access</li>
+                <li class="perk-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>Monthly group mentor interaction</li>
+              </ul>
+            </div>
+            <div class="membership-card-footer">
+              <a href="loginstudent.html" class="cta-button">Join the Community</a>
+            </div>
           </div>
+          <div class="membership-card premium">
+            <div class="membership-card-header">
+              <h3 class="title">Full Access</h3>
+              <p class="level-title">Premium Member</p>
+              <p class="description">Unlock your full potential with exclusive access to grants, workshops, and personalized support.</p>
+            </div>
+            <div class="membership-card-body">
+              <ul class="perks-list">
+                <li class="perk-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg><strong>Grants for Research & IPR*</strong></li>
+                <li class="perk-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg><strong>Exclusive Workshops with Industry Leaders</strong></li>
+                <li class="perk-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg><strong>One-on-One Pitch Coaching & Deck Review</strong></li>
+                <li class="perk-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg><strong>Internship & Apprenticeship Opportunities</strong></li>
+                <li class="perk-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>Certificate of Excellence</li>
+              </ul>
+            </div>
+            <div class="membership-card-footer">
+              <a href="loginstudent.html" class="cta-button">Become a Member</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-    
-     <section id="get-involved" class="section">
-        <div class="container" style="text-align: center;">
-            <h2 class="section-title">Get Involved</h2>
-            <p class="section-subtitle">Ready to join the innovation revolution? Become a part of our growing network today.</p>
-            <a href="loginstudent.html" class="btn">Start Your Journey</a>
-        </div>
-    </section>
 
+    <section id="faq" class="section">
+      <div class="section-content">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Everything you need to know about SIPE</p>
+        <div class="faq">
+            <div class="faq-item"><button class="faq-question">What is the primary goal of SIPE?</button><div class="faq-answer"><p>SIPE's main goal is to create a standardized, nationwide framework for fostering innovation and entrepreneurship within educational institutions by connecting students with industry mentors, resources, and real-world projects.</p></div></div>
+            <div class="faq-item"><button class="faq-question">Who is eligible to join the SIPE network?</button><div class="faq-answer"><p>Our program is designed for educational institutions across India. Once an institution partners with us, all of its students (UG, PG, and PhD) become eligible to join our chapters and access our complete range of programs and benefits.</p></div></div>
+            <div class="faq-item"><button class="faq-question">How does the mentorship program work?</button><div class="faq-answer"><p>We provide a cross-college Mentor Connect Platform that links students with experienced industry professionals, researchers (from DRDO, CSIR, etc.), and entrepreneurs based on their field of interest and project requirements for personalized guidance.</p></div></div>
+            <div class="faq-item"><button class="faq-question">How can our institution partner with SIPE?</button><div class="faq-answer"><p>To partner with us, please use the "Join Now" button to navigate to our registration portal and sign up as an institution. Our outreach team will then get in touch with you to finalize the partnership process and establish a SIPE chapter on your campus.</p></div></div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
-    <div class="container footer-content">
-        <a href="#home" class="logo">SIPE</a>
-        <p>&copy; 2025 Society of Innovation and Professional Excellence. All Rights Reserved.</p>
+    <div class="footer-content">
+        <div class="footer-about">
+          <div class="footer-logo">SIPE</div>
+          <p>Society of Innovation and Professional Excellence. Empowering the next generation of innovators across India.</p>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#model">Our Model</a></li>
+            <li><a href="#mentors">Mentors</a></li>
+            <li><a href="#faq">FAQs</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <h4>Contact Us</h4>
+          <p>Jabalpur Engineering College,<br/>Jabalpur, Madhya Pradesh (482011)</p>
+          <p>sipe.jecjabalpur@gmail.com</p>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/posts/society-of-innovation-professional-excellence-sipe_jabalpurengineeringcollege-innovation-skillenhancement-ugcPost-7369716013321306114-V_nx?utm_source=share&utm_medium=member_ios&rcm=ACoAAEHT6JwBwr0xcV47miMRmb_f6Ie0kuPXLew" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+            <a href="https://www.instagram.com/sipe.jec?igsh=bnliaDh2czZ1cjll" aria-label="Instagram" class="instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.947s-.014-3.667-.072-4.947c-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.44-1.441-1.44z"/></svg></a>
+          </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Society of Innovation and Professional Excellence. All Rights Reserved.
     </div>
   </footer>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // Mobile Menu
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelectorAll('.mobile-menu a, .nav-links a');
         
-        // --- Animation 1: General Card Fade-in on Scroll ---
-        const animatedElements = document.querySelectorAll('.card, .gallery-item');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.classList.toggle('mobile-menu-open');
+        });
+        
+        navLinks.forEach(link => link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.classList.remove('mobile-menu-open');
+        }));
 
-        const cardObserver = new IntersectionObserver((entries, observer) => {
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const wasActive = button.classList.contains('active');
+                
+                // Close all other open FAQs
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('show');
+                });
+                
+                // Open the clicked one if it wasn't already active
+                if (!wasActive) {
+                    button.classList.add('active');
+                    answer.classList.add('show');
+                }
+            });
+        });
+        
+        // --- Countdown Timer (REMOVED) ---
+        // const timerElement = document.getElementById('timer');
+        // No timer logic as per request.
+
+        // Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    // Set a staggered delay
-                    entry.target.style.transitionDelay = `${index * 100}ms`;
+                    entry.target.style.transitionDelay = `${index * 100}ms`; // Stagger effect
                     entry.target.classList.add('is-visible');
                     observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1 });
         
-        animatedElements.forEach(el => {
-            cardObserver.observe(el);
-        });
-        
-        
-        // --- NEW: Mobile Menu Toggle ---
-        const hamburgerBtn = document.getElementById('hamburger-btn');
-        const navLinksContainer = document.getElementById('nav-links');
-        
-        // Toggle menu on hamburger click
-        hamburgerBtn.addEventListener('click', () => {
-            const isOpened = document.body.classList.toggle('mobile-nav-open');
-            hamburgerBtn.setAttribute('aria-expanded', isOpened);
-        });
-        
-        // Close menu when a nav link is clicked (for single-page anchors)
-        navLinksContainer.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.body.classList.remove('mobile-nav-open');
-                hamburgerBtn.setAttribute('aria-expanded', false);
-            });
-        });
-
+        // Observe all cards
+        document.querySelectorAll('.card, .membership-card').forEach(el => observer.observe(el));
     });
   </script>
-  </body>
+</body>
 </html>
