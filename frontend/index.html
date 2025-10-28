@@ -619,6 +619,8 @@
           <li><a href="#events">Events</a></li>
           <li><a href="#mentors">Mentors</a></li>
           <li><a href="#faq">FAQs</a></li>
+          <!-- Updated link to point to gallery.html -->
+          <li><a href="gallery.html">Gallery</a></li> 
         </ul>
       </nav>
       <a href="loginstudent.html" class="join-btn">Join Now</a>
@@ -631,7 +633,8 @@
       <a href="#events">Events</a>
       <a href="#mentors">Mentors</a>
       <a href="#faq">FAQs</a>
-      <a href="#join">Join Now</a>
+      <!-- Updated link to point to gallery.html -->
+      <a href="gallery.html">Gallery</a> 
       <a href="loginstudent.html" class="join-btn">Register</a>
     </div>
   </header>
@@ -769,18 +772,26 @@
         <p class="section-subtitle">A visual journey through our workshops, lectures, and inaugural events. Click any event to see more.</p>
 
         <div class="event-portfolio-grid">
+          <!-- Event 1: ImpactCon -->
           <div class="event-card animate-on-scroll" data-gallery="gallery-1">
-            <img src="Inaugural ceremony of s.i.p.e(2).png" alt="Inaugural Ceremony" class="event-card-img">
-            <div class="event-card-overlay"><h3>Inaugural Ceremony</h3></div>
+            <!-- Updated image src and alt -->
+            <img src="impactcon1.png" alt="ImpactCon Event" class="event-card-img"> 
+            <div class="event-card-overlay"><h3>ImpactCon</h3></div>
           </div>
+          <!-- Event 2: Sudhir Mishra Visit -->
           <div class="event-card animate-on-scroll" data-gallery="gallery-2">
-            <img src="DSC_0573.JPG" alt="Lecture by Dr. Sudhir Mishra" class="event-card-img">
+            <!-- Updated image src -->
+            <img src="SM1.png" alt="Lecture by Dr. Sudhir Mishra" class="event-card-img"> 
             <div class="event-card-overlay"><h3>Lecture by Dr. Sudhir Mishra</h3></div>
           </div>
+          <!-- Event 3: Praveen Sir Session -->
           <div class="event-card animate-on-scroll" data-gallery="gallery-3">
-            <img src="Atul Singh.png" alt="Lecture by Abhishek Aggarwal" class="event-card-img">
-            <div class="event-card-overlay"><h3>Lecture by Abhishek Aggarwal</h3></div>
+             <!-- Updated image src and alt -->
+            <img src="PS1.png" alt="Session with Praveen Sir" class="event-card-img">
+             <!-- Updated title -->
+            <div class="event-card-overlay"><h3>Session with Praveen Sir</h3></div>
           </div>
+          <!-- Event 4: Placeholder (Robotics Workshop) -->
           <div class="event-card animate-on-scroll" data-gallery="gallery-4">
             <img src="skbhola.png" alt="Robotics Workshop" class="event-card-img">
             <div class="event-card-overlay"><h3>Robotics & Drive Systems Workshop</h3></div>
@@ -854,6 +865,8 @@
             <li><a href="#events">Events</a></li>
             <li><a href="#mentors">Mentors</a></li>
             <li><a href="#faq">FAQs</a></li>
+             <!-- Updated link to point to gallery.html -->
+             <li><a href="gallery.html">Gallery</a></li>
           </ul>
         </div>
 
@@ -885,13 +898,28 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
 
-        // --- Gallery Data (Updated to 6 images per event) ---
-        // *** ACTION NEEDED: Replace placeholders with actual image paths ***
+        // --- Updated Gallery Data ---
         const allGalleries = {
-            'gallery-1': [ 'Inaugural ceremony of s.i.p.e(2).png', 'sipe.png', 'skbhola.png', 'ofb.png', 'Atul Singh.png', 'Prof. Bhartendu K Singh.jpg' ],
-            'gallery-2': [ 'DSC_0573.JPG', 'Inaugural ceremony of s.i.p.e(2).png', 'sipe.png', 'DSC_0573.JPG', 'skbhola.png', 'ofb.png' ],
-            'gallery-3': [ 'Atul Singh.png', 'Prof. Bhartendu K Singh.jpg', 'Atul Singh.png', 'Prof. Bhartendu K Singh.jpg', 'Inaugural ceremony of s.i.p.e(2).png', 'DSC_0573.JPG' ],
-            'gallery-4': [ 'skbhola.png', 'ofb.png', 'Inaugural ceremony of s.i.p.e(2).png', 'sipe.png', 'Atul Singh.png', 'Prof. Bhartendu K Singh.jpg' ]
+            // ImpactCon Event
+            'gallery-1': [ 
+                'impactcon1.png', 'impactcon2.png', 'impactcon3.png', 
+                'impactcon4.png', 'impactcon5.png', 'impactcon6.png', 
+                'impactcon7.png', 'impactcon8.png', 'impactcon9.png' 
+            ],
+            // Sudhir Mishra Sir Visit
+            'gallery-2': [ 
+                'SM1.png', 'SM2.png', 'SM3.png', 'SM4.png' 
+            ],
+            // Praveen Sir Event (Assuming 4 photos with PS prefix)
+            'gallery-3': [ 
+                'PS1.png', 'PS2.png', 'PS3.png', 'PS4.png' 
+                // Note: Ensure these files exist or update filenames
+            ],
+            // Placeholder for 4th Event Card
+            'gallery-4': [ 
+                'skbhola.png', 'ofb.png', 'Inaugural ceremony of s.i.p.e(2).png', 
+                'sipe.png', 'Atul Singh.png', 'Prof. Bhartendu K Singh.jpg' 
+            ]
         };
 
         // --- Lightbox Gallery Logic ---
@@ -907,27 +935,49 @@
         let currentIndex = 0;
 
         function updateLightboxImage() {
-            if (currentGallery.length > 0) {
+            if (currentGallery.length > 0 && currentIndex >= 0 && currentIndex < currentGallery.length) {
                 const img = new Image();
                 img.onload = () => {
                     lightboxImg.style.opacity = 0;
                     setTimeout(() => {
                         lightboxImg.src = img.src;
                         lightboxImg.style.opacity = 1;
-                    }, 150);
+                    }, 150); // Short delay for fade effect
                     lightboxCounter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
                 };
-                img.src = currentGallery[currentIndex];
+                img.onerror = () => { // Handle cases where an image might be missing
+                    console.error("Error loading image:", currentGallery[currentIndex]);
+                    lightboxImg.src = 'https://placehold.co/800x600/1f2937/d1d5db?text=Image+Not+Found'; // Placeholder
+                    lightboxImg.style.opacity = 1;
+                    lightboxCounter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
+                };
+                 // Add error handling for image paths if they might be incorrect
+                 try {
+                     img.src = currentGallery[currentIndex];
+                 } catch (e) {
+                     console.error("Invalid image source:", currentGallery[currentIndex], e);
+                     img.onerror(); // Trigger the error handler
+                 }
+            } else {
+                 console.error("Invalid gallery state:", currentGallery, currentIndex);
+                 // Optionally show a general error in the lightbox
+                 lightboxImg.src = 'https://placehold.co/800x600/1f2937/d1d5db?text=Gallery+Error';
+                 lightboxImg.style.opacity = 1;
+                 lightboxCounter.textContent = `Error`;
             }
         }
 
+
         function openLightbox(galleryKey) {
-            if (allGalleries[galleryKey]) {
+            if (allGalleries[galleryKey] && allGalleries[galleryKey].length > 0) {
                 currentGallery = allGalleries[galleryKey];
                 currentIndex = 0;
                 updateLightboxImage();
                 lightbox.classList.add('active');
                 document.body.style.overflow = 'hidden';
+            } else {
+                 console.warn("Gallery not found or empty:", galleryKey);
+                 // Optionally provide feedback to the user (e.g., alert or message on page)
             }
         }
 
@@ -937,18 +987,25 @@
         }
 
         function showNextImage() {
+            if (currentGallery.length === 0) return;
             currentIndex = (currentIndex + 1) % currentGallery.length;
             updateLightboxImage();
         }
 
         function showPrevImage() {
+            if (currentGallery.length === 0) return;
             currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
             updateLightboxImage();
         }
 
         eventCards.forEach(card => {
             card.addEventListener('click', (e) => {
-                openLightbox(e.currentTarget.dataset.gallery);
+                const galleryKey = e.currentTarget.dataset.gallery;
+                 if (galleryKey) {
+                    openLightbox(galleryKey);
+                 } else {
+                     console.error("Event card missing data-gallery attribute:", card);
+                 }
             });
         });
 
@@ -969,7 +1026,7 @@
         // --- Mobile Menu ---
         const hamburger = document.querySelector('.hamburger');
         const mobileMenu = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelectorAll('.mobile-menu a, .nav-links a');
+        const navLinks = document.querySelectorAll('.mobile-menu a, .nav-links a'); // Include mobile links for closing
 
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
@@ -977,10 +1034,15 @@
             document.body.classList.toggle('mobile-menu-open');
         });
 
-        navLinks.forEach(link => link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            document.body.classList.remove('mobile-menu-open');
+        // Close menu when a link is clicked
+        navLinks.forEach(link => link.addEventListener('click', (e) => {
+            // Only close if it's a mobile link or a link within the page
+            const href = link.getAttribute('href');
+            if (mobileMenu.classList.contains('active') && (!href || href.startsWith('#') || href === 'gallery.html')) {
+                 hamburger.classList.remove('active');
+                 mobileMenu.classList.remove('active');
+                 document.body.classList.remove('mobile-menu-open');
+             }
         }));
 
         // --- FAQ Accordion ---
@@ -989,11 +1051,13 @@
                 const answer = button.nextElementSibling;
                 const wasActive = button.classList.contains('active');
 
+                // Close all others first
                 document.querySelectorAll('.faq-question').forEach(q => {
                     q.classList.remove('active');
                     q.nextElementSibling.classList.remove('show');
                 });
 
+                // Toggle the clicked one
                 if (!wasActive) {
                     button.classList.add('active');
                     answer.classList.add('show');
@@ -1005,14 +1069,16 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    const delay = entry.target.dataset.delay || index * 50;
+                    // Use a dataset attribute for delay or default stagger
+                    const delay = entry.target.dataset.delay || index * 50; 
                     entry.target.style.transitionDelay = `${delay}ms`;
                     entry.target.classList.add('is-visible');
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.1 }); // Trigger when 10% is visible
 
+        // Apply observer to all elements meant to animate on scroll
         document.querySelectorAll('.animate-on-scroll, .card, .event-card').forEach(el => {
             observer.observe(el);
         });
@@ -1020,3 +1086,4 @@
   </script>
 </body>
 </html>
+
