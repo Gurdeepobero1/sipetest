@@ -74,7 +74,6 @@
       transition: all 0.3s ease; text-decoration: none; display: inline-block;
     }
     .join-btn:hover { background-color: var(--dark-blue); transform: translateY(-2px); }
-    /* UX Touch-up: Active/Press state */
     .join-btn:active {
       transform: translateY(-1px) scale(0.98);
       box-shadow: var(--shadow-sm);
@@ -144,7 +143,6 @@
         background-size: cover;
         background-position: center;
         border-radius: var(--radius);
-        /* UI Touch-up: Subtle pan animation */
         animation: subtle-pan 15s ease-out forwards;
     }
     @keyframes subtle-pan {
@@ -168,7 +166,6 @@
       max-width: 1000px;
       margin: 4rem auto 3rem auto;
       text-align: left;
-      /* UI Touch-up: Restyled for emphasis */
       background: var(--white);
       border-left: 4px solid var(--primary-blue);
       box-shadow: var(--shadow-md);
@@ -193,27 +190,32 @@
       align-items: center;
       gap: 0.5rem;
     }
-    .partner-benefit h4 svg {
-        flex-shrink: 0;
-    }
-    .partner-benefit p {
+    .partner-benefit h4 svg { flex-shrink: 0; width: 22px; height: 22px; }
+    .partner-benefit p { color: var(--gray-700); font-size: 1rem; }
+
+    /* Logo Scrollers (Shared Styles) */
+    .scroller-container h3 {
+      text-align: center;
       color: var(--gray-700);
-      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
     }
-    .logo-scroller {
+    .logo-scroller, .college-scroller {
       width: 100%;
       overflow: hidden;
       mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
       -webkit-mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
-      margin-top: 3rem;
+      margin-top: 2rem; /* Reduced margin */
     }
-    .logo-scroller-inner {
+    .logo-scroller-inner, .college-scroller-inner {
       display: flex;
       width: fit-content;
-      /* UI Touch-up: Slower scroll */
-      animation: scroll 60s linear infinite;
     }
-    .logo-scroller .logo-item {
+    .logo-scroller-inner { animation: scroll-company 60s linear infinite; }
+    .college-scroller-inner { animation: scroll-college 50s linear infinite; } /* Different speed */
+    
+    .logo-item { /* Shared class for items in both scrollers */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -225,12 +227,18 @@
       font-size: 1.2rem;
       color: var(--gray-600);
       user-select: none;
+      white-space: nowrap; /* Prevent names from wrapping */
     }
-    .logo-scroller .logo-item:hover {
+    .logo-item:hover {
       filter: grayscale(0%);
       opacity: 1;
     }
-    @keyframes scroll {
+
+    @keyframes scroll-company {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes scroll-college {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
@@ -274,7 +282,6 @@
       opacity: 0;
       transition: all 0.4s ease;
     }
-    /* UI Touch-up: Clickable cue */
     .event-card::after {
         content: '+';
         position: absolute;
@@ -380,7 +387,6 @@
       right: 1rem;
       z-index: 1001;
     }
-    /* UX Touch-up: Lightbox Counter */
     .lightbox-counter {
         position: absolute;
         top: 1.5rem;
@@ -391,6 +397,7 @@
         background: rgba(0, 0, 0, 0.3);
         padding: 0.25rem 0.75rem;
         border-radius: 20px;
+        z-index: 1001;
     }
     
     /* --- General Cards --- */
@@ -398,12 +405,12 @@
       display: grid; 
       gap: 2rem; 
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-      grid-auto-rows: 1fr; /* UI Touch-up: Makes cards in a row equal height */
+      grid-auto-rows: 1fr; /* Equal height rows */
     }
     .card {
       background: var(--white); padding: 2rem; border-radius: var(--radius);
       box-shadow: var(--shadow-md); text-align: center; border: 1px solid var(--gray-100);
-      transition: all 0.4s cubic-bezier(0.215, 0.610, 0.355, 1); /* UI Touch-up: Smoother transition */
+      transition: all 0.4s cubic-bezier(0.215, 0.610, 0.355, 1); 
       opacity: 0; 
       transform: translateY(30px);
       display: flex;
@@ -417,10 +424,7 @@
       transform: translateY(-8px); 
       box-shadow: var(--shadow-lg); 
     }
-    /* UI Touch-up: Card hover state */
-    .card:hover h3 {
-        color: var(--primary-blue);
-    }
+    .card:hover h3 { color: var(--primary-blue); }
     .card h3 { 
       font-size: 1.3rem; 
       margin-bottom: 0.5rem; 
@@ -429,7 +433,7 @@
     }
     .card p { 
       color: var(--gray-600); 
-      flex-grow: 1; /* UI Touch-up: Pushes button down */
+      flex-grow: 1; /* Pushes button down */
     } 
     .card .icon { height: 44px; margin-bottom: 1rem; color: var(--primary-blue); }
     
@@ -442,10 +446,7 @@
       transition: border-color 0.3s ease;
     }
     .person-card h4 { font-size: 1.2rem; margin-bottom: 0.25rem; }
-    /* UI Touch-up: Mentor hover */
-    .person-card:hover img {
-        border-color: var(--primary-blue);
-    }
+    .person-card:hover img { border-color: var(--primary-blue); }
 
     /* --- FAQ --- */
     .faq { max-width: 800px; margin: 0 auto; }
@@ -463,10 +464,7 @@
     }
     .faq-question::after { content: "+"; font-size: 1.5rem; color: var(--primary-blue); transition: transform 0.3s ease; }
     .faq-question.active::after { transform: rotate(45deg); }
-    /* UI Touch-up: Active FAQ item */
-    .faq-item:has(.faq-question.active) {
-        background-color: var(--light-blue);
-    }
+    .faq-item:has(.faq-question.active) { background-color: var(--light-blue); }
     .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, padding 0.5s ease; color: var(--gray-600); }
     .faq-answer p { padding: 0 1.5rem 1.5rem 1.5rem; border-top: 1px solid var(--gray-100); padding-top: 1.5rem; }
     .faq-answer.show { max-height: 200px; }
@@ -510,9 +508,7 @@
         opacity: 1; 
         color: var(--linkedin-blue); /* Default hover */
     }
-    .social-links a.instagram:hover { 
-        color: var(--instagram-pink); 
-    }
+    .social-links a.instagram:hover { color: var(--instagram-pink); }
     .social-links svg { width: 28px; height: 28px; }
     .footer-bottom {
       max-width: 1280px; margin: 3rem auto 0; padding-top: 2rem;
@@ -527,7 +523,6 @@
     }
     .animate-on-scroll {
         opacity: 0;
-        /* UI Touch-up: Smoother cubic-bezier */
         transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.215, 0.610, 0.355, 1);
         transform: translateY(30px);
     }
@@ -612,21 +607,21 @@
               <div class="partner-benefits">
                 <div class="partner-benefit">
                   <h4>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                     Access Top Talent
                   </h4>
                   <p>Connect with the brightest student innovators and researchers from our national network.</p>
                 </div>
                 <div class="partner-benefit">
                   <h4>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
                     Drive R&D
                   </h4>
                   <p>Collaborate on real-world projects and workshops to solve your industry challenges.</p>
                 </div>
                 <div class="partner-benefit">
                   <h4>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                     Enhance Your Brand
                   </h4>
                   <p>Gain visibility as an industry leader committed to nurturing the next generation of excellence.</p>
@@ -634,26 +629,52 @@
               </div>
             </div>
 
-            <div class="logo-scroller">
-              <div class="logo-scroller-inner">
-                <div class="logo-item">DRDO</div>
-                <div class="logo-item">BrahMos</div>
-                <div class="logo-item">VFJ, Ministry of Defence</div>
-                <div class="logo-item">IIITDM Jabalpur</div>
-                <div class="logo-item">Ordinance Factory Board</div>
-                <div class="logo-item">JEC Jabalpur</div>
-                <div class="logo-item">DRDO</div>
-                <div class="logo-item">BrahMos</div>
-                <div class="logo-item">VFJ, Ministry of Defence</div>
-                <div class="logo-item">IIITDM Jabalpur</div>
-                <div class="logo-item">Ordinance Factory Board</div>
-                <div class="logo-item">JEC Jabalpur</div>
-                 <div class="logo-item">DRDO</div>
-                <div class="logo-item">BrahMos</div>
-                <div class="logo-item">VFJ, Ministry of Defence</div>
-                <div class="logo-item">IIITDM Jabalpur</div>
-                <div class="logo-item">Ordinance Factory Board</div>
-                <div class="logo-item">JEC Jabalpur</div>
+            <div class="scroller-container">
+              <h3>Our Industry & Research Partners</h3>
+              <div class="logo-scroller">
+                <div class="logo-scroller-inner">
+                  <div class="logo-item">DRDO</div>
+                  <div class="logo-item">BrahMos</div>
+                  <div class="logo-item">VFJ, Ministry of Defence</div>
+                  <div class="logo-item">IIITDM Jabalpur</div>
+                  <div class="logo-item">Ordinance Factory Board</div>
+                  <div class="logo-item">JEC Jabalpur</div>
+                  <div class="logo-item">DRDO</div>
+                  <div class="logo-item">BrahMos</div>
+                  <div class="logo-item">VFJ, Ministry of Defence</div>
+                  <div class="logo-item">IIITDM Jabalpur</div>
+                  <div class="logo-item">Ordinance Factory Board</div>
+                  <div class="logo-item">JEC Jabalpur</div>
+                   <div class="logo-item">DRDO</div>
+                  <div class="logo-item">BrahMos</div>
+                  <div class="logo-item">VFJ, Ministry of Defence</div>
+                  <div class="logo-item">IIITDM Jabalpur</div>
+                  <div class="logo-item">Ordinance Factory Board</div>
+                  <div class="logo-item">JEC Jabalpur</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="scroller-container" style="margin-top: 3rem;">
+              <h3>Our Growing Network of Partner Institutions</h3>
+              <div class="college-scroller">
+                <div class="college-scroller-inner">
+                  <div class="logo-item">JEC Jabalpur</div>
+                  <div class="logo-item">IIT Patna</div>
+                  <div class="logo-item">IIITDM Jabalpur</div>
+                  <div class="logo-item">NIT Raipur (Upcoming)</div>
+                  <div class="logo-item">MANIT Bhopal (Upcoming)</div>
+                  <div class="logo-item">JEC Jabalpur</div>
+                  <div class="logo-item">IIT Patna</div>
+                  <div class="logo-item">IIITDM Jabalpur</div>
+                  <div class="logo-item">NIT Raipur (Upcoming)</div>
+                  <div class="logo-item">MANIT Bhopal (Upcoming)</div>
+                   <div class="logo-item">JEC Jabalpur</div>
+                  <div class="logo-item">IIT Patna</div>
+                  <div class="logo-item">IIITDM Jabalpur</div>
+                  <div class="logo-item">NIT Raipur (Upcoming)</div>
+                  <div class="logo-item">MANIT Bhopal (Upcoming)</div>
+                </div>
               </div>
             </div>
 
@@ -665,12 +686,12 @@
         <h2 class="section-title">Programs & Offerings</h2>
         <p class="section-subtitle">Comprehensive initiatives to foster innovation from the classroom to the marketplace.</p>
         <div class="cards-grid">
-            <div class="card animate-on-scroll"><h3>Guest Lecture Series</h3><p>Gain insights on industry-academia synergy, IP commercialization, startup journeys, and cutting-edge research from expert leaders.</p></div>
-            <div class="card animate-on-scroll"><h3>Innovation Index</h3><p>Our annual scoring of college R&D, IP, and startup activity, driving healthy competition and national recognition for institutions.</p></div>
-            <div class="card animate-on-scroll"><h3>Mentor Connect</h3><p>A cross-college platform giving students direct access to a national network of industry mentors, research advisors, and investors.</p></div>
-            <div class="card animate-on-scroll"><h3>IP to Impact Bootcamps</h3><p>Specialized training to help students and faculty turn patents and research ideas into viable, market-ready ventures.</p></div>
-            <div class="card animate-on-scroll"><h3>Startup Clinics</h3><p>Hands-on assistance with incubator partnerships, investor matchmaking, and corporate accelerator programs to get your venture funded.</p></div>
-            <div class="card animate-on-scroll"><h3>Scalable SIPE Model</h3><p>We deploy student chapters with dedicated cells for events, outreach, and fundraising, creating a sustainable innovation ecosystem on campus.</p></div>
+            <div class="card animate-on-scroll"><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230052cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 16.5c-1.5 1.5-3 1.7-4.5.2-.6-.6-.7-1.4-.4-2 .3-.6.9-1.1 1.6-1.4M19.5 7.5c1.5-1.5 3-1.7 4.5-.2.6.6.7 1.4.4 2-.3.6-.9 1.1-1.6 1.4M7 14.5l4-4 1.5 1.5M13 10.5l1.5 1.5M10 21v-4.5M14 21v-4.5'%3E%3C/path%3E%3Cpath d='M17 3l-1.5 1.5'%3E%3C/path%3E%3Cpath d='M11.5 15.5L3 21'%3E%3C/path%3E%3Cpath d='M21 3l-8.5 8.5'%3E%3C/path%3E%3C/svg%3E" alt="Icon"><h3>Guest Lecture Series</h3><p>Gain insights on industry-academia synergy, IP commercialization, startup journeys, and cutting-edge research from expert leaders.</p></div>
+            <div class="card animate-on-scroll"><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230052cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'%3E%3C/path%3E%3Crect x='8' y='2' width='8' height='4' rx='1' ry='1'%3E%3C/rect%3E%3Cpath d='m9 14 2 2 4-4'%3E%3C/path%3E%3C/svg%3E" alt="Icon"><h3>Innovation Index</h3><p>Our annual scoring of college R&D, IP, and startup activity, driving healthy competition and national recognition for institutions.</p></div>
+            <div class="card animate-on-scroll"><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230052cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2'%3E%3C/path%3E%3Ccircle cx='9' cy='7' r='4'%3E%3C/circle%3E%3Cpath d='M23 21v-2a4 4 0 0 0-3-3.87'%3E%3C/path%3E%3Cpath d='M16 3.13a4 4 0 0 1 0 7.75'%3E%3C/path%3E%3C/svg%3E" alt="Icon"><h3>Mentor Connect</h3><p>A cross-college platform giving students direct access to a national network of industry mentors, research advisors, and investors.</p></div>
+            <div class="card animate-on-scroll"><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230052cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5'%3E%3C/path%3E%3Cpath d='M9 18h6'%3E%3C/path%3E%3Cpath d='M10 22h4'%3E%3C/path%3E%3C/svg%3E" alt="Icon"><h3>IP to Impact Bootcamps</h3><p>Specialized training to help students and faculty turn patents and research ideas into viable, market-ready ventures.</p></div>
+            <div class="card animate-on-scroll"><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230052cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5.7 13.3 3.4-3.4a1.5 1.5 0 0 0-2.1-2.1l-3.4 3.4c-.4.4-.6 1-.6 1.6 0 .6.2 1.2.6 1.6l3.4 3.4a1.5 1.5 0 0 0 2.1-2.1l-3.4-3.4c-.1-.1-.1-.1 0 0z'%3E%3C/path%3E%3Cpath d='m12.7 13.3 3.4-3.4a1.5 1.5 0 0 0-2.1-2.1l-3.4 3.4c-.4.4-.6 1-.6 1.6 0 .6.2 1.2.6 1.6l3.4 3.4a1.5 1.5 0 0 0 2.1-2.1l-3.4-3.4c-.1-.1-.1-.1 0 0z'%3E%3C/path%3E%3Cpath d='m18.7 13.3 3.4-3.4a1.5 1.5 0 0 0-2.1-2.1l-3.4 3.4c-.4.4-.6 1-.6 1.6 0 .6.2 1.2.6 1.6l3.4 3.4a1.5 1.5 0 0 0 2.1-2.1l-3.4-3.4c-.1-.1-.1-.1 0 0z'%3E%3C/path%3E%3C/svg%3E" alt="Icon"><h3>Startup Clinics</h3><p>Hands-on assistance with incubator partnerships, investor matchmaking, and corporate accelerator programs to get your venture funded.</p></div>
+            <div class="card animate-on-scroll"><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230052cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'%3E%3C/path%3E%3Cpolyline points='3.27 6.96 12 12.01 20.73 6.96'%3E%3C/polyline%3E%3Cv:line y1='12' x2='12' y2='22' x1='12'%3E%3C/v:line%3E%3C/svg%3E" alt="Icon"><h3>Scalable SIPE Model</h3><p>We deploy student chapters with dedicated cells for events, outreach, and fundraising, creating a sustainable innovation ecosystem on campus.</p></div>
         </div>
       </div>
     </section>
@@ -739,6 +760,10 @@
             <div class="card person-card animate-on-scroll"><img src="sipe.png" alt="Dr. Rajeev Chandak"/><h4>Dr. Rajeev Chandak</h4><p>Principal<br/>JEC Jabalpur</p></div>
             <div class="card person-card animate-on-scroll"><img src="DSC_0573.JPG"/><h4>Dr. Sudhir Mishra</h4><p>Ex. DG DRDO, CEO & MD<br/>BrahMos</p></div>
             <div class="card person-card animate-on-scroll"><img src="Prof. Bhartendu K Singh.jpg"/><h4>Prof. Bhartendu K Singh</h4><p>Director<br/>IIITDM Jabalpur</p></div>
+            <div class="card person-card animate-on-scroll">
+              <img src="ajai_chowdhary.png" alt="Ajai Chowdhary"/> <h4>Ajai Chowdhary</h4>
+              <p>Founder HCL, Chairman- Board of Governors IIT Patna<br/>Padma Bhushan Awardee</p>
+            </div>
         </div>
       </div> 
     </section>
@@ -813,7 +838,6 @@
     document.addEventListener('DOMContentLoaded', () => {
         
         // --- Gallery Data ---
-        // We define all our galleries here in a clean object
         const allGalleries = {
             'gallery-1': [
                 'Inaugural ceremony of s.i.p.e(2).png',
@@ -845,7 +869,7 @@
         const eventCards = document.querySelectorAll('.event-card');
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-image');
-        const lightboxCounter = document.getElementById('lightbox-counter'); // Counter element
+        const lightboxCounter = document.getElementById('lightbox-counter'); 
         const lightboxClose = document.getElementById('lightbox-close');
         const lightboxNext = document.getElementById('lightbox-next');
         const lightboxPrev = document.getElementById('lightbox-prev');
@@ -855,9 +879,18 @@
 
         function updateLightboxImage() {
             if (currentGallery.length > 0) {
-                lightboxImg.src = currentGallery[currentIndex];
-                // UI Touch-up: Update counter
-                lightboxCounter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
+                // Preload image to avoid flicker
+                const img = new Image();
+                img.onload = () => {
+                    lightboxImg.style.opacity = 0; // Fade out old image
+                    setTimeout(() => {
+                        lightboxImg.src = img.src;
+                        lightboxImg.style.opacity = 1; // Fade in new image
+                    }, 150); // Match CSS transition time
+                    lightboxCounter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
+                };
+                img.src = currentGallery[currentIndex];
+                 lightboxImg.style.transition = 'opacity 0.15s ease-in-out'; // Add transition
             }
         }
 
@@ -867,7 +900,7 @@
                 currentIndex = 0;
                 updateLightboxImage();
                 lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                document.body.style.overflow = 'hidden'; 
             }
         }
 
@@ -896,7 +929,7 @@
         lightboxNext.addEventListener('click', showNextImage);
         lightboxPrev.addEventListener('click', showPrevImage);
         lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) { // Close if clicking on the overlay itself
+            if (e.target === lightbox) { 
                 closeLightbox();
             }
         });
@@ -932,14 +965,12 @@
             button.addEventListener('click', () => {
                 const answer = button.nextElementSibling;
                 const wasActive = button.classList.contains('active');
-
-                // Close all other open FAQs
+                
                 document.querySelectorAll('.faq-question').forEach(q => {
                     q.classList.remove('active');
                     q.nextElementSibling.classList.remove('show');
                 });
                 
-                // Open the clicked one if it wasn't already active
                 if (!wasActive) {
                     button.classList.add('active');
                     answer.classList.add('show');
@@ -951,7 +982,7 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    // Stagger effect
+                    // Stagger effect - slightly less delay for faster reveal
                     entry.target.style.transitionDelay = `${index * 50}ms`; 
                     entry.target.classList.add('is-visible');
                     observer.unobserve(entry.target);
@@ -959,7 +990,6 @@
             });
         }, { threshold: 0.1 }); 
         
-        // Observe all elements with the .animate-on-scroll class, cards, and gallery items
         document.querySelectorAll('.animate-on-scroll, .card, .event-card').forEach(el => {
             observer.observe(el);
         });
