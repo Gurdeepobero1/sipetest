@@ -120,7 +120,6 @@
         margin-bottom: 2.5rem;
         max-width: 500px;
     }
-    /* Static Hero Image Container */
     .hero-image-container {
         position: relative;
         height: 500px;
@@ -144,6 +143,70 @@
     .section-title { font-size: clamp(2.2rem, 4vw, 3rem); text-align: center; margin-bottom: 1rem; color: var(--dark-blue); }
     .section-subtitle { font-size: 1.2rem; text-align: center; color: var(--gray-600); margin-bottom: 4rem; max-width: 700px; margin-left: auto; margin-right: auto; }
     .bg-light { background-color: var(--gray-50); }
+
+    /* --- ABOUT: Partner Callout & Logo Scroller --- */
+    .partner-callout {
+      max-width: 1000px;
+      margin: 4rem auto 3rem auto;
+      text-align: left;
+      background: var(--gray-50);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+    }
+    .partner-callout h3 {
+      font-size: 1.5rem;
+      color: var(--dark-blue);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .partner-benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .partner-benefit h4 {
+      color: var(--primary-blue);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .partner-benefit p {
+      color: var(--gray-700);
+      font-size: 1rem;
+    }
+    .logo-scroller {
+      width: 100%;
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+      margin-top: 3rem;
+    }
+    .logo-scroller-inner {
+      display: flex;
+      width: fit-content;
+      animation: scroll 40s linear infinite;
+    }
+    .logo-scroller .logo-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 2.5rem;
+      filter: grayscale(100%);
+      opacity: 0.6;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--gray-600);
+    }
+    .logo-scroller .logo-item:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
 
     /* --- NEW Events & Programs Section --- */
     .events-program-content {
@@ -174,63 +237,57 @@
       margin-bottom: 0.75rem;
     }
     
-    /* Event Accordion */
-    .event-accordion {
-      margin-top: 3rem;
-      border: 1px solid var(--gray-100);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-md);
-      overflow: hidden;
-    }
-    .event-item {
-      border-bottom: 1px solid var(--gray-100);
-    }
-    .event-item:last-child { border-bottom: none; }
-    .event-header {
-      background: var(--white);
-      padding: 1.25rem 1.5rem;
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--dark-blue);
-      cursor: pointer;
-      border: none;
-      width: 100%;
-      text-align: left;
+    /* --- Event Tabs --- */
+    .event-tabs {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: background-color 0.3s ease;
-    }
-    .event-header:hover {
-      background-color: var(--light-blue);
-    }
-    .event-header::after {
-      content: "+";
-      font-size: 1.75rem;
-      color: var(--primary-blue);
-      transition: transform 0.3s ease;
-      font-weight: 400;
-    }
-    .event-header.active::after {
-      transform: rotate(45deg);
-    }
-    .event-gallery {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease-out;
-      background: var(--white);
-    }
-    .event-gallery.show {
-      max-height: 1000px; /* Adjust as needed */
-      transition: max-height 0.5s ease-in;
-    }
-    .event-gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      flex-wrap: wrap;
       gap: 1rem;
-      padding: 1.5rem;
+      margin-top: 3rem;
+      border-bottom: 2px solid var(--gray-100);
+    }
+    .event-tab {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      background: transparent;
+      border-radius: 8px 8px 0 0;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      transition: all 0.3s ease;
+      position: relative;
+      bottom: -2px;
+    }
+    .event-tab:hover {
+      background-color: var(--light-blue);
+      color: var(--primary-blue);
+    }
+    .event-tab.active {
+      background-color: var(--white);
+      color: var(--primary-blue);
+      border: 2px solid var(--gray-100);
+      border-bottom: 2px solid var(--white);
     }
     
+    /* Event Gallery Content */
+    .event-gallery-content {
+      margin-top: 2rem;
+    }
+    .event-gallery-grid {
+      display: none; /* Hidden by default */
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      opacity: 0;
+      animation: fadeIn 0.5s ease forwards;
+    }
+    .event-gallery-grid.active {
+      display: grid; /* Shown when active */
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* Gallery Styles (for Events & general) */
     .gallery-item {
       border-radius: var(--radius);
@@ -341,14 +398,8 @@
 
     /* Animation */
     @keyframes fade-in-up {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
     }
     .animate-on-scroll {
         opacity: 0;
@@ -370,12 +421,13 @@
         .hero-text { order: 2; }
         .hero-image-container { order: 1; height: 350px; }
         .hero-text p { margin-left: auto; margin-right: auto; }
+        .partner-benefits { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
         .section { padding: 4rem 1rem; }
         .cards-grid { grid-template-columns: 1fr; }
         .card p { min-height: 0; } /* Remove min-height on mobile */
-        .event-gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+        .event-gallery-grid { grid-template-columns: repeat(2, 1fr); } /* 2x2 grid on mobile */
     }
   </style>
 </head>
@@ -417,18 +469,60 @@
                 <p>A student-driven, mentor-supported startup creating standardized innovation frameworks for educational institutions nationwide.</p>
                 <a href="loginstudent.html" class="join-btn">Get Started</a>
             </div>
-            <!-- Static Image Container -->
             <div class="hero-image-container">
-                <!-- Image is set via CSS background -->
-            </div>
+                </div>
         </div>
     </section>
     
-    <!-- ABOUT SECTION (SLIDESHOW REMOVED) -->
     <section id="about" class="section">
         <div class="section-content">
             <h2 class="section-title">Bridging Academia & Industry</h2>
             <p class="section-subtitle">SIPE's primary goal is to create a standardized, nationwide framework for fostering innovation and entrepreneurship within educational institutions. We connect students with industry mentors, resources, and real-world projects to transform groundbreaking ideas into impactful ventures.</p>
+            
+            <div class="partner-callout animate-on-scroll">
+              <h3>A Hub for Industry & Academia</h3>
+              <div class="partner-benefits">
+                <div class="partner-benefit">
+                  <h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    Access Top Talent
+                  </h4>
+                  <p>Connect with the brightest student innovators and researchers from our national network.</p>
+                </div>
+                <div class="partner-benefit">
+                  <h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+                    Drive R&D
+                  </h4>
+                  <p>Collaborate on real-world projects and workshops to solve your industry challenges.</p>
+                </div>
+                <div class="partner-benefit">
+                  <h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    Enhance Your Brand
+                  </h4>
+                  <p>Gain visibility as an industry leader committed to nurturing the next generation of excellence.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="logo-scroller">
+              <div class="logo-scroller-inner">
+                <div class="logo-item">DRDO</div>
+                <div class="logo-item">BrahMos</div>
+                <div class="logo-item">VFJ, Ministry of Defence</div>
+                <div class="logo-item">IIITDM Jabalpur</div>
+                <div class="logo-item">Ordinance Factory Board</div>
+                <div class="logo-item">JEC Jabalpur</div>
+                <div class="logo-item">DRDO</div>
+                <div class="logo-item">BrahMos</div>
+                <div class="logo-item">VFJ, Ministry of Defence</div>
+                <div class="logo-item">IIITDM Jabalpur</div>
+                <div class="logo-item">Ordinance Factory Board</div>
+                <div class="logo-item">JEC Jabalpur</div>
+              </div>
+            </div>
+
         </div>
     </section>
     
@@ -462,7 +556,6 @@
       </div>
     </section>
 
-    <!-- EVENTS & PROGRAMS SECTION (UPDATED) -->
     <section id="events" class="section bg-light">
       <div class="section-content">
         <h2 class="section-title">Events & Programs</h2>
@@ -480,55 +573,37 @@
             <li>To inspire the development of innovative solutions with commercial potential.</li>
           </ul>
 
-          <!-- Event Accordion -->
-          <div class="event-accordion">
-            <!-- Event 1 -->
-            <div class="event-item">
-              <button class="event-header">1. Inaugural Ceremony</button>
-              <div class="event-gallery">
-                <div class="event-gallery-grid">
-                  <div class="gallery-item animate-on-scroll"><img src="Inaugural ceremony of s.i.p.e(2).png" alt="Event Photo 1"></div>
-                  <div class="gallery-item animate-on-scroll"><img src="sipe.png" alt="Event Photo 2"></div>
-                  <div class="gallery-item animate-on-scroll"><img src="skbhola.png" alt="Event Photo 3"></div>
-                  <div class="gallery-item animate-on-scroll"><img src="ofb.png" alt="Event Photo 4"></div>
-                </div>
-              </div>
+          <div class="event-tabs">
+            <button class="event-tab active" data-target="gallery-1">1. Inaugural Ceremony</button>
+            <button class="event-tab" data-target="gallery-2">2. Lecture by Dr. Sudhir Mishra</button>
+            <button class="event-tab" data-target="gallery-3">3. Lecture by Abhishek Aggarwal</button>
+            <button class="event-tab" data-target="gallery-4">4. Robotics Workshop</button>
+          </div>
+
+          <div class="event-gallery-content">
+            <div id="gallery-1" class="event-gallery-grid active">
+              <div class="gallery-item animate-on-scroll"><img src="Inaugural ceremony of s.i.p.e(2).png" alt="Event Photo 1"></div>
+              <div class="gallery-item animate-on-scroll"><img src="sipe.png" alt="Event Photo 2"></div>
+              <div class="gallery-item animate-on-scroll"><img src="skbhola.png" alt="Event Photo 3"></div>
+              <div class="gallery-item animate-on-scroll"><img src="ofb.png" alt="Event Photo 4"></div>
             </div>
-            <!-- Event 2 -->
-            <div class="event-item">
-              <button class="event-header">2. Lecture by Dr. Sudhir Mishra</button>
-              <div class="event-gallery">
-                <div class="event-gallery-grid">
-                  <div class="gallery-item"><img src="DSC_0573.JPG" alt="Event Photo 1"></div>
-                  <div class="gallery-item"><img src="Inaugural ceremony of s.i.p.e(2).png" alt="Event Photo 2"></div>
-                  <div class="gallery-item"><img src="sipe.png" alt="Event Photo 3"></div>
-                  <div class="gallery-item"><img src="DSC_0573.JPG" alt="Event Photo 4"></div>
-                </div>
-              </div>
+            <div id="gallery-2" class="event-gallery-grid">
+              <div class="gallery-item"><img src="DSC_0573.JPG" alt="Event Photo 1"></div>
+              <div class="gallery-item"><img src="Inaugural ceremony of s.i.p.e(2).png" alt="Event Photo 2"></div>
+              <div class="gallery-item"><img src="sipe.png" alt="Event Photo 3"></div>
+              <div class="gallery-item"><img src="DSC_0573.JPG" alt="Event Photo 4"></div>
             </div>
-             <!-- Event 3 -->
-             <div class="event-item">
-              <button class="event-header">3. Lecture by Abhishek Aggarwal</button>
-              <div class="event-gallery">
-                <div class="event-gallery-grid">
-                  <div class="gallery-item"><img src="Atul Singh.png" alt="Event Photo 1"></div>
-                  <div class="gallery-item"><img src="Prof. Bhartendu K Singh.jpg" alt="Event Photo 2"></div>
-                  <div class="gallery-item"><img src="Atul Singh.png" alt="Event Photo 3"></div>
-                  <div class="gallery-item"><img src="Prof. Bhartendu K Singh.jpg" alt="Event Photo 4"></div>
-                </div>
-              </div>
+            <div id="gallery-3" class="event-gallery-grid">
+              <div class="gallery-item"><img src="Atul Singh.png" alt="Event Photo 1"></div>
+              <div class="gallery-item"><img src="Prof. Bhartendu K Singh.jpg" alt="Event Photo 2"></div>
+              <div class="gallery-item"><img src="Atul Singh.png" alt="Event Photo 3"></div>
+              <div class="gallery-item"><img src="Prof. Bhartendu K Singh.jpg" alt="Event Photo 4"></div>
             </div>
-             <!-- Event 4 -->
-             <div class="event-item">
-              <button class="event-header">4. Workshop on Basic Robotics and Drive Systems</button>
-              <div class="event-gallery">
-                <div class="event-gallery-grid">
-                  <div class="gallery-item"><img src="skbhola.png" alt="Event Photo 1"></div>
-                  <div class="gallery-item"><img src="ofb.png" alt="Event Photo 2"></div>
-                  <div class="gallery-item"><img src="Inaugural ceremony of s.i.p.e(2).png" alt="Event Photo 3"></div>
-                  <div class="gallery-item"><img src="sipe.png" alt="Event Photo 4"></div>
-                </div>
-              </div>
+            <div id="gallery-4" class="event-gallery-grid">
+              <div class="gallery-item"><img src="skbhola.png" alt="Event Photo 1"></div>
+              <div class="gallery-item"><img src="ofb.png" alt="Event Photo 2"></div>
+              <div class="gallery-item"><img src="Inaugural ceremony of s.i.p.e(2).png" alt="Event Photo 3"></div>
+              <div class="gallery-item"><img src="sipe.png" alt="Event Photo 4"></div>
             </div>
           </div>
 
@@ -546,13 +621,11 @@
             <div class="card person-card animate-on-scroll"><img src="Atul Singh.png" alt="Mr. Atul Singh (IPS)"/><h4>Mr. Atul Singh (IPS)</h4><p>Deputy Inspector General <br/>Jabalpur Range</p></div>
             <div class="card person-card animate-on-scroll"><img src="sipe.png" alt="Dr. Rajeev Chandak"/><h4>Dr. Rajeev Chandak</h4><p>Principal<br/>JEC Jabalpur</p></div>
             <div class="card person-card animate-on-scroll"><img src="DSC_0573.JPG"/><h4>Dr. Sudhir Mishra</h4><p>Ex. DG DRDO, CEO & MD<br/>BrahMos</p></div>
-            <!-- BUG FIX: Added class="card person-card" -->
             <div class="card person-card animate-on-scroll"><img src="Prof. Bhartendu K Singh.jpg"/><h4>Prof. Bhartendu K Singh</h4><p>Director<br/>IIITDM Jabalpur</p></div>
         </div>
       </div> 
     </section>
     
-    <!-- GET INVOLVED SECTION (SIMPLIFIED) -->
     <section id="join" class="section bg-light">
       <div class="section-content" style="text-align: center;">
         <h2 class="section-title">Start Your Journey</h2>
@@ -569,7 +642,7 @@
             <div class="faq-item"><button class="faq-question">What is the primary goal of SIPE?</button><div class="faq-answer"><p>SIPE's main goal is to create a standardized, nationwide framework for fostering innovation and entrepreneurship within educational institutions by connecting students with industry mentors, resources, and real-world projects.</p></div></div>
             <div class="faq-item"><button class="faq-question">Who is eligible to join the SIPE network?</button><div class="faq-answer"><p>Our program is designed for educational institutions across India. Once an institution partners with us, all of its students (UG, PG, and PhD) become eligible to join our chapters and access our complete range of programs and benefits.</p></div></div>
             <div class="faq-item"><button class="faq-question">How does the mentorship program work?</button><div class="faq-answer"><p>We provide a cross-college Mentor Connect Platform that links students with experienced industry professionals, researchers (from DRDO, CSIR, etc.), and entrepreneurs based on their field of interest and project requirements for personalized guidance.</p></div></div>
-            <div class.="faq-item"><button class="faq-question">How can our institution partner with SIPE?</button><div class="faq-answer"><p>To partner with us, please use the "Join Now" button to navigate to our registration portal and sign up as an institution. Our outreach team will then get in touch with you to finalize the partnership process and establish a SIPE chapter on your campus.</p></div></div>
+            <div class="faq-item"><button class="faq-question">How can our institution partner with SIPE?</button><div class="faq-answer"><p>To partner with us, please use the "Join Now" button to navigate to our registration portal and sign up as an institution. Our outreach team will then get in touch with you to finalize the partnership process and establish a SIPE chapter on your campus.</p></div></div>
         </div>
       </div>
     </section>
@@ -646,28 +719,36 @@
             });
         });
 
-        // --- NEW: Event Accordion ---
-        document.querySelectorAll('.event-header').forEach(button => {
-            button.addEventListener('click', () => {
-                const gallery = button.nextElementSibling;
-                const wasActive = button.classList.contains('active');
+        // --- NEW: Event Tab Gallery ---
+        const tabContainer = document.querySelector('.event-tabs');
+        const tabs = document.querySelectorAll('.event-tab');
+        const galleries = document.querySelectorAll('.event-gallery-grid');
 
-                // Close all other accordions
-                document.querySelectorAll('.event-header').forEach(header => {
-                    header.classList.remove('active');
-                    header.nextElementSibling.classList.remove('show');
-                });
+        tabContainer.addEventListener('click', (e) => {
+            const clickedTab = e.target.closest('.event-tab');
+            if (!clickedTab) return; // Exit if click wasn't on a tab button
 
-                // Open the clicked one if it wasn't already active
-                if (!wasActive) {
-                    button.classList.add('active');
-                    gallery.classList.add('show');
-                }
-            });
+            e.preventDefault();
+            
+            // Remove active state from all tabs and galleries
+            tabs.forEach(tab => tab.classList.remove('active'));
+            galleries.forEach(gallery => gallery.classList.remove('active'));
+
+            // Add active state to the clicked tab
+            clickedTab.classList.add('active');
+            
+            // Get the target gallery ID from the 'data-target' attribute
+            const targetGalleryId = clickedTab.getAttribute('data-target');
+            const targetGallery = document.getElementById(targetGalleryId);
+            
+            // Show the corresponding gallery
+            if (targetGallery) {
+                targetGallery.classList.add('active');
+            }
         });
 
 
-        // Scroll Animations
+        // --- Scroll Animations ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
@@ -679,7 +760,7 @@
             });
         }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
         
-        // Observe all elements with the .animate-on-scroll class
+        // Observe all elements with the .animate-on-scroll class, cards, and gallery items
         document.querySelectorAll('.animate-on-scroll, .card, .gallery-item').forEach(el => {
             observer.observe(el);
         });
