@@ -17,14 +17,12 @@
       --gray-700: #374151; 
       --gray-900: #111827;
       --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
-      /* Refined Shadows */
       --shadow-md: 0 4px 10px -2px rgba(0,0,0,0.06), 0 2px 6px -3px rgba(0,0,0,0.06);
       --shadow-lg: 0 10px 20px -3px rgba(0,0,0,0.07), 0 4px 8px -4px rgba(0,0,0,0.07);
       --shadow-xl: 0 20px 30px -5px rgba(0,0,0,0.08), 0 8px 15px -6px rgba(0,0,0,0.08);
       --radius: 12px;
       --linkedin-blue: #0077b5;
       --instagram-pink: #e4405f;
-      /* Smoother Transition */
       --transition-curve: cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
@@ -35,12 +33,12 @@
       background-color: var(--white);
       color: var(--gray-900);
       line-height: 1.7;
-      font-size: 17.5px; /* Slightly larger base font */
+      font-size: 17.5px; 
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
     }
-    h1, h2, h3 { text-wrap: balance; font-weight: 700; letter-spacing: -0.02em; /* Slightly tighter */ }
+    h1, h2, h3 { text-wrap: balance; font-weight: 700; letter-spacing: -0.02em; }
 
     /* --- Header --- */
     .header {
@@ -50,19 +48,19 @@
       border-bottom: 1px solid var(--gray-100);
     }
     .header-content {
-      max-width: 1280px; margin: 0 auto; padding: 0 2rem; /* Adjusted padding */
+      max-width: 1280px; margin: 0 auto; padding: 0 2rem; 
       display: flex; justify-content: space-between; align-items: center;
       height: 80px;
     }
     .logo {
-      font-size: 1.9rem; /* Slightly larger logo */
+      font-size: 1.9rem; 
        font-weight: 800; color: var(--primary-blue);
       transition: transform 0.3s var(--transition-curve); text-decoration: none;
     }
-    .logo:hover { transform: scale(1.03); } /* Subtle hover */
-    .nav-links { display: flex; gap: 2.8rem; align-items: center; list-style: none; } /* Increased gap */
+    .logo:hover { transform: scale(1.03); } 
+    .nav-links { display: flex; gap: 2.8rem; align-items: center; list-style: none; } 
     .nav-links a {
-      color: var(--gray-700); /* Slightly darker text */
+      color: var(--gray-700); 
       text-decoration: none; font-weight: 500; font-size: 1rem;
       padding: 0.5rem 0; 
       transition: color 0.3s var(--transition-curve), transform 0.3s var(--transition-curve); 
@@ -76,11 +74,11 @@
     }
     .nav-links a:hover { 
       color: var(--primary-blue); 
-      transform: translateY(-1px); /* Slight lift */
+      transform: translateY(-1px); 
     }
     .nav-links a:hover::after { width: 100%; }
     .join-btn {
-      background-color: var(--primary-blue); color: var(--white); padding: 0.75rem 1.6rem; /* Adjusted padding */
+      background-color: var(--primary-blue); color: var(--white); padding: 0.75rem 1.6rem; 
       border: none; border-radius: 8px; font-weight: 600; cursor: pointer;
       transition: background-color 0.3s var(--transition-curve), transform 0.3s var(--transition-curve), box-shadow 0.3s var(--transition-curve); 
       text-decoration: none; display: inline-block;
@@ -88,11 +86,11 @@
     .join-btn:hover { 
       background-color: var(--dark-blue); 
       transform: translateY(-2px); 
-      box-shadow: var(--shadow-md); /* Add shadow on hover */
+      box-shadow: var(--shadow-md); 
     }
     .join-btn:active {
-      transform: translateY(0px) scale(0.98); /* More pronounced press */
-      box-shadow: none; /* Remove shadow on press */
+      transform: translateY(0px) scale(0.98); 
+      box-shadow: none; 
     }
     
     /* --- Mobile Menu --- */
@@ -118,15 +116,15 @@
     /* --- Hero Section (Static Image) --- */
     .hero {
       background-color: var(--white);
-      padding: 5rem 2rem; /* Increased padding */
+      padding: 5rem 2rem; 
       min-height: calc(90vh - 80px);
       display: flex;
       align-items: center;
     }
     .hero-grid {
         display: grid;
-        grid-template-columns: 1fr 1.1fr; /* Give image slightly more space */
-        gap: 4rem; /* Increased gap */
+        grid-template-columns: 1fr 1.1fr; 
+        gap: 4rem; 
         align-items: center;
         max-width: 1280px;
         margin: 0 auto;
@@ -136,14 +134,14 @@
         animation: fade-in-up 1s ease-out 0.2s forwards; 
     }
     .hero-text h1 {
-        font-size: clamp(2.6rem, 5.5vw, 3.8rem); /* Slightly larger H1 */
+        font-size: clamp(2.6rem, 5.5vw, 3.8rem); 
         color: var(--dark-blue);
         margin-bottom: 1.5rem;
         font-weight: 800;
         line-height: 1.2;
     }
     .hero-text p {
-        font-size: 1.2rem; /* Slightly larger P */
+        font-size: 1.2rem; 
         color: var(--gray-600);
         margin-bottom: 2.5rem;
         max-width: 500px;
@@ -165,7 +163,6 @@
         background-size: cover;
         background-position: center;
         border-radius: var(--radius);
-        /* Keep subtle pan animation */
         animation: subtle-pan 15s ease-out forwards; 
     }
     @keyframes subtle-pan {
@@ -178,26 +175,25 @@
     }
 
     /* --- General Section Styling --- */
-    .section { padding: 7rem 2rem; } /* Increased padding */
+    .section { padding: 7rem 2rem; } 
     .section-content { max-width: 1280px; margin: 0 auto; }
     .section-title { font-size: clamp(2.3rem, 4.5vw, 3.2rem); text-align: center; margin-bottom: 1rem; color: var(--dark-blue); }
     .section-subtitle { font-size: 1.25rem; text-align: center; color: var(--gray-600); margin-bottom: 4.5rem; max-width: 700px; margin-left: auto; margin-right: auto; }
     .bg-light { 
       background-color: var(--gray-50); 
-      /* Subtle gradient */
       background-image: linear-gradient(to bottom, var(--white) 0%, var(--gray-50) 15%, var(--gray-50) 85%, var(--white) 100%);
     }
 
     /* --- ABOUT: Partner Callout & Logo Scroller --- */
     .partner-callout {
       max-width: 1000px;
-      margin: 4.5rem auto; /* Increased margin */
+      margin: 4.5rem auto; 
       text-align: left;
       background: var(--white);
-      border-left: 5px solid var(--primary-blue); /* Thicker border */
-      box-shadow: var(--shadow-lg); /* Slightly stronger shadow */
+      border-left: 5px solid var(--primary-blue); 
+      box-shadow: var(--shadow-lg); 
       border-radius: 0 var(--radius) var(--radius) 0;
-      padding: 3rem; /* Increased padding */
+      padding: 3rem; 
     }
     .partner-callout h3 {
       font-size: 1.6rem;
@@ -208,14 +204,14 @@
     .partner-benefits {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2.5rem; /* Increased gap */
+      gap: 2.5rem; 
     }
     .partner-benefit h4 {
       color: var(--primary-blue);
       margin-bottom: 0.5rem;
       display: flex;
       align-items: center;
-      gap: 0.7rem; /* Increased gap */
+      gap: 0.7rem; 
       font-size: 1.1rem;
     }
     .partner-benefit h4 svg { flex-shrink: 0; width: 24px; height: 24px; }
@@ -227,8 +223,8 @@
       text-align: center;
       color: var(--gray-700);
       font-weight: 600;
-      margin-bottom: 2rem; /* Increased margin */
-      font-size: 1.2rem; /* Increased size */
+      margin-bottom: 2rem; 
+      font-size: 1.2rem; 
     }
     .logo-scroller, .college-scroller {
       width: 100%;
@@ -240,24 +236,29 @@
       display: flex;
       width: fit-content;
     }
-    .logo-scroller-inner { animation: scroll-company 65s linear infinite; } /* Slower */
-    .college-scroller-inner { animation: scroll-college 55s linear infinite; } /* Slower */
+    .logo-scroller-inner { animation: scroll-company 65s linear infinite; } 
+    .college-scroller-inner { animation: scroll-college 55s linear infinite; } 
     
     .logo-item { 
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 3rem; /* Increased padding */
-      filter: grayscale(100%);
-      opacity: 0.6;
+      padding: 0 3rem; 
       transition: filter 0.3s var(--transition-curve), opacity 0.3s var(--transition-curve);
-      font-weight: 600;
-      font-size: 1.25rem; /* Increased size */
-      color: var(--gray-600);
       user-select: none;
       white-space: nowrap; 
     }
-    .logo-item:hover { filter: grayscale(0%); opacity: 1; }
+    .logo-item img {
+        height: 45px; /* Control logo height */
+        max-width: 150px;
+        filter: grayscale(100%);
+        opacity: 0.6;
+        transition: filter 0.3s var(--transition-curve), opacity 0.3s var(--transition-curve);
+    }
+    .logo-item:hover img {
+      filter: grayscale(0%);
+      opacity: 1;
+    }
 
     @keyframes scroll-company {
       0% { transform: translateX(0); }
@@ -271,8 +272,15 @@
     /* --- Events & Gallery Section --- */
     .event-portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem; /* Increased gap */
+      /* UI Touch-up: 3 columns on desktop, adapts down */
+      grid-template-columns: repeat(3, 1fr); 
+      gap: 2rem; 
+    }
+    @media (max-width: 968px) {
+      .event-portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+     @media (max-width: 768px) {
+      .event-portfolio-grid { grid-template-columns: 1fr; } 
     }
     .event-card {
       position: relative;
@@ -295,7 +303,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(0deg, rgba(7, 29, 73, 0.85) 0%, rgba(0, 0, 0, 0) 65%); /* Slightly darker gradient */
+      background: linear-gradient(0deg, rgba(7, 29, 73, 0.85) 0%, rgba(0, 0, 0, 0) 65%); 
       display: flex;
       align-items: flex-end;
       padding: 1.5rem;
@@ -304,7 +312,7 @@
     .event-card h3 {
       color: var(--white);
       font-size: 1.3rem;
-      transform: translateY(15px); /* Start slightly lower */
+      transform: translateY(15px); 
       opacity: 0;
       transition: transform 0.4s var(--transition-curve), opacity 0.4s var(--transition-curve);
     }
@@ -325,15 +333,15 @@
         justify-content: center;
         line-height: 1;
         opacity: 0;
-        transform: scale(0.5) rotate(-90deg); /* Start rotated */
+        transform: scale(0.5) rotate(-90deg); 
         transition: opacity 0.4s var(--transition-curve), transform 0.4s var(--transition-curve);
     }
     .event-card:hover {
       box-shadow: var(--shadow-lg);
-      transform: translateY(-5px); /* Subtle lift */
+      transform: translateY(-5px); 
     }
     .event-card:hover .event-card-img {
-      transform: scale(1.03); /* Smaller scale */
+      transform: scale(1.03); 
     }
     .event-card:hover h3 {
       transform: translateY(0);
@@ -341,7 +349,7 @@
     }
     .event-card:hover::after {
         opacity: 1;
-        transform: scale(1) rotate(0deg); /* Rotate in */
+        transform: scale(1) rotate(0deg); 
     }
 
     /* --- Lightbox Gallery --- */
@@ -351,16 +359,16 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.9); /* Slightly darker overlay */
+      backdrop-filter: blur(10px); /* More blur */
+      -webkit-backdrop-filter: blur(10px);
       z-index: 1000;
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.4s var(--transition-curve), visibility 0.4s ease; /* Smoother fade */
+      transition: opacity 0.4s var(--transition-curve), visibility 0.4s ease; 
     }
     .lightbox-overlay.active {
       opacity: 1;
@@ -388,7 +396,7 @@
       color: var(--white);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 50%;
-      width: 48px; /* Slightly larger */
+      width: 48px; 
       height: 48px;
       font-size: 1.6rem;
       cursor: pointer;
@@ -401,10 +409,10 @@
     .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {
       background: var(--primary-blue);
       border-color: var(--primary-blue);
-      transform: scale(1.05); /* Slight scale on hover */
+      transform: scale(1.05); 
     }
     .lightbox-close {
-      top: 1.5rem; /* More space */
+      top: 1.5rem; 
       right: 1.5rem;
       z-index: 1002;
     }
@@ -423,7 +431,7 @@
         color: var(--white);
         font-size: 1rem;
         font-weight: 500;
-        background: rgba(0, 0, 0, 0.4); /* Darker background */
+        background: rgba(0, 0, 0, 0.4); 
         padding: 0.3rem 0.8rem;
         border-radius: 20px;
         z-index: 1001;
@@ -437,7 +445,7 @@
       grid-auto-rows: 1fr; /* Equal height rows */
     }
     .card {
-      background: var(--white); padding: 2.5rem; /* Increased padding */ 
+      background: var(--white); padding: 2.5rem; 
       border-radius: var(--radius);
       box-shadow: var(--shadow-md); text-align: center; border: 1px solid var(--gray-100);
       transition: transform 0.4s var(--transition-curve), box-shadow 0.4s var(--transition-curve); 
@@ -456,20 +464,20 @@
     }
     .card:hover h3 { color: var(--primary-blue); }
     .card h3 { 
-      font-size: 1.35rem; /* Slightly larger */
+      font-size: 1.35rem; 
       margin-bottom: 0.7rem; 
       color: var(--dark-blue); 
       transition: color 0.3s var(--transition-curve);
     }
     .card p { 
-      color: var(--gray-700); /* Slightly darker text */
+      color: var(--gray-700); 
       flex-grow: 1; 
-      font-size: 1.05rem; /* Slightly larger */
+      font-size: 1.05rem; 
     } 
     .card .icon { height: 48px; margin-bottom: 1.2rem; color: var(--primary-blue); }
     
     /* Person/Mentor Card */
-    .person-card p { flex-grow: 0; font-size: 1rem; } /* Override flex-grow */
+    .person-card p { flex-grow: 0; font-size: 1rem; } 
     .person-card img {
       width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem;
       object-fit: cover; margin-left: auto; margin-right: auto;
@@ -487,10 +495,10 @@
       border-radius: var(--radius); 
       border: 1px solid var(--gray-100); 
       transition: background-color 0.3s var(--transition-curve);
-      overflow: hidden; /* Needed for smooth height transition */
+      overflow: hidden; 
     }
     .faq-question {
-        background: transparent; padding: 1.5rem; /* Increased padding */
+        background: transparent; padding: 1.5rem; 
         font-size: 1.15rem; font-weight: 600;
         color: var(--gray-900); cursor: pointer; border: none; width: 100%; text-align: left;
         display: flex; justify-content: space-between; align-items: center;
@@ -501,7 +509,7 @@
     .faq-answer { 
         max-height: 0; 
         overflow: hidden; 
-        transition: max-height 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother */
+        transition: max-height 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); 
         color: var(--gray-700); 
         font-size: 1.05rem;
     }
@@ -509,15 +517,15 @@
         padding: 0 1.5rem 1.5rem 1.5rem; 
         border-top: 1px solid var(--gray-100); 
         padding-top: 1.5rem; 
-        margin: 0; /* Reset margin */
+        margin: 0; 
     }
-    .faq-answer.show { max-height: 250px; } /* Increased max-height */
+    .faq-answer.show { max-height: 250px; } 
     
     /* --- Footer --- */
     .footer { background: var(--dark-blue); color: var(--gray-100); padding: 5rem 2rem 3rem; }
     .footer-content {
       max-width: 1280px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr; gap: 3rem; text-align: center; /* Increased gap */
+      display: grid; grid-template-columns: 1fr; gap: 3rem; text-align: center; 
     }
     @media (min-width: 768px) {
       .footer-content { grid-template-columns: 2fr 1fr 1fr; text-align: left; }
@@ -539,7 +547,7 @@
     .footer-links a:hover { opacity: 1; color: var(--white); }
     .footer-contact p {
       color: var(--gray-100); opacity: 0.7; margin-bottom: 0.7rem;
-      word-break: break-word; /* Better word breaking */
+      word-break: break-word; 
     }
     .social-links { margin-top: 1.5rem; display: flex; gap: 1.5rem; }
     .footer-contact .social-links { justify-content: flex-start; }
@@ -548,7 +556,7 @@
     }
     .social-links a { color: var(--white); text-decoration: none; transition: all 0.3s var(--transition-curve); opacity: 0.8; }
     .social-links a:hover { 
-        transform: scale(1.1) translateY(-2px); /* Lift effect */
+        transform: scale(1.1) translateY(-2px); 
         opacity: 1; 
         color: var(--linkedin-blue); 
     }
@@ -557,7 +565,7 @@
     .footer-bottom {
       max-width: 1280px; margin: 4rem auto 0; padding-top: 2rem;
       border-top: 1px solid rgba(255, 255, 255, 0.2);
-      text-align: center; opacity: 0.7; font-size: 0.95rem; /* Slightly larger */
+      text-align: center; opacity: 0.7; font-size: 0.95rem; 
     }
 
     /* Animation */
@@ -679,24 +687,24 @@
               <h3>Our Industry & Research Partners</h3>
               <div class="logo-scroller">
                 <div class="logo-scroller-inner">
-                  <div class="logo-item">DRDO</div>
-                  <div class="logo-item">BrahMos</div>
-                  <div class="logo-item">VFJ, Ministry of Defence</div>
-                  <div class="logo-item">IIITDM Jabalpur</div>
-                  <div class="logo-item">Ordinance Factory Board</div>
-                  <div class="logo-item">JEC Jabalpur</div>
-                  <div class="logo-item">DRDO</div>
-                  <div class="logo-item">BrahMos</div>
-                  <div class="logo-item">VFJ, Ministry of Defence</div>
-                  <div class="logo-item">IIITDM Jabalpur</div>
-                  <div class="logo-item">Ordinance Factory Board</div>
-                  <div class="logo-item">JEC Jabalpur</div>
-                   <div class="logo-item">DRDO</div>
-                  <div class="logo-item">BrahMos</div>
-                  <div class="logo-item">VFJ, Ministry of Defence</div>
-                  <div class="logo-item">IIITDM Jabalpur</div>
-                  <div class="logo-item">Ordinance Factory Board</div>
-                  <div class="logo-item">JEC Jabalpur</div>
+                  <div class="logo-item"><img src="logos/drdo.png" alt="DRDO Logo"></div>
+                  <div class="logo-item"><img src="logos/brahmos.png" alt="BrahMos Logo"></div>
+                  <div class="logo-item"><img src="logos/vfj.png" alt="VFJ Ministry of Defence Logo"></div>
+                  <div class="logo-item"><img src="logos/iiitdmj.png" alt="IIITDM Jabalpur Logo"></div>
+                  <div class="logo-item"><img src="logos/ofb.png" alt="Ordinance Factory Board Logo"></div>
+                  <div class="logo-item"><img src="logos/jec.png" alt="JEC Jabalpur Logo"></div>
+                  <div class="logo-item"><img src="logos/drdo.png" alt="DRDO Logo"></div>
+                  <div class="logo-item"><img src="logos/brahmos.png" alt="BrahMos Logo"></div>
+                  <div class="logo-item"><img src="logos/vfj.png" alt="VFJ Ministry of Defence Logo"></div>
+                  <div class="logo-item"><img src="logos/iiitdmj.png" alt="IIITDM Jabalpur Logo"></div>
+                  <div class="logo-item"><img src="logos/ofb.png" alt="Ordinance Factory Board Logo"></div>
+                  <div class="logo-item"><img src="logos/jec.png" alt="JEC Jabalpur Logo"></div>
+                   <div class="logo-item"><img src="logos/drdo.png" alt="DRDO Logo"></div>
+                  <div class="logo-item"><img src="logos/brahmos.png" alt="BrahMos Logo"></div>
+                  <div class="logo-item"><img src="logos/vfj.png" alt="VFJ Ministry of Defence Logo"></div>
+                  <div class="logo-item"><img src="logos/iiitdmj.png" alt="IIITDM Jabalpur Logo"></div>
+                  <div class="logo-item"><img src="logos/ofb.png" alt="Ordinance Factory Board Logo"></div>
+                  <div class="logo-item"><img src="logos/jec.png" alt="JEC Jabalpur Logo"></div>
                 </div>
               </div>
             </div>
@@ -705,21 +713,21 @@
               <h3>Our Growing Network of Partner Institutions</h3>
               <div class="college-scroller">
                 <div class="college-scroller-inner">
-                  <div class="logo-item">JEC Jabalpur</div>
-                  <div class="logo-item">IIT Patna</div>
-                  <div class="logo-item">IIITDM Jabalpur</div>
-                  <div class="logo-item">NIT Raipur (Upcoming)</div>
-                  <div class="logo-item">MANIT Bhopal (Upcoming)</div>
-                  <div class="logo-item">JEC Jabalpur</div>
-                  <div class="logo-item">IIT Patna</div>
-                  <div class="logo-item">IIITDM Jabalpur</div>
-                  <div class="logo-item">NIT Raipur (Upcoming)</div>
-                  <div class="logo-item">MANIT Bhopal (Upcoming)</div>
-                   <div class="logo-item">JEC Jabalpur</div>
-                  <div class="logo-item">IIT Patna</div>
-                  <div class="logo-item">IIITDM Jabalpur</div>
-                  <div class="logo-item">NIT Raipur (Upcoming)</div>
-                  <div class="logo-item">MANIT Bhopal (Upcoming)</div>
+                  <div class="logo-item"><img src="logos/jec.png" alt="JEC Jabalpur Logo"></div>
+                  <div class="logo-item"><img src="logos/iitp.png" alt="IIT Patna Logo"></div>
+                  <div class="logo-item"><img src="logos/iiitdmj.png" alt="IIITDM Jabalpur Logo"></div>
+                  <div class="logo-item"><img src="logos/nitrr.png" alt="NIT Raipur Logo"></div>
+                  <div class="logo-item"><img src="logos/manit.png" alt="MANIT Bhopal Logo"></div>
+                  <div class="logo-item"><img src="logos/jec.png" alt="JEC Jabalpur Logo"></div>
+                  <div class="logo-item"><img src="logos/iitp.png" alt="IIT Patna Logo"></div>
+                  <div class="logo-item"><img src="logos/iiitdmj.png" alt="IIITDM Jabalpur Logo"></div>
+                  <div class="logo-item"><img src="logos/nitrr.png" alt="NIT Raipur Logo"></div>
+                  <div class="logo-item"><img src="logos/manit.png" alt="MANIT Bhopal Logo"></div>
+                   <div class="logo-item"><img src="logos/jec.png" alt="JEC Jabalpur Logo"></div>
+                  <div class="logo-item"><img src="logos/iitp.png" alt="IIT Patna Logo"></div>
+                  <div class="logo-item"><img src="logos/iiitdmj.png" alt="IIITDM Jabalpur Logo"></div>
+                  <div class="logo-item"><img src="logos/nitrr.png" alt="NIT Raipur Logo"></div>
+                  <div class="logo-item"><img src="logos/manit.png" alt="MANIT Bhopal Logo"></div>
                 </div>
               </div>
             </div>
@@ -814,6 +822,10 @@
               <img src="veerendra_kumar.png" alt="Dr. Veerendra Kumar"/> <h4>Dr. Veerendra Kumar</h4>
               <p>Director<br/>Directorate of Technical Education (DTE), MP</p>
             </div>
+             <div class="card person-card animate-on-scroll">
+              <img src="prashant_jain.png" alt="Dr. Prashant Jain"/> <h4>Dr. Prashant Jain</h4>
+              <p>Ex-Controller of Examinations<br/>RGPV Bhopal</p>
+            </div>
         </div>
       </div> 
     </section>
@@ -887,31 +899,39 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
         
-        // --- Gallery Data ---
+        // --- Gallery Data (Updated to 6 images per event) ---
         const allGalleries = {
             'gallery-1': [
                 'Inaugural ceremony of s.i.p.e(2).png',
                 'sipe.png',
                 'skbhola.png',
-                'ofb.png'
+                'ofb.png',
+                'Atul Singh.png', // Placeholder 5
+                'Prof. Bhartendu K Singh.jpg' // Placeholder 6
             ],
             'gallery-2': [
                 'DSC_0573.JPG',
                 'Inaugural ceremony of s.i.p.e(2).png',
                 'sipe.png',
-                'DSC_0573.JPG'
+                'DSC_0573.JPG',
+                'skbhola.png', // Placeholder 5
+                'ofb.png' // Placeholder 6
             ],
             'gallery-3': [
                 'Atul Singh.png',
                 'Prof. Bhartendu K Singh.jpg',
                 'Atul Singh.png',
-                'Prof. Bhartendu K Singh.jpg'
+                'Prof. Bhartendu K Singh.jpg',
+                'Inaugural ceremony of s.i.p.e(2).png', // Placeholder 5
+                'DSC_0573.JPG' // Placeholder 6
             ],
             'gallery-4': [
                 'skbhola.png',
                 'ofb.png',
                 'Inaugural ceremony of s.i.p.e(2).png',
-                'sipe.png'
+                'sipe.png',
+                'Atul Singh.png', // Placeholder 5
+                'Prof. Bhartendu K Singh.jpg' // Placeholder 6
             ]
         };
 
@@ -938,7 +958,8 @@
                     }, 150); 
                     lightboxCounter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
                 };
-                img.src = currentGallery[currentIndex];
+                // IMPORTANT: Replace placeholders with actual image paths
+                img.src = currentGallery[currentIndex]; 
             }
         }
 
