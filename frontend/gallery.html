@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SIPE Gallery - Our Events</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    /* Dark Theme Variables */
+    :root {
+      --primary-blue: #007aff;
+      --light-blue: #3b82f6;
+      --bg-dark: #111827;
+      --bg-light-dark: #1f2937;
+      --border-dark: #374151;
+      --text-primary: #f9fafb;
+      --text-secondary: #d1d5db;
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.2);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -4px rgba(0,0,0,0.2);
+      --radius: 12px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-secondary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    h1, h2, h3 { 
+      text-wrap: balance; 
+      font-weight: 700; 
+      letter-spacing: -0.025em;
+      color: var(--text-primary);
+    }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+    .section { padding: 4rem 2rem 6rem 2rem; } /* Less top padding for a gallery page */
+    
+    .section-title { 
+      font-size: clamp(2.2rem, 4vw, 3rem); 
+      text-align: center; 
+      margin-bottom: 1rem; 
+      color: var(--text-primary);
+    }
+    .section-subtitle { 
+      font-size: 1.2rem; 
+      text-align: center; 
+      color: var(--text-secondary); 
+      margin-bottom: 3rem; 
+      max-width: 700px; 
+      margin-left: auto; 
+      margin-right: auto; 
+    }
+    
+    .bg-light { 
+      background-color: var(--bg-light-dark); 
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: var(--primary-blue); color: var(--text-primary); padding: 0.85rem 2rem;
+      border-radius: 8px; font-weight: 600; cursor: pointer;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .btn:hover { 
+      background-color: var(--light-blue); 
+      transform: translateY(-3px); 
+      box-shadow: var(--shadow-lg); 
+    }
+
+    /* Header */
+    .header {
+      background: rgba(17, 24, 39, 0.8);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid var(--border-dark);
+    }
+    .header-content { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+    .logo { font-size: 1.8rem; font-weight: 800; color: var(--primary-blue); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    
+    .nav-links a { 
+      color: var(--text-secondary);
+      text-decoration: none; 
+      font-weight: 500; 
+      transition: color 0.3s ease; 
+    }
+    .nav-links a:hover { color: var(--primary-blue); }
+    /* Style for the active gallery link */
+    .nav-links a.active {
+      color: var(--primary-blue);
+      font-weight: 700;
+    }
+    
+    .hamburger { display: none; }
+
+
+    /* --- NEW Slideshow CSS --- */
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      /* A black background provides a good base while images load */
+      background-color: #000;
+    }
+
+    .slideshow-container .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* All slides are hidden by default */
+      opacity: 0;
+      z-index: 0;
+    }
+    /* --- End Slideshow CSS --- */
+
+
+    /* Footer */
+    .footer { 
+      background: var(--bg-light-dark);
+      color: var(--text-secondary);
+      text-align: center; 
+      padding: 4rem 2rem; 
+      border-top: 1px solid var(--border-dark);
+    }
+
+    @media (max-width: 768px) {
+        .nav-links, .header-content .btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+  
+  <header class="header">
+    <div class="header-content container">
+      <a href="index.html" class="logo">SIPE</a>
+      <nav>
+        <ul class="nav-links">
+          <!-- Changed href to index.html -->
+          <li><a href="index.html#about">Our Aim</a></li>
+          <li><a href="index.html#programs">Programs</a></li>
+          <li><a href="index.html#mentors">Mentors</a></li>
+          <!-- Added .active class to Gallery -->
+          <li><a href="gallery.html" class="active">Gallery</a></li>
+        </ul>
+      </nav>
+      <a href="loginstudent.html" class="btn">Join Now</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Page Title -->
+    <section class="section" style="padding-top: 6rem; padding-bottom: 2rem;">
+        <div class="container">
+            <h1 class="section-title" style="font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 0;">Our Event Gallery</h1>
+        </div>
+    </section>
+
+    <!-- Event 1: ImpactCon -->
+    <section id="gallery-impactcon" class="section">
+        <div class="container">
+            <h2 class="section-title" style="text-align: left; font-size: 2.2rem;">Event: ImpactCon</h2>
+            <p class="section-subtitle" style="text-align: left; max-width: 100%;">Featuring Lt. Gen. Sanjay Sethi and other esteemed guests.</p>
+            
+            <!-- Slideshow container 1 -->
+            <div id="slideshow-impactcon" class="slideshow-container" style="max-width: 987px; aspect-ratio: 987 / 556;">
+                <img src="impactcon1.png" alt="ImpactCon Photo 1" class="slide">
+                <img src="impactcon2.png" alt="ImpactCon Photo 2" class="slide">
+                <img src="impactcon3.png" alt="ImpactCon Photo 3" class="slide">
+                <img src="impactcon4.png" alt="ImpactCon Photo 4" class="slide">
+                <img src="impactcon5.png" alt="ImpactCon Photo 5" class="slide">
+                <img src="impactcon6.png" alt="ImpactCon Photo 6" class="slide">
+                <img src="impactcon7.png" alt="ImpactCon Photo 7" class="slide">
+                <img src="impactcon8.png" alt="ImpactCon Photo 8" class="slide">
+                <img src="impactcon9.png" alt="ImpactCon Photo 9" class="slide">
+            </div>
+        </div>
+    </section>
+
+    <!-- Event 2: First Session -->
+    <section id="gallery-session1" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title" style="text-align: left; font-size: 2.2rem;">First Session of SIPE</h2>
+            <p class="section-subtitle" style="text-align: left; max-width: 100%;">Our foundational meeting and first member gathering.</p>
+            
+            <!-- Slideshow container 2 -->
+            <div id="slideshow-session1" class="slideshow-container" style="max-width: 723px; aspect-ratio: 723 / 523;">
+                <img src="P1.jpeg" alt="SIPE First Session Photo 1" class="slide">
+                <img src="P2.jpeg" alt="SIPE First Session Photo 2" class="slide">
+            </div>
+        </div>
+    </section>
+
+    <!-- Event 3: Sudhir Mishra Visit -->
+    <section id="gallery-sudhir" class="section">
+        <div class="container">
+            <h2 class="section-title" style="text-align: left; font-size: 2.2rem;">Visit by Dr. Sudhir Mishra</h2>
+            <p class="section-subtitle" style="text-align: left; max-width: 100%;">An inspiring session with the Ex. DG DRDO, CEO & MD of BrahMos.</p>
+            
+            <!-- Slideshow container 3 -->
+            <div id="slideshow-sudhir" class="slideshow-container" style="max-width: 723px; aspect-ratio: 723 / 523;">
+                <img src="SM1.png" alt="Dr. Sudhir Mishra Visit 1" class="slide">
+                <img src="SM2.png" alt="Dr. Sudhir Mishra Visit 2" class="slide">
+                <img src="SM3.png" alt="Dr. Sudhir Mishra Visit 3" class="slide">
+                <img src="SM4.png" alt="Dr. Sudhir Mishra Visit 4" class="slide">
+            </div>
+        </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+        <p>&copy; 2025 Society of Innovation and Professional Excellence. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- anime.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+  <!-- JS: Reusable Slideshow Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        /**
+         * Creates a professional cross-fade slideshow for any given container.
+         * @param {string} containerId The ID of the slideshow container.
+         */
+        function initSlideshow(containerId) {
+            const slides = document.querySelectorAll(`#${containerId} .slide`);
+            if (slides.length < 2) {
+                // If there's only 1 image, just show it and do nothing.
+                if (slides.length === 1) {
+                    anime.set(slides[0], { opacity: 1, zIndex: 1 });
+                }
+                return; 
+            }
+
+            let currentSlide = 0;
+            // Set the first slide to be visible immediately
+            anime.set(slides[0], { opacity: 1, zIndex: 1 });
+
+            setInterval(() => {
+                const outgoingSlide = slides[currentSlide];
+                
+                // Get the next slide, looping back to the start
+                currentSlide = (currentSlide + 1) % slides.length;
+                const incomingSlide = slides[currentSlide];
+
+                // Use anime.js timeline for a professional cross-fade
+                anime.timeline({
+                    easing: 'easeOutSine',
+                    duration: 1200 // 1.2 second fade duration
+                })
+                .add({
+                    targets: outgoingSlide,
+                    opacity: 0,
+                    zIndex: 0 // Move outgoing slide to the back
+                })
+                .add({
+                    targets: incomingSlide,
+                    opacity: 1,
+                    zIndex: 1 // Bring incoming slide to the front
+                }, '-=1200'); // Run both animations at the same time
+
+            }, 5000); // 5-second hold time
+        }
+        
+        // Initialize all three slideshows
+        initSlideshow('slideshow-impactcon');
+        initSlideshow('slideshow-session1');
+        initSlideshow('slideshow-sudhir');
+
+    });
+  </script>
+</body>
+</html>

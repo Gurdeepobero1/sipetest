@@ -6,130 +6,91 @@
   <title>SIPE - Society of Innovation and Professional Excellence</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
+    /* Light Theme Variables */
     :root {
-      --primary-blue: #007aff;
-      --light-blue: #3b82f6;
-      --bg-dark: #111827;
-      --bg-light-dark: #1f2937;
-      --border-dark: #374151;
-      --text-primary: #f9fafb;
-      --text-secondary: #d1d5db;
-      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.2);
-      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -4px rgba(0,0,0,0.2);
+      --primary-blue: #0052cc;
+      --light-blue: #f0f6ff;
+      --dark-blue: #071d49;
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #eef2f6;
+      --gray-600: #4b5563;
+      --gray-900: #111827;
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
       --radius: 12px;
     }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body {
+     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-secondary);
+      background-color: var(--white);
+      color: var(--gray-900);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
+    
     h1, h2, h3 { 
       text-wrap: balance; 
       font-weight: 700; 
-      letter-spacing: -0.025em;
-      color: var(--text-primary);
+      letter-spacing: -0.025em; 
     }
     .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
     .section { padding: 6rem 2rem; }
+    
     .section-title { 
       font-size: clamp(2.2rem, 4vw, 3rem); 
       text-align: center; 
       margin-bottom: 1rem; 
-      color: var(--text-primary);
+      color: var(--dark-blue); 
     }
     .section-subtitle { 
       font-size: 1.2rem; 
       text-align: center; 
-      color: var(--text-secondary);
+      color: var(--gray-600); 
       margin-bottom: 4rem; 
       max-width: 700px; 
       margin-left: auto; 
       margin-right: auto; 
     }
+    
     .bg-light { 
-      background-color: var(--bg-light-dark); 
+      background-color: var(--gray-50); 
     }
+    
     .btn {
       display: inline-block;
-      background-color: var(--primary-blue); color: var(--text-primary); padding: 0.85rem 2rem;
+      background-color: var(--primary-blue); color: var(--white); padding: 0.85rem 2rem;
       border-radius: 8px; font-weight: 600; cursor: pointer;
       transition: all 0.3s ease; text-decoration: none;
     }
     .btn:hover { 
-      background-color: var(--light-blue); 
+      background-color: var(--dark-blue); 
       transform: translateY(-3px); 
       box-shadow: var(--shadow-lg); 
     }
 
     /* Header */
     .header {
-      background: rgba(17, 24, 39, 0.8);
+      background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
       position: sticky; top: 0; z-index: 100;
-      border-bottom: 1px solid var(--border-dark);
+      border-bottom: 1px solid var(--gray-100);
     }
     .header-content { display: flex; justify-content: space-between; align-items: center; height: 80px; }
     .logo { font-size: 1.8rem; font-weight: 800; color: var(--primary-blue); text-decoration: none; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    
     .nav-links a { 
-      color: var(--text-secondary);
+      color: var(--gray-600); 
       text-decoration: none; 
       font-weight: 500; 
       transition: color 0.3s ease; 
     }
     .nav-links a:hover { color: var(--primary-blue); }
     .hamburger { display: none; }
-
-    /* --- CSS: Movie-Style Announcement Banner --- */
-    .announcement-banner {
-      background: linear-gradient(90deg, #1a202c, #2d3748, #1a202c);
-      color: var(--text-primary);
-      text-align: center;
-      padding: 1.5rem 1rem;
-      font-weight: 800;
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
-      position: relative;
-      overflow: hidden; 
-      z-index: 50; 
-      letter-spacing: 0.05em;
-      border-bottom: 3px solid var(--primary-blue);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    }
-    .announcement-text span {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(20px) scale(0.9);
-      filter: blur(5px);
-    }
-    .announcement-banner::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -200%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        90deg, 
-        rgba(255, 255, 255, 0) 0%, 
-        rgba(255, 255, 255, 0.1) 40%,
-        rgba(255, 255, 255, 0.15) 50%, 
-        rgba(255, 255, 255, 0.1) 60%,
-        rgba(255, 255, 255, 0) 100%
-      );
-      transform: skewX(-20deg);
-      animation: bannerShine 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
-    }
-    @keyframes bannerShine {
-      from { left: -200%; }
-      to { left: 200%; }
-    }
-    /* --- End of Banner CSS --- */
-
 
     /* Hero */
     .hero {
@@ -139,7 +100,7 @@
         justify-content: center;
         text-align: center;
         min-height: 90vh;
-        color: var(--text-primary);
+        color: var(--white);
         overflow: hidden;
     }
     .hero-background {
@@ -154,7 +115,7 @@
     .hero-overlay {
         position: absolute;
         top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(17, 24, 39, 0.7);
+        background: rgba(7, 29, 73, 0.7);
         z-index: 2;
     }
     .hero-content { position: relative; z-index: 3; }
@@ -163,6 +124,7 @@
         margin-bottom: 1.5rem;
         font-weight: 800;
         animation: slide-up 1s ease-out forwards;
+        color: var(--white);
     }
     .hero-content p {
         font-size: 1.25rem;
@@ -178,6 +140,7 @@
         animation: slide-up 1s ease-out 0.6s forwards;
         opacity: 0;
     }
+
     @keyframes zoom-in {
         0% { transform: scale(1); }
         50% { transform: scale(1.1); }
@@ -190,13 +153,14 @@
 
     /* General Card Grid */
     .cards-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    
     .card {
-      background: var(--bg-light-dark); 
+      background: var(--white); 
       padding: 2.5rem 2rem; 
       border-radius: var(--radius);
-      border: 1px solid var(--border-dark);
-      box-shadow: none;
-      text-align: center;
+      box-shadow: var(--shadow-md); 
+      text-align: center; 
+      border: 1px solid var(--gray-100);
       transition: all 0.3s ease;
       opacity: 0; transform: translateY(40px);
     }
@@ -204,21 +168,25 @@
     .card:hover { 
       transform: translateY(-10px); 
       box-shadow: var(--shadow-lg); 
-      border-color: var(--primary-blue);
     }
     .card .icon { height: 48px; margin-bottom: 1.5rem; color: var(--primary-blue); }
-    .card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--text-primary); }
+    .card h3 { 
+      font-size: 1.3rem; 
+      margin-bottom: 0.5rem; 
+      color: var(--dark-blue); 
+    }
     
-    /* Mentor Card (Slideshow) - UNCHANGED */
+    /* Mentor Card (Slideshow) */
     .person-card img {
       width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1.5rem;
       object-fit: cover; margin-left: auto; margin-right: auto;
-      border: 4px solid var(--bg-light-dark);
+      border: 4px solid var(--white);
       box-shadow: var(--shadow-md);
     }
     .person-card h4 { font-size: 1.2rem; margin-bottom: 0.25rem; }
-    .person-card p { font-size: 0.95rem; color: var(--text-secondary); }
+    .person-card p { font-size: 0.95rem; color: var(--gray-600); }
 
+    /* Mentor Slideshow CSS (Kept) */
     .mentor-slideshow {
       position: relative;
       max-width: 400px;
@@ -236,73 +204,23 @@
       opacity: 0;
       transform: none;
       transition: none;
-      background: var(--bg-light-dark); 
+      background: var(--white); 
       padding: 2.5rem 2rem; 
       border-radius: var(--radius);
-      border: 1px solid var(--border-dark);
+      border: 1px solid var(--gray-100);
       text-align: center;
     }
 
-    
-    /* --- CSS: 3D Continuous Carousel (with new gap changes) --- */
-    #impactcon-gallery {
-      /* NEW: Stronger perspective for a more "bended" look */
-      perspective: 1500px; 
-      width: 100%;
-      height: 400px; 
-      position: relative;
-      margin: 4rem auto 0;
-      max-width: 987px;
-    }
-    .carousel-ring {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      transform-style: preserve-3d;
-    }
-    .impactcon-card {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 320px; 
-      height: 240px; 
-      margin-left: -160px;
-      margin-top: -120px;  
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-      -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, rgba(0,0,0,0.4));
-    }
-    .impactcon-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: var(--radius);
-    }
-    /* --- End of Carousel CSS --- */
-
-
     /* Footer */
     .footer { 
-      background: var(--bg-light-dark);
-      color: var(--text-secondary);
+      background: var(--dark-blue); 
+      color: var(--gray-100); 
       text-align: center; 
       padding: 4rem 2rem; 
-      border-top: 1px solid var(--border-dark);
     }
 
     @media (max-width: 768px) {
         .nav-links, .header-content .btn { display: none; }
-        
-        #impactcon-gallery {
-            height: 250px;
-        }
-        .impactcon-card {
-            width: 210px;
-            height: 140px;
-            margin-left: -105px;
-            margin-top: -70px;
-        }
     }
   </style>
 </head>
@@ -310,22 +228,19 @@
   
   <header class="header">
     <div class="header-content container">
-      <a href="#" class="logo">SIPE</a>
+      <!-- Changed href to index.html -->
+      <a href="index.html" class="logo">SIPE</a> 
       <nav>
         <ul class="nav-links">
           <li><a href="#about">Our Aim</a></li>
           <li><a href="#programs">Programs</a></li>
-          <li><a href="#impactcon">ImpactCon</a></li>
           <li><a href="#mentors">Mentors</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
         </ul>
       </nav>
       <a href="loginstudent.html" class="btn">Join Now</a>
     </div>
   </header>
-
-  <div class="announcement-banner">
-    <div class="announcement-text">New sessions for the Local Chapter are coming soon!</div>
-  </div>
 
   <main>
     <section class="hero" id="home">
@@ -367,7 +282,7 @@
             <h2 class="section-title">Programs & Offerings</h2>
             <p class="section-subtitle">Comprehensive initiatives to foster innovation from the classroom to the marketplace.</p>
             <div class="cards-grid">
-                <div class="card"><h3>Guest Lecture Series</h3><p>Gain insights on industry expectations, research-impact, and startup journeys from experts.</p></div>
+                <div class="card"><h3>Guest Lecture Series</h3><p>Gain insights on industry expectations, research impact, and startup journeys from experts.</p></div>
                 <div class="card"><h3>Innovation Index</h3><p>We measure and track R&D activity and IP filings to rank and recognize institutions.</p></div>
                 <div class="card"><h3>Mentor Connect</h3><p>Get matched with industry mentors and investors through our cross-institutional network.</p></div>
                 <div class="card"><h3>IP to Impact Bootcamps</h3><p>Learn patent commercialization, business model development, and market validation.</p></div>
@@ -376,28 +291,8 @@
             </div>
         </div>
     </section>
-  
-    <section id="impactcon" class="section">
-        <div class="container">
-            <h2 class="section-title">Our Flagship Event: ImpactCon</h2>
-            <p class="section-subtitle">A glimpse from our event featuring Lt. Gen. Sanjay Sethi and other esteemed guests.</p>
-            
-            <div id="impactcon-gallery">
-                <div class="carousel-ring">
-                    <div class="impactcon-card"><img src="impactcon1.png" alt="ImpactCon Photo 1"></div>
-                    <div class="impactcon-card"><img src="impactcon2.png" alt="ImpactCon Photo 2"></div>
-                    <div class="impactcon-card"><img src="impactcon3.png" alt="ImpactCon Photo 3"></div>
-                    <div class="impactcon-card"><img src="impactcon4.png" alt="ImpactCon Photo 4"></div>
-                    <div class="impactcon-card"><img src="impactcon5.png" alt="ImpactCon Photo 5"></div>
-                    <div class="impactcon-card"><img src="impactcon6.png" alt="ImpactCon Photo 6"></div>
-                    <div class="impactcon-card"><img src="impactcon7.png" alt="ImpactCon Photo 7"></div>
-                    <div class="impactcon-card"><img src="impactcon8.png" alt="ImpactCon Photo 8"></div>
-                    <div class="impactcon-card"><img src="impactcon9.png" alt="ImpactCon Photo 9"></div>
-                </div>
-            </div>
-        </div>
-    </section>
 
+    <!-- Mentor Section (Kept) -->
     <section id="mentors" class="section bg-light">
       <div class="container">
         <h2 class="section-title">Our Esteemed Mentors</h2>
@@ -430,8 +325,10 @@
     </div>
   </footer>
 
+  <!-- anime.js Library (Kept for mentor slideshow) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
+  <!-- JS: All Animations -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
         
@@ -444,77 +341,12 @@
                 }
             });
         }, { threshold: 0.1 });
+        // We only animate the cards in these two sections now
         document.querySelectorAll('#about .card, #programs .card').forEach(el => {
             cardObserver.observe(el);
         });
-
-        // --- JS: Movie-Style Announcement Banner ---
-        const announcementText = document.querySelector('.announcement-text');
-        if (announcementText) {
-            announcementText.innerHTML = announcementText.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-
-            anime.timeline({loop: false})
-              .add({
-                targets: '.announcement-text .letter',
-                opacity: [0,1],
-                translateX: [20,0],
-                translateY: [20,0],
-                scale: [0.9,1],
-                filter: ['blur(5px)', 'blur(0px)'],
-                easing: "easeOutExpo",
-                duration: 1200,
-                delay: (el, i) => 50 * i
-              });
-        }
-        // --- End of Banner JS ---
-
-
-        // --- Animation 2: 3D Continuous Carousel (with new gap changes) ---
-        function initImpactConSlideshow() {
-            const ring = document.querySelector('#impactcon-gallery .carousel-ring');
-            const images = document.querySelectorAll('#impactcon-gallery .impactcon-card');
-            if (images.length === 0) return;
-
-            const numImages = images.length;
-            const anglePerImage = 360 / numImages;
-            
-            // NEW: Drastically increased radius for a very wide gap.
-            const radius = 800; 
-
-            // 1. Position all 9 cards in the 3D ring
-            images.forEach((img, i) => {
-                const rotationAngle = i * anglePerImage;
-                anime.set(img, {
-                    rotateY: rotationAngle, 
-                    translateZ: radius,
-                    rotateX: -10,
-                });
-            });
-
-            // 2. Start the continuous rotation animation
-            anime({
-                targets: ring,
-                rotateY: '-=360deg',
-                duration: 60000,    // 60 seconds (half speed)
-                easing: 'linear',
-                loop: true,
-            });
-        }
-        const gallery = document.getElementById('impactcon-gallery');
-        if (gallery) {
-            const impactObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        initImpactConSlideshow();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            impactObserver.observe(gallery);
-        }
-
         
-        // --- Animation 3: Mentor Slideshow (Unchanged) ---
+        // --- Animation 3: Mentor Slideshow (Kept) ---
         function initMentorSlideshow() {
             const mentors = document.querySelectorAll('#mentors .person-card');
             if (mentors.length === 0) return;
