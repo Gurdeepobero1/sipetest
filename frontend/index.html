@@ -14,6 +14,7 @@
       --gray-50: #f8fafc;
       --gray-100: #eef2f6;
       --gray-600: #4b5563;
+      --gray-700: #374151; /* Added for richer text */
       --gray-900: #111827;
       --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
       --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
@@ -87,7 +88,7 @@
     .mobile-menu a:hover { background: var(--light-blue); color: var(--primary-blue); }
     body.mobile-menu-open { overflow: hidden; }
 
-    /* --- New Hero Section --- */
+    /* --- Hero Section --- */
     .hero {
       background-color: var(--white);
       padding: 4rem 2rem;
@@ -141,7 +142,6 @@
         animation-iteration-count: infinite;
         animation-timing-function: ease-in-out;
     }
-    /* Images for hero slideshow */
     .hero-slide:nth-child(1) { background-image: url('Inaugural ceremony of s.i.p.e(2).png'); animation-delay: 0s; }
     .hero-slide:nth-child(2) { background-image: url('DSC_0573.JPG'); animation-delay: 3s; }
     .hero-slide:nth-child(3) { background-image: url('Prof. Bhartendu K Singh.jpg'); animation-delay: 6s; }
@@ -164,111 +164,85 @@
     .section-subtitle { font-size: 1.2rem; text-align: center; color: var(--gray-600); margin-bottom: 4rem; max-width: 700px; margin-left: auto; margin-right: auto; }
     .bg-light { background-color: var(--gray-50); }
 
-    /* --- About Section Slideshow --- */
-    .about-slideshow-container {
-        position: relative;
-        height: 400px;
-        margin-top: 3rem;
-        border-radius: var(--radius);
-        overflow: hidden;
-        box-shadow: var(--shadow-lg);
+    /* --- NEW Flagship Program Section --- */
+    .conference-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: left;
     }
-    .about-slide {
-        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        background-size: cover; background-position: center;
-        opacity: 0;
-        animation-name: crossfade-about;
-        animation-duration: 9s; /* 3 images * 3s = 9s total */
-        animation-iteration-count: infinite;
-        animation-timing-function: ease-in-out;
-    }
-    .about-slide:nth-child(1) { background-image: url('sipe.png'); animation-delay: 0s; }
-    .about-slide:nth-child(2) { background-image: url('ofb.png'); animation-delay: 3s; }
-    .about-slide:nth-child(3) { background-image: url('Atul Singh.png'); animation-delay: 6s; }
-
-    @keyframes crossfade-about {
-        0%   { opacity: 1; transform: scale(1.05); }
-        28%  { opacity: 1; transform: scale(1.05); }
-        33%  { opacity: 0; transform: scale(1.1); }
-        100% { opacity: 0; }
-    }
-
-    /* --- NEW Flagship Conference Section --- */
-    .conference-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3rem;
-      background: var(--white);
-      border-radius: var(--radius);
-      border: 1px solid var(--gray-100);
-      box-shadow: var(--shadow-lg);
-      overflow: hidden;
-    }
-    @media (min-width: 992px) {
-      .conference-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    .conference-text {
-      padding: 3rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .conference-text h3 {
+    .conference-content h3 {
       font-size: 1.5rem;
       color: var(--dark-blue);
       margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary-blue);
+      display: inline-block;
     }
-    .conference-text ul {
-      list-style-position: inside;
-      padding-left: 0.5rem;
-      margin-top: 1rem;
+    .conference-content p, .conference-content li {
+      color: var(--gray-700);
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
     }
-     .conference-text li {
+    .conference-content ul {
+      list-style-type: '✓'; /* Custom checkmark */
+      list-style-position: outside;
+      padding-left: 2rem;
+    }
+    .conference-content li {
+      padding-left: 0.75rem;
       margin-bottom: 0.75rem;
-      color: var(--gray-600);
+    }
+
+    /* --- Gallery Styles (for Conference) --- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .gallery-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+      aspect-ratio: 4 / 3;
+      position: relative;
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .gallery-item-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(0deg, rgba(7, 29, 73, 0.8) 0%, rgba(7, 29, 73, 0) 100%);
+      color: var(--white);
+      padding: 2.5rem 1.5rem 1.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s ease;
+    }
+     .gallery-item-caption h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
      }
-    .conference-image {
-      background-image: url('Inaugural ceremony of s.i.p.e(2).png');
-      background-size: cover;
-      background-position: center;
-      min-height: 400px;
+    .gallery-item:hover {
+      box-shadow: var(--shadow-lg);
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    .gallery-item:hover .gallery-item-caption {
+      opacity: 1;
+      transform: translateY(0);
     }
     
-    /* --- Membership / Get Involved Section (Pricing Removed) --- */
-    .membership-container {
-        display: grid; grid-template-columns: 1fr; gap: 2rem;
-        align-items: stretch; max-width: 1000px; margin: 0 auto;
-    }
-    @media (min-width: 992px) { .membership-container { grid-template-columns: 1fr 1fr; } }
-    .membership-card {
-        background: var(--white); border-radius: var(--radius);
-        border: 1px solid var(--gray-100);
-        box-shadow: var(--shadow-md); transition: all 0.3s ease; 
-        display: flex; flex-direction: column;
-        opacity: 0; transform: translateY(30px);
-    }
-    .membership-card.is-visible { opacity: 1; transform: translateY(0); transition-delay: 0.2s;}
-    .membership-card-header { padding: 2rem; }
-    .membership-card-body { padding: 0 2rem; flex-grow: 1; }
-    .membership-card-footer { padding: 2rem; }
-
-    .membership-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
-    .membership-card .title { font-size: 1.5rem; font-weight: 600; color: var(--dark-blue); }
-    .membership-card .level-title { font-size: 1.8rem; font-weight: 800; margin: 0.5rem 0; color: var(--dark-blue); }
-    .membership-card .description { color: var(--gray-600); min-height: 70px;}
-    .membership-card .perks-list { list-style: none; margin: 2rem 0; }
-    .membership-card .perk-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; text-align: left; }
-    .membership-card .perk-item svg { flex-shrink: 0; width: 22px; height: 22px; color: var(--primary-blue); }
-    .membership-card .cta-button {
-        display: block; width: 100%; padding: 1rem; border-radius: 8px; text-decoration: none;
-        font-size: 1rem; font-weight: 600; text-align: center; transition: all 0.3s ease;
-    }
-    .basic .cta-button { background-color: var(--white); color: var(--primary-blue); border: 1px solid var(--gray-100); }
-    .basic .cta-button:hover { background-color: var(--light-blue); }
-    .premium { border-top: 4px solid var(--primary-blue); }
-    .premium .cta-button { background-color: var(--primary-blue); color: var(--white); }
-    .premium .cta-button:hover { background-color: var(--dark-blue); }
-
     /* --- General Cards --- */
     .cards-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
     .card {
@@ -360,22 +334,21 @@
         .section { padding: 4rem 1rem; }
         .cards-grid { grid-template-columns: 1fr; }
         .card p { min-height: 0; } /* Remove min-height on mobile */
-        .about-slideshow-container { height: 250px; }
-        .membership-card .description { min-height: 0; }
-        .conference-text { padding: 2rem; }
+        .gallery-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   
   <header class="header">
-    <div class="header-content"> <a href="#home" class="logo">SIPE</a>
+    <div class="header-content">
+      <a href="#home" class="logo">SIPE</a>
       <nav>
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
           <li><a href="#programs">Programs</a></li>
           <li><a href="#model">Our Model</a></li>
-          <li><a href="#conference">Conference</a></li>
+          <li><a href="#conference">Lecture Series</a></li>
           <li><a href="#mentors">Mentors</a></li>
           <li><a href="#faq">FAQs</a></li>
         </ul>
@@ -387,11 +360,11 @@
       <a href="#about">About</a>
       <a href="#programs">Programs</a>
       <a href="#model">Our Model</a>
-      <a href="#conference">Conference</a>
+      <a href="#conference">Lecture Series</a>
       <a href="#mentors">Mentors</a>
       <a href="#faq">FAQs</a>
-      <a href="#involve">Get Involved</a>
-      <a href="loginstudent.html" class="join-btn">Join Now</a>
+      <a href="#join">Join Now</a>
+      <a href="loginstudent.html" class="join-btn">Register</a>
     </div>
   </header>
 
@@ -415,13 +388,7 @@
         <div class="section-content">
             <h2 class="section-title">Bridging Academia & Industry</h2>
             <p class="section-subtitle">SIPE's primary goal is to create a standardized, nationwide framework for fostering innovation and entrepreneurship within educational institutions. We connect students with industry mentors, resources, and real-world projects to transform groundbreaking ideas into impactful ventures.</p>
-            
-            <div class="about-slideshow-container">
-                <div class="about-slide"></div>
-                <div class="about-slide"></div>
-                <div class="about-slide"></div>
             </div>
-        </div>
     </section>
     
     <section id="programs" class="section bg-light">
@@ -456,23 +423,36 @@
 
     <section id="conference" class="section bg-light">
       <div class="section-content">
-        <h2 class="section-title">Our Flagship Event</h2>
-        <p class="section-subtitle">National Conference on Advancing Research and Innovation for Institutional Excellence</p>
+        <h2 class="section-title">Our Flagship Lecture Series</h2>
+        <p class="section-subtitle">Advancing Research and Innovation for Institutional Excellence</p>
         
-        <div class="conference-grid">
-          <div class="conference-text">
-            <h3>Purpose & Vision</h3>
-            <p>To create a conducive atmosphere for enhancing research, encouraging innovation, and facilitating the translation of ideas into commercially viable products. We bring faculty, students, and expert researchers together to share knowledge, collaborate, and inspire new ideas.</p>
-            <ul>
-              <li>Promote interdisciplinary research</li>
-              <li>Expose participants to advanced methodologies</li>
-              <li>Facilitate industry-academia collaboration</li>
-              <li>Inspire commercially viable solutions</li>
-              <li>Build a sustainable innovation ecosystem</li>
-            </ul>
+        <div class="conference-content">
+          <h3>Purpose</h3>
+          <p>The primary purpose of this lecture series is to create a conducive atmosphere for enhancing research activities, encouraging innovation, and facilitating the translation of ideas into commercially viable products. By engaging with distinguished researchers and industry leaders, the event motivates the college community to embrace a spirit of inquiry, innovation, and entrepreneurship.</p>
+          
+          <h3>Objectives</h3>
+          <ul>
+            <li>To promote interdisciplinary research and innovation among faculty and students.</li>
+            <li>To expose participants to Applied Research topics and innovation management practices.</li>
+            <li>To facilitate interactions and collaborations with established researchers and entrepreneurs.</li>
+            <li>To inspire the development of innovative solutions with commercial potential.</li>
+          </ul>
+
+          <div class="gallery-grid">
+              <div class="gallery-item">
+                  <img src="Inaugural ceremony of s.i.p.e(2).png" alt="SIPE Inaugural Event">
+                  <div class="gallery-item-caption"><h4>Inaugural Ceremony</h4></div>
+              </div>
+              <div class="gallery-item">
+                  <img src="DSC_0573.JPG" alt="Dr. Sudhir Mishra at SIPE event">
+                  <div class="gallery-item-caption"><h4>Mentor Session: Dr. Sudhir Mishra</h4></div>
+              </div>
+              <div class="gallery-item">
+                  <img src="sipe.png" alt="Mentor Dr. Rajeev Chandak">
+                  <div class="gallery-item-caption"><h4>Campus Partnership: Dr. Rajeev Chandak</h4></div>
+              </div>
           </div>
-          <div class="conference-image">
-            </div>
+
         </div>
       </div>
     </section>
@@ -487,54 +467,16 @@
             <div class="card person-card"><img src="Atul Singh.png" alt="Mr. Atul Singh (IPS)"/><h4>Mr. Atul Singh (IPS)</h4><p>Deputy Inspector General <br/>Jabalpur Range</p></div>
             <div class="card person-card"><img src="sipe.png" alt="Dr. Rajeev Chandak"/><h4>Dr. Rajeev Chandak</h4><p>Principal<br/>JEC Jabalpur</p></div>
             <div class="card person-card"><img src="DSC_0573.JPG"/><h4>Dr. Sudhir Mishra</h4><p>Ex. DG DRDO, CEO & MD<br/>BrahMos</p></div>
-            <div class="card person-card"><img src="Prof. Bhartendu K Singh.jpg"/><h4>Prof. Bhartendu K Singh</h4><p>Director<br/>IIITDM Jabalpur</p></div>
+            <div class.card person-card"><img src="Prof. Bhartendu K Singh.jpg"/><h4>Prof. Bhartendu K Singh</h4><p>Director<br/>IIITDM Jabalpur</p></div>
         </div>
       </div> 
     </section>
     
-    <section id="involve" class="section bg-light">
-      <div class="section-content">
-        <h2 class="section-title">Get Involved</h2>
-        <p class="section-subtitle">We offer multiple levels of engagement to kickstart your journey. Select the one that's right for you.</p>
-        <div class="membership-container">
-          <div class="membership-card basic">
-            <div class="membership-card-header">
-              <h3 class="title">Basic Access</h3>
-              <p class="level-title">Community Member</p>
-              <p class="description">Get started with essential resources and access to our national community.</p>
-            </div>
-            <div class="membership-card-body">
-              <ul class="perks-list">
-                <li class="perk-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>Mentorship for competitive exams</li>
-                <li class="perk-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>Career counselling sessions</li>
-                <li class="perk-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>Basic CV maker access</li>
-                <li class="perk-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>Monthly group mentor interaction</li>
-              </ul>
-            </div>
-            <div class="membership-card-footer">
-              <a href="loginstudent.html" class="cta-button">Join the Community</a>
-            </div>
-          </div>
-          <div class="membership-card premium">
-            <div class="membership-card-header">
-              <h3 class="title">Full Access</h3>
-              <p class="level-title">Premium Member</p>
-              <p class="description">Unlock your full potential with exclusive access to grants, workshops, and personalized support.</p>
-            </div>
-            <div class="membership-card-body">
-              <ul class="perks-list">
-                <li class="perk-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg><strong>Grants for Research & IPR*</strong></li>
-                <li class="perk-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg><strong>Exclusive Workshops with Industry Leaders</strong></li>
-                <li class="perk-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg><strong>One-on-One Pitch Coaching & Deck Review</strong></li>
-                <li class="perk-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg><strong>Internship & Apprenticeship Opportunities</strong></li>
-                <li class="perk-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>Certificate of Excellence</li>
-              </ul>
-            </div>
-            <div class="membership-card-footer">
-              <a href="loginstudent.html" class="cta-button">Become a Member</a>
-            </div>
-          </div>
-        </div>
+    <section id="join" class="section bg-light">
+      <div class="section-content" style="text-align: center;">
+        <h2 class="section-title">Start Your Journey</h2>
+        <p class="section-subtitle">Ready to join the innovation revolution? Become a part of our growing network today.</p>
+        <a href="loginstudent.html" class="join-btn" style="font-size: 1.15rem; padding: 1rem 2.5rem;">Join Our Community</a>
       </div>
     </section>
 
@@ -546,7 +488,7 @@
             <div class="faq-item"><button class="faq-question">What is the primary goal of SIPE?</button><div class="faq-answer"><p>SIPE's main goal is to create a standardized, nationwide framework for fostering innovation and entrepreneurship within educational institutions by connecting students with industry mentors, resources, and real-world projects.</p></div></div>
             <div class="faq-item"><button class="faq-question">Who is eligible to join the SIPE network?</button><div class="faq-answer"><p>Our program is designed for educational institutions across India. Once an institution partners with us, all of its students (UG, PG, and PhD) become eligible to join our chapters and access our complete range of programs and benefits.</p></div></div>
             <div class="faq-item"><button class="faq-question">How does the mentorship program work?</button><div class="faq-answer"><p>We provide a cross-college Mentor Connect Platform that links students with experienced industry professionals, researchers (from DRDO, CSIR, etc.), and entrepreneurs based on their field of interest and project requirements for personalized guidance.</p></div></div>
-            <div class="faq-item"><button class="faq-question">How can our institution partner with SIPE?</button><div class="faq-answer"><p>To partner with us, please use the "Join Now" button to navigate to our registration portal and sign up as an institution. Our outreach team will then get in touch with you to finalize the partnership process and establish a SIPE chapter on your campus.</p></div></div>
+            <div class-"faq-item"><button class="faq-question">How can our institution partner with SIPE?</button><div class="faq-answer"><p>To partner with us, please use the "Join Now" button to navigate to our registration portal and sign up as an institution. Our outreach team will then get in touch with you to finalize the partnership process and establish a SIPE chapter on your campus.</p></div></div>
         </div>
       </div>
     </section>
@@ -623,10 +565,6 @@
                 }
             });
         });
-        
-        // --- Countdown Timer (REMOVED) ---
-        // const timerElement = document.getElementById('timer');
-        // No timer logic as per request.
 
         // Scroll Animations
         const observer = new IntersectionObserver((entries) => {
@@ -639,8 +577,8 @@
             });
         }, { threshold: 0.1 });
         
-        // Observe all cards
-        document.querySelectorAll('.card, .membership-card').forEach(el => observer.observe(el));
+        // Observe all cards and gallery items
+        document.querySelectorAll('.card, .gallery-item').forEach(el => observer.observe(el));
     });
   </script>
 </body>
