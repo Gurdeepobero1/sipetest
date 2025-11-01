@@ -1,104 +1,206 @@
 /* Upcoming Event Card */
 .upcomingEventCard {
   position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
-  color: var(--white);
-  padding: 3rem;
+  overflow: visible;
+  background: var(--white);
+  color: var(--gray-900);
+  padding: 0;
   border-radius: var(--radius);
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  gap: 2.5rem;
-  align-items: center;
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
-  border: none;
-  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--gray-100);
+  box-shadow: var(--shadow-xl);
   transition: transform 0.4s var(--transition-curve), box-shadow 0.4s var(--transition-curve);
+  display: flex;
+  flex-direction: column;
 }
 
 .upcomingEventCard:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 0 40px -5px rgba(0, 82, 204, 0.3), 0 8px 15px -6px rgba(0, 82, 204, 0.2);
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 82, 204, 0.15);
 }
 
 .eventTag {
   position: absolute;
-  top: 1.5rem;
-  right: -50px;
-  transform: rotate(45deg);
+  top: 2rem;
+  right: 2rem;
+  background: var(--primary-blue);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 6px;
+  box-shadow: var(--shadow-md);
+  z-index: 10;
+}
+
+.upcomingEventHeader {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+  padding: 3rem 3rem 4rem 3rem;
+  border-radius: var(--radius) var(--radius) 0 0;
+  position: relative;
+}
+
+.upcomingEventHeader::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
   background: var(--white);
-  color: var(--primary-blue);
-  padding: 0.3rem 3rem;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  white-space: nowrap;
+  border-radius: 40px 40px 0 0;
 }
 
-.upcomingEventDate {
-  text-align: center;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius);
-  padding: 1.5rem;
+.upcomingEventDateBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.month {
-  font-size: 1.1rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  opacity: 0.8;
-}
-
-.day {
-  font-size: 3.5rem;
-  font-weight: 800;
-  line-height: 1.1;
-  margin: 0.25rem 0;
-  color: var(--white);
-}
-
-.year {
-  font-size: 1.1rem;
-  opacity: 0.8;
-}
-
-.upcomingEventInfo h3 {
-  font-size: 1.9rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-  color: var(--white);
-}
-
-.upcomingEventInfo p {
-  font-size: 1.15rem;
-  opacity: 0.9;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
   margin-bottom: 1.5rem;
 }
 
-.upcomingEventInfo .joinBtn {
-  background-color: var(--white);
-  color: var(--primary-blue);
-  font-weight: 700;
-  box-shadow: none;
-  transition: background-color 0.3s var(--transition-curve), transform 0.3s var(--transition-curve);
-  padding: 0.75rem 1.6rem;
+.upcomingEventDateBadge svg {
+  width: 20px;
+  height: 20px;
+  color: var(--white);
+}
+
+.upcomingEventDateText {
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.upcomingEventTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.upcomingEventMeta {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.upcomingEventMetaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+}
+
+.upcomingEventMetaItem svg {
+  width: 18px;
+  height: 18px;
+}
+
+.upcomingEventBody {
+  padding: 2.5rem 3rem 3rem 3rem;
+}
+
+.upcomingEventDescription {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--gray-700);
+  margin-bottom: 2rem;
+}
+
+.upcomingEventDetails {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  padding: 2rem;
+  background: var(--gray-50);
+  border-radius: 12px;
+  border: 1px solid var(--gray-100);
+}
+
+.upcomingEventDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.upcomingEventDetailLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.upcomingEventDetailValue {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.upcomingEventActions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.joinBtn {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 1rem 2rem;
   border: none;
   border-radius: 12px;
   cursor: pointer;
   text-decoration: none;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s var(--transition-curve);
 }
 
-.upcomingEventInfo .joinBtn:hover {
-  background-color: var(--gray-100);
+.joinBtn:hover {
+  background-color: var(--dark-blue);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.joinBtn:active {
+  transform: translateY(0);
+}
+
+.learnMoreBtn {
+  color: var(--primary-blue);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 1rem 1.5rem;
+  background: transparent;
+  border: 2px solid var(--primary-blue);
+  border-radius: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s var(--transition-curve);
+}
+
+.learnMoreBtn:hover {
+  background: var(--light-blue);
+  border-color: var(--dark-blue);
   color: var(--dark-blue);
-  transform: scale(1.03);
-  box-shadow: none;
 }
 
 /* Events Gallery */
@@ -283,46 +385,70 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .upcomingEventCard {
+  .upcomingEventHeader {
+    padding: 2rem 1.5rem 3rem 1.5rem;
+  }
+
+  .upcomingEventTitle {
+    font-size: 1.75rem;
+  }
+
+  .upcomingEventMeta {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .upcomingEventBody {
+    padding: 2rem 1.5rem;
+  }
+
+  .upcomingEventDetails {
     grid-template-columns: 1fr;
-    text-align: center;
-    padding: 2.5rem;
+    gap: 1rem;
+    padding: 1.5rem;
   }
-  .upcomingEventDate {
-    max-width: 200px;
-    margin: 0 auto 1.5rem auto;
-    padding: 1rem;
+
+  .upcomingEventActions {
+    flex-direction: column;
+    width: 100%;
   }
-  .day {
-    font-size: 2.8rem;
+
+  .joinBtn,
+  .learnMoreBtn {
+    width: 100%;
+    justify-content: center;
   }
-  .upcomingEventInfo h3 {
-    font-size: 1.6rem;
-  }
+
   .eventTag {
     top: 1rem;
-    right: -55px;
-    font-size: 0.8rem;
+    right: 1rem;
+    font-size: 0.7rem;
+    padding: 0.4rem 0.8rem;
   }
+
   .eventPortfolioGrid {
     grid-template-columns: 1fr;
   }
+
   .lightboxClose {
     top: 10px;
     right: 10px;
     width: 40px;
     height: 40px;
   }
+
   .lightboxPrev {
     left: 10px;
     width: 40px;
     height: 40px;
   }
+
   .lightboxNext {
     right: 10px;
     width: 40px;
     height: 40px;
   }
+
   .lightboxCounter {
     top: 15px;
     left: 15px;

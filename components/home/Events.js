@@ -114,19 +114,78 @@ export default function Events() {
 
           <div className={`${styles.upcomingEventCard} animate-on-scroll`}>
             <div className={styles.eventTag}>Online Event</div>
-            <div className={styles.upcomingEventDate}>
-              <div className={styles.month}>Nov</div>
-              <div className={styles.day}>04</div>
-              <div className={styles.year}>2025</div>
+            
+            <div className={styles.upcomingEventHeader}>
+              <div className={styles.upcomingEventDateBadge}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span className={styles.upcomingEventDateText}>November 04, 2025</span>
+              </div>
+              
+              <h3 className={styles.upcomingEventTitle}>
+                Inaugural Lecture Series Kick-off
+              </h3>
+              
+              <div className={styles.upcomingEventMeta}>
+                <div className={styles.upcomingEventMetaItem}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  <span>10:00 AM - 12:00 PM IST</span>
+                </div>
+                <div className={styles.upcomingEventMetaItem}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <span>Virtual Event</span>
+                </div>
+              </div>
             </div>
-            <div className={styles.upcomingEventInfo}>
-              <h3>Inaugural Lecture Series Kick-off</h3>
-              <p>
-                Join us for the first session of our Guest Lecture Series, featuring industry pioneers and academic visionaries.
+
+            <div className={styles.upcomingEventBody}>
+              <p className={styles.upcomingEventDescription}>
+                Join us for the first session of our Guest Lecture Series, featuring industry pioneers and academic visionaries. This transformative event will explore the intersection of innovation, entrepreneurship, and academic excellence.
               </p>
-              <Link href="/login-student" className={styles.joinBtn}>
-                Register Now
-              </Link>
+
+              <div className={styles.upcomingEventDetails}>
+                <div className={styles.upcomingEventDetail}>
+                  <span className={styles.upcomingEventDetailLabel}>Speakers</span>
+                  <span className={styles.upcomingEventDetailValue}>Industry Experts</span>
+                </div>
+                <div className={styles.upcomingEventDetail}>
+                  <span className={styles.upcomingEventDetailLabel}>Duration</span>
+                  <span className={styles.upcomingEventDetailValue}>2 Hours</span>
+                </div>
+                <div className={styles.upcomingEventDetail}>
+                  <span className={styles.upcomingEventDetailLabel}>Registration</span>
+                  <span className={styles.upcomingEventDetailValue}>Free Entry</span>
+                </div>
+              </div>
+
+              <div className={styles.upcomingEventActions}>
+                <Link href="/login-student" className={styles.joinBtn}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <line x1="19" y1="8" x2="19" y2="14"></line>
+                    <line x1="22" y1="11" x2="16" y2="11"></line>
+                  </svg>
+                  Register Now
+                </Link>
+                <a href="#events" className={styles.learnMoreBtn}>
+                  Learn More
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         </div>
