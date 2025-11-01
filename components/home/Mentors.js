@@ -40,7 +40,7 @@ export default function Mentors() {
     {
       name: 'Mr. Atul Singh (IPS)',
       title: 'Deputy Inspector General\nJabalpur Range',
-      image: '/images/Atul Singh.png'
+      image: '/images/atul-singh.png'
     },
     {
       name: 'Dr. Rajeev Chandak',
@@ -50,7 +50,7 @@ export default function Mentors() {
     {
       name: 'Prof. Bhartendu K Singh',
       title: 'Director\nIIITDM Jabalpur',
-      image: '/images/Prof. Bhartendu K Singh.jpg'
+      image: '/images/prof-bhartendu-k-singh.jpg'
     }
   ];
 
