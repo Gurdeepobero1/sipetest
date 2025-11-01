@@ -205,12 +205,11 @@ export default function Events() {
                 className={`${styles.eventCard} animate-on-scroll`}
                 onClick={() => openLightbox(event.gallery)}
               >
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={event.image}
                   alt={event.title}
                   className={styles.eventCardImg}
-                  width={400}
-                  height={300}
                 />
                 <div className={styles.eventCardOverlay}>
                   <h3>{event.title}</h3>
@@ -239,6 +238,7 @@ export default function Events() {
               className={styles.lightboxImage}
               width={1200}
               height={800}
+              unoptimized
               onClick={(e) => e.stopPropagation()}
             />
           </div>

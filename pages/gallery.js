@@ -148,6 +148,7 @@ export default function Gallery() {
                       width={400}
                       height={300}
                       className={styles.image}
+                      unoptimized
                     />
                     <div className={styles.imageOverlay}>
                       <span className={styles.viewIcon}>+</span>
@@ -197,6 +198,7 @@ export default function Gallery() {
               className={styles.lightboxImage}
               width={1200}
               height={800}
+              unoptimized
               onClick={(e) => e.stopPropagation()}
             />
           </div>
