@@ -70,15 +70,15 @@ export default function About() {
           <h3>Our Growing Network of Partner Institutions</h3>
           <div className={styles.collegeScroller}>
             <div className={styles.collegeScrollerInner}>
-              <div className={styles.logoItem}><Image src="/logos/jec.png" alt="JEC Jabalpur Logo" width={240} height={72} /></div>
-              <div className={styles.logoItem}><Image src="/logos/iitp.png" alt="IIT Patna Logo" width={240} height={72} /></div>
-              <div className={styles.logoItem}><Image src="/logos/iiitdmj.png" alt="IIITDM Jabalpur Logo" width={240} height={72} /></div>
-              <div className={styles.logoItem}><Image src="/logos/jec.png" alt="JEC Jabalpur Logo" width={240} height={72} /></div>
-              <div className={styles.logoItem}><Image src="/logos/iitp.png" alt="IIT Patna Logo" width={240} height={72} /></div>
-              <div className={styles.logoItem}><Image src="/logos/iiitdmj.png" alt="IIITDM Jabalpur Logo" width={240} height={72} /></div>
-              <div className={styles.logoItem}><Image src="/logos/jec.png" alt="JEC Jabalpur Logo" width={240} height={72} /></div>
-              <div className={styles.logoItem}><Image src="/logos/iitp.png" alt="IIT Patna Logo" width={240} height={72} /></div>
-              <div className={styles.logoItem}><Image src="/logos/iiitdmj.png" alt="IIITDM Jabalpur Logo" width={240} height={72} /></div>
+              <div className={styles.logoItem}><Image src="/logos/jec.png" alt="JEC Jabalpur Logo" width={240} height={72} style={{ width: 'auto', height: '72px' }} /></div>
+              <div className={styles.logoItem}><Image src="/logos/iitp.png" alt="IIT Patna Logo" width={240} height={72} style={{ width: 'auto', height: '72px' }} /></div>
+              <div className={styles.logoItem}><Image src="/logos/iiitdmj.png" alt="IIITDM Jabalpur Logo" width={240} height={72} style={{ width: 'auto', height: '72px' }} /></div>
+              <div className={styles.logoItem}><Image src="/logos/jec.png" alt="JEC Jabalpur Logo" width={240} height={72} style={{ width: 'auto', height: '72px' }} /></div>
+              <div className={styles.logoItem}><Image src="/logos/iitp.png" alt="IIT Patna Logo" width={240} height={72} style={{ width: 'auto', height: '72px' }} /></div>
+              <div className={styles.logoItem}><Image src="/logos/iiitdmj.png" alt="IIITDM Jabalpur Logo" width={240} height={72} style={{ width: 'auto', height: '72px' }} /></div>
+              <div className={styles.logoItem}><Image src="/logos/jec.png" alt="JEC Jabalpur Logo" width={240} height={72} style={{ width: 'auto', height: '72px' }} /></div>
+              <div className={styles.logoItem}><Image src="/logos/iitp.png" alt="IIT Patna Logo" width={240} height={72} style={{ width: 'auto', height: '72px' }} /></div>
+              <div className={styles.logoItem}><Image src="/logos/iiitdmj.png" alt="IIITDM Jabalpur Logo" width={240} height={72} style={{ width: 'auto', height: '72px' }} /></div>
             </div>
           </div>
         </div>

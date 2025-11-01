@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Head from 'next/head';
@@ -77,20 +77,24 @@ export default function Gallery() {
     }
   };
 
-  const closeLightbox = () => {
+  const closeLightbox = useCallback(() => {
     setLightboxOpen(false);
     document.body.style.overflow = 'auto';
-  };
+  }, []);
 
-  const showNextImage = () => {
-    if (currentGallery.length === 0) return;
-    setCurrentIndex((currentIndex + 1) % currentGallery.length);
-  };
+  const showNextImage = useCallback(() => {
+    setCurrentIndex((prevIndex) => {
+      if (currentGallery.length === 0) return prevIndex;
+      return (prevIndex + 1) % currentGallery.length;
+    });
+  }, [currentGallery.length]);
 
-  const showPrevImage = () => {
-    if (currentGallery.length === 0) return;
-    setCurrentIndex((currentIndex - 1 + currentGallery.length) % currentGallery.length);
-  };
+  const showPrevImage = useCallback(() => {
+    setCurrentIndex((prevIndex) => {
+      if (currentGallery.length === 0) return prevIndex;
+      return (prevIndex - 1 + currentGallery.length) % currentGallery.length;
+    });
+  }, [currentGallery.length]);
 
   // Keyboard navigation for lightbox
   useEffect(() => {
@@ -104,7 +108,7 @@ export default function Gallery() {
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [lightboxOpen, currentIndex, currentGallery]);
+  }, [lightboxOpen, showNextImage, showPrevImage, closeLightbox]);
 
   return (
     <>
