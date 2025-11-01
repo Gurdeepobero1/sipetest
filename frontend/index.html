@@ -63,12 +63,13 @@
     .logo:hover { transform: scale(1.03); }
     .nav-links { display: flex; gap: 2.8rem; align-items: center; list-style: none; }
     .nav-links a {
-      color: var(--gray-700);
+    _  color: var(--gray-700);
       text-decoration: none; font-weight: 500; font-size: 1rem;
       padding: 0.5rem 0;
       transition: color 0.3s var(--transition-curve), transform 0.3s var(--transition-curve);
       position: relative;
-  .nav-links a::after {
+    }
+    .nav-links a::after {
         content: ''; position: absolute; width: 0; height: 2px;
         bottom: -4px; left: 0;
         background: var(--primary-blue);
@@ -476,7 +477,7 @@
     .card p {
       color: var(--gray-700);
       flex-grow: 1;
-  _     font-size: 1.05rem;
+      font-size: 1.05rem;
     }
     .card .icon { height: 48px; margin-bottom: 1.2rem; color: var(--primary-blue); }
 
@@ -531,7 +532,7 @@
     .faq-answer p {
         padding: 0 1.5rem 1.5rem 1.5rem;
         border-top: 1px solid var(--gray-100);
-        padding-top: 1.5rem;
+  S       padding-top: 1.5rem;
         margin: 0;
     }
     .faq-answer.show { max-height: 250px; }
@@ -561,7 +562,7 @@
     }
     .footer-links a:hover { opacity: 1; color: var(--white); }
     .footer-contact p {
-      color: var(--gray-100); opacity: 0.7; margin-bottom: 0.7rem;
+  S     color: var(--gray-100); opacity: 0.7; margin-bottom: 0.7rem;
       word-break: break-word;
     }
     .social-links { margin-top: 1.5rem; display: flex; gap: 1.5rem; }
@@ -585,7 +586,7 @@
 
     /* Animation */
     @keyframes fade-in-up {
-        from { opacity: 0; transform: translateY(30px); }
+  A     from { opacity: 0; transform: translateY(30px); }
         to { opacity: 1; transform: translateY(0); }
     }
     .animate-on-scroll {
@@ -617,7 +618,7 @@
     @media (max-width: 768px) {
         body { font-size: 16.5px; }
         .section { padding: 4.5rem 1rem; }
-        .cards-grid { grid-template-columns: 1fr; }
+S       .cards-grid { grid-template-columns: 1fr; }
         .card p { min-height: 0; }
         .event-portfolio-grid { grid-template-columns: 1fr; }
     }
@@ -675,7 +676,7 @@
             <div class="partner-callout animate-on-scroll">
               <h3>A Hub for Industry & Academia</h3>
               <div class="partner-benefits">
-    _             <div class="partner-benefit">
+                <div class="partner-benefit">
                   <h4>
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                     Access Top Talent
@@ -716,7 +717,7 @@
               </div>
             </div>
 
-        </div>
+      - </div>
     </section>
 
     <section id="programs" class="section bg-light">
@@ -786,7 +787,7 @@
                         <div class="card person-card animate-on-scroll"><img src="Atul Singh.png" alt="Mr. Atul Singh (IPS)"/><h4>Mr. Atul Singh (IPS)</h4><p>Deputy Inspector General <br/>Jabalpur Range</p></div>
             <div class="card person-card animate-on-scroll"><img src="sipe.png" alt="Dr. Rajeev Chandak"/><h4>Dr. Rajeev Chandak</h4><p>Principal<br/>JEC Jabalpur</p></div>
             <div class="card person-card animate-on-scroll"><img src="Prof. Bhartendu K Singh.jpg"/><h4>Prof. Bhartendu K Singh</h4><p>Director<br/>IIITDM Jabalpur</p></div>
-E                   </div>
+                    </div>
       </div>
     </section>
 
@@ -828,14 +829,14 @@ E                   </div>
             <li><a href="#events">Events</a></li>
             <li><a href="#mentors">Mentors</a></li>
             <li><a href="#faq">FAQs</a></li>
-    _                       <li><a href="gallery.html">Gallery</a></li>
+                          <li><a href="gallery.html">Gallery</a></li>
           </ul>
         </div>
 
         <div class="footer-contact">
           <h4>Contact Us</h4>
           <p>Jabalpur Engineering College,<br/>Jabalpur, Madhya Pradesh (482011)</p>
-          <p>sipe.jecjabalpur@gmail.com</p>
+S         <p>sipe.jecjabalpur@gmail.com</p>
           <div class="social-links">
             <a href="https://www.linkedin.com/posts/society-of-innovation-professional-excellence-sipe_jabalpurengineeringcollege-innovation-skillenhancement-ugcPost-7369716013321306114-V_nx?utm_source=share&utm_medium=member_ios&rcm=ACoAAEHT6JwBwr0xcV47miMRmb_f6Ie0kuPXLew" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
             <a href="https://www.instagram.com/sipe.jec?igsh=bnliaDh2czZ1cjll" aria-label="Instagram" class="instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.947s-.014-3.667-.072-4.947c-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.44-1.441-1.44z"/></svg></a>
@@ -873,14 +874,13 @@ E                   </div>
                 'SM1.png', 'SM2.png', 'SM3.png', 'SM4.png' 
             ],
             // Praveen Sir Event
-          T 'gallery-3': [ 
+            'gallery-3': [ 
                 'P1.jpeg', 'P2.jpeg' 
             ],
             // Robotics Workshop (Placeholder - Assuming 3 images R1, R2, R3)
             // BUG FIX: Removed typo (extra comma/letter) that broke the script
             'gallery-4': [ 
-                'R1.png', 'R2.png', 'R3.png' 
-          . ],
+                'R1.png', 'R2.png', 'R3.png'NEWLINE_TOKEN             ],
             // Times Jabalpur Event
             'gallery-5': [
                 'T1.png', 'T2.png', 'T3.png'
@@ -921,16 +921,16 @@ E                   </div>
                 setTimeout(() => {
                     lightboxImg.src = img.src;
                     lightboxImg.style.opacity = 1;
-              t   }, 150); // Short delay for fade effect
+                }, 150); // Short delay for fade effect
                 lightboxCounter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
             };
-    _         img.onerror = () => { // Handle cases where an image might be missing
+            img.onerror = () => { // Handle cases where an image might be missing
                 console.error("Error loading image:", currentGallery[currentIndex]);
                 if (!lightboxImg || !lightboxCounter) return; // Safety check
                 lightboxImg.src = 'https://placehold.co/800x600/eeeeee/aaaaaa?text=Image+Not+Found'; // Placeholder
                 lightboxImg.style.opacity = 1;
                 lightboxCounter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
-            };
+A           };
             
             // Set src to trigger load or error
             img.src = currentGallery[currentIndex];
@@ -939,10 +939,10 @@ E                   </div>
 
         function openLightbox(galleryKey) {
             if (allGalleries[galleryKey] && allGalleries[galleryKey].length > 0) {
-                currentGallery = allGalleries[galleryKey];
+SC               currentGallery = allGalleries[galleryKey];
                 currentIndex = 0;
                 updateLightboxImage();
-                lightbox.classList.add('active');
+          _       lightbox.classList.add('active');
                 document.body.style.overflow = 'hidden';
             } else {
                  console.warn("Gallery not found or empty:", galleryKey);
@@ -956,7 +956,7 @@ E                   </div>
 
         function showNextImage() {
             if (currentGallery.length === 0) return;
-            currentIndex = (currentIndex + 1) % currentGallery.length;
+S           currentIndex = (currentIndex + 1) % currentGallery.length;
             updateLightboxImage();
         }
 
@@ -970,12 +970,12 @@ E                   </div>
             card.addEventListener('click', (e) => {
                 const galleryKey = e.currentTarget.dataset.gallery;
                  if (galleryKey) {
-  s                 openLightbox(galleryKey);
+                    openLightbox(galleryKey);
                  } else {
-                     console.error("Event card missing data-gallery attribute:", card);
+                    sconsole.error("Event card missing data-gallery attribute:", card);
                  }
             });
-        });
+      _ });
 
         lightboxClose.addEventListener('click', closeLightbox);
         lightboxNext.addEventListener('click', showNextImage);
@@ -985,7 +985,7 @@ E                   </div>
         });
 
         document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('active')) return;
+i           if (!lightbox.classList.contains('active')) return;
             if (e.key === 'ArrowRight') showNextImage();
             if (e.key === 'ArrowLeft') showPrevImage();
             if (e.key === 'Escape') closeLightbox();
@@ -999,7 +999,7 @@ E                   </div>
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             mobileMenu.classList.toggle('active');
-            document.body.classList.toggle('mobile-menu-open');
+cS         document.body.classList.toggle('mobile-menu-open');
         });
 
         // Close menu when a link is clicked
@@ -1007,7 +1007,7 @@ E                   </div>
             // Only close if it's a mobile link or a link within the page
             const href = link.getAttribute('href');
             if (mobileMenu.classList.contains('active') && (!href || href.startsWith('#') || href === 'gallery.html')) {
-s                 hamburger.classList.remove('active');
+                 hamburger.classList.remove('active');
                  mobileMenu.classList.remove('active');
                  document.body.classList.remove('mobile-menu-open');
              }
@@ -1015,19 +1015,19 @@ s                 hamburger.classList.remove('active');
 
         // --- FAQ Accordion ---
         document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', () => {
+new-line         button.addEventListener('click', () => {
                 const answer = button.nextElementSibling;
-s               const wasActive = button.classList.contains('active');
+                const wasActive = button.classList.contains('active');
 
                 // Close all others first
                 document.querySelectorAll('.faq-question').forEach(q => {
-                    q.classList.remove('active');
+Remember               q.classList.remove('active');
                     q.nextElementSibling.classList.remove('show');
                 });
 
                 // Toggle the clicked one
                 if (!wasActive) {
-                    button.classList.add('active');
+    A               button.classList.add('active');
                     answer.classList.add('show');
                 }
             });
@@ -1037,16 +1037,16 @@ s               const wasActive = button.classList.contains('active');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-s                   // Use a dataset attribute for delay or default stagger
+                    // Use a dataset attribute for delay or default stagger
                     const delay = entry.target.dataset.delay || index * 50; 
                     entry.target.style.transitionDelay = `${delay}ms`;
-          _         entry.target.classList.add('is-visible');
+                    entry.target.classList.add('is-visible');
                     observer.unobserve(entry.target);
                 }
-            });
+  S         });
         }, { threshold: 0.1 }); // Trigger when 10% is visible
 
-        // Apply observer to all elements meant to animate on scroll
+D       // Apply observer to all elements meant to animate on scroll
         document.querySelectorAll('.animate-on-scroll, .card, .event-card').forEach(el => {
             observer.observe(el);
         });
