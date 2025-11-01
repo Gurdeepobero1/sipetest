@@ -1,0 +1,73 @@
+.mentorsGrid {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: 1fr;
+}
+
+.mentorCard {
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  border: 1px solid var(--gray-100);
+  transition: transform 0.4s var(--transition-curve), box-shadow 0.4s var(--transition-curve);
+  opacity: 0;
+  transform: translateY(30px);
+  display: flex;
+  flex-direction: column;
+}
+
+.mentorCard.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mentorCard:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.mentorCard:hover h4 {
+  color: var(--primary-blue);
+}
+
+.mentorImage {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto 1rem auto;
+  object-fit: cover;
+  border: 4px solid var(--white);
+  box-shadow: var(--shadow-md);
+  transition: border-color 0.3s var(--transition-curve), transform 0.3s var(--transition-curve);
+}
+
+.mentorCard:hover .mentorImage {
+  border-color: var(--primary-blue);
+  transform: scale(1.05);
+}
+
+.mentorCard h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+  color: var(--dark-blue);
+  transition: color 0.3s var(--transition-curve);
+}
+
+.mentorCard p {
+  color: var(--gray-700);
+  flex-grow: 0;
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mentorsGrid {
+    grid-template-columns: 1fr;
+  }
+  .mentorCard p {
+    min-height: 0;
+  }
+}
