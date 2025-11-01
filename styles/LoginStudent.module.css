@@ -1,0 +1,195 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.authBox {
+  background-color: var(--white);
+  padding: 3rem;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 480px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.header h1 {
+  font-size: 2rem;
+  color: var(--dark-blue);
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+}
+
+.logo {
+  color: var(--primary-blue);
+  font-weight: 800;
+}
+
+.header p {
+  color: var(--gray-600);
+  font-size: 1rem;
+}
+
+.message {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.message.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #81c784;
+}
+
+.message.error {
+  background-color: #fdecea;
+  color: #d0021b;
+  border: 1px solid #ef5350;
+}
+
+.formContainer {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--gray-900);
+  font-size: 0.95rem;
+}
+
+.formControl {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 2px solid var(--gray-100);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s var(--transition-curve);
+  color: var(--gray-900);
+  background-color: var(--gray-50);
+}
+
+.formControl:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  background-color: var(--white);
+  box-shadow: 0 0 0 4px rgba(0, 82, 204, 0.1);
+}
+
+.formControl::placeholder {
+  color: var(--gray-600);
+}
+
+.passwordHint {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  margin-top: 0.5rem;
+}
+
+.btnSubmit {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+  color: var(--white);
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s var(--transition-curve);
+  box-shadow: 0 4px 15px rgba(0, 82, 204, 0.3);
+  margin-top: 1rem;
+}
+
+.btnSubmit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 82, 204, 0.4);
+}
+
+.btnSubmit:active {
+  transform: translateY(0);
+}
+
+.toggleAuth {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: var(--gray-600);
+  font-size: 0.95rem;
+}
+
+.toggleBtn {
+  background: none;
+  border: none;
+  color: var(--primary-blue);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-size: inherit;
+  padding: 0;
+  font-family: inherit;
+}
+
+.toggleBtn:hover {
+  color: var(--dark-blue);
+  text-decoration: underline;
+}
+
+.backToHome {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--gray-100);
+}
+
+.backToHome a {
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.backToHome a:hover {
+  color: var(--dark-blue);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .authBox {
+    padding: 2rem 1.5rem;
+  }
+
+  .header h1 {
+    font-size: 1.6rem;
+  }
+}
