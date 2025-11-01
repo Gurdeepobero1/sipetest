@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Events.module.css';
@@ -43,6 +43,34 @@ export default function Events() {
     return () => observer.disconnect();
   }, []);
 
+  const openLightbox = (galleryKey) => {
+    if (allGalleries[galleryKey] && allGalleries[galleryKey].length > 0) {
+      setCurrentGallery(allGalleries[galleryKey]);
+      setCurrentIndex(0);
+      setLightboxOpen(true);
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  const closeLightbox = useCallback(() => {
+    setLightboxOpen(false);
+    document.body.style.overflow = 'auto';
+  }, []);
+
+  const showNextImage = useCallback(() => {
+    setCurrentIndex((prevIndex) => {
+      if (currentGallery.length === 0) return prevIndex;
+      return (prevIndex + 1) % currentGallery.length;
+    });
+  }, [currentGallery.length]);
+
+  const showPrevImage = useCallback(() => {
+    setCurrentIndex((prevIndex) => {
+      if (currentGallery.length === 0) return prevIndex;
+      return (prevIndex - 1 + currentGallery.length) % currentGallery.length;
+    });
+  }, [currentGallery.length]);
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (!lightboxOpen) return;
@@ -53,32 +81,7 @@ export default function Events() {
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lightboxOpen, currentIndex, currentGallery]);
-
-  const openLightbox = (galleryKey) => {
-    if (allGalleries[galleryKey] && allGalleries[galleryKey].length > 0) {
-      setCurrentGallery(allGalleries[galleryKey]);
-      setCurrentIndex(0);
-      setLightboxOpen(true);
-      document.body.style.overflow = 'hidden';
-    }
-  };
-
-  const closeLightbox = () => {
-    setLightboxOpen(false);
-    document.body.style.overflow = 'auto';
-  };
-
-  const showNextImage = () => {
-    if (currentGallery.length === 0) return;
-    setCurrentIndex((currentIndex + 1) % currentGallery.length);
-  };
-
-  const showPrevImage = () => {
-    if (currentGallery.length === 0) return;
-    setCurrentIndex((currentIndex - 1 + currentGallery.length) % currentGallery.length);
-  };
+  }, [lightboxOpen, showNextImage, showPrevImage, closeLightbox]);
 
   const events = [
     {
