@@ -144,15 +144,20 @@
   font-size: 0.95rem;
 }
 
-.toggleAuth a {
+.toggleBtn {
+  background: none;
+  border: none;
   color: var(--primary-blue);
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
   transition: color 0.2s ease;
+  font-size: inherit;
+  padding: 0;
+  font-family: inherit;
 }
 
-.toggleAuth a:hover {
+.toggleBtn:hover {
   color: var(--dark-blue);
   text-decoration: underline;
 }

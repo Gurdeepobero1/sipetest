@@ -69,7 +69,13 @@ export default function LoginStudent() {
               </form>
               <p className={styles.toggleAuth}>
                 Don&apos;t have an account?{' '}
-                <a onClick={() => setIsLogin(false)}>Sign Up Here</a>
+                <button 
+                  type="button"
+                  onClick={() => setIsLogin(false)}
+                  className={styles.toggleBtn}
+                >
+                  Sign Up Here
+                </button>
               </p>
             </div>
           ) : (
@@ -154,7 +160,13 @@ export default function LoginStudent() {
               </form>
               <p className={styles.toggleAuth}>
                 Already have an account?{' '}
-                <a onClick={() => setIsLogin(true)}>Log In Here</a>
+                <button 
+                  type="button"
+                  onClick={() => setIsLogin(true)}
+                  className={styles.toggleBtn}
+                >
+                  Log In Here
+                </button>
               </p>
             </div>
           )}

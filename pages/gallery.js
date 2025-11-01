@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Head from 'next/head';
@@ -91,6 +91,20 @@ export default function Gallery() {
     if (currentGallery.length === 0) return;
     setCurrentIndex((currentIndex - 1 + currentGallery.length) % currentGallery.length);
   };
+
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    if (!lightboxOpen) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight') showNextImage();
+      if (e.key === 'ArrowLeft') showPrevImage();
+      if (e.key === 'Escape') closeLightbox();
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxOpen, currentIndex, currentGallery]);
 
   return (
     <>
