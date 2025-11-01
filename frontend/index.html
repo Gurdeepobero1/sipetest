@@ -5,34 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SIPE - Society of Innovation and Professional Excellence</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-  
-  <!-- 
-    STEP 1: ADD YOUR CLERK & SUPABASE KEYS HERE
-    Replace these placeholder values with your own keys from your Clerk and Supabase dashboards.
-  -->
-  <script>
-    window.CLERK_PUBLISHABLE_KEY = "pk_test_YOUR_CLERK_PUBLISHABLE_KEY"; // Replace with your Clerk Publishable Key
-    window.SUPABASE_URL = "https://YOUR_PROJECT_ID.supabase.co"; // Replace with your Supabase Project URL
-    window.SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3bWxkZWNkaGxyZnFpY3h5bXZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MTEzOTQsImV4cCI6MjA3NzQ4NzM5NH0.hrDkoqpbesAy6kFMzbaFlO7IY181n0yj_nvov2t6J4s"; // Replace with your Supabase Anon Key
-  </script>
-
-  <!-- Load Clerk & Supabase Libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script>
-    (function () {
-      const clerkScript = document.createElement("script");
-      clerkScript.setAttribute("data-clerk-publishable-key", window.CLERK_PUBLISHABLE_KEY);
-      clerkScript.async = true;
-      clerkScript.src = `https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js`;
-      clerkScript.crossOrigin = "anonymous";
-      clerkScript.addEventListener("load", async function () {
-        await window.Clerk.load();
-        window.dispatchEvent(new CustomEvent("clerk-loaded"));
-      });
-      document.head.appendChild(clerkScript);
-    })();
-  </script>
-  
   <style>
     :root {
       --primary-blue: #0052cc;
@@ -90,7 +62,7 @@
       transition: transform 0.3s var(--transition-curve); text-decoration: none;
     }
     .logo:hover { transform: scale(1.03); }
-    .nav-links { display: flex; gap: 2.2rem; align-items: center; list-style: none; } /* Reduced gap */
+    .nav-links { display: flex; gap: 2.2rem; align-items: center; list-style: none; } /* Kept reduced gap */
     .nav-links a {
       color: var(--gray-700);
       text-decoration: none; font-weight: 500; font-size: 1rem;
@@ -109,30 +81,22 @@
       transform: translateY(-1px);
     }
     .nav-links a:hover::after { width: 100%; }
-    
-    /* Clerk Auth Button Styling */
-    #clerk-auth-signed-out a {
+    .join-btn {
       background-color: var(--primary-blue); color: var(--white); padding: 0.75rem 1.6rem;
       border: none; border-radius: 12px; /* Softer radius */
       font-weight: 600; cursor: pointer;
       transition: background-color 0.3s var(--transition-curve), transform 0.3s var(--transition-curve), box-shadow 0.3s var(--transition-curve);
       text-decoration: none; display: inline-block;
       box-shadow: var(--shadow-md);
-      font-size: 1rem; /* Match nav link font size */
     }
-    #clerk-auth-signed-out a:hover {
+    .join-btn:hover {
       background-color: var(--dark-blue);
       transform: translateY(-3px); /* More lift */
       box-shadow: var(--shadow-lg); /* More hover shadow */
     }
-    #clerk-auth-signed-in {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .clerk-user-button-root {
-      width: 42px;
-      height: 42px;
+    .join-btn:active {
+      transform: translateY(-1px) scale(0.98); /* "Push" effect */
+      box-shadow: var(--shadow-sm);
     }
 
     /* --- Mobile Menu --- */
@@ -155,21 +119,7 @@
     }
     .mobile-menu a { display: block; padding: 1rem; color: var(--gray-900); text-decoration: none; border-radius: 12px; font-weight: 500; }
     .mobile-menu a:hover { background: var(--light-blue); color: var(--primary-blue); }
-    
-    /* Clerk mobile button */
-    #clerk-auth-mobile-signed-out a {
-      display: block;
-      text-align: center;
-      margin-top: 1rem;
-      background-color: var(--primary-blue); color: var(--white); padding: 0.75rem 1.6rem;
-      border: none; border-radius: 12px;
-      font-weight: 600; cursor: pointer;
-      text-decoration: none;
-    }
-    #clerk-auth-mobile-signed-out a:hover {
-        background-color: var(--dark-blue);
-    }
-
+    body.mobile-menu-open { overflow: hidden; }
 
     /* --- Hero Section (Static Image) --- */
     .hero {
@@ -234,27 +184,11 @@
         from { transform: scale(1); }
         to { transform: scale(1.05); }
     }
-    .hero-text .join-btn-container a { /* Use the clerk container ID */
+    .hero-text .join-btn {
         animation: fade-in-up 1s ease-out 0.6s forwards;
         opacity: 0;
         padding: 1rem 2rem; /* Larger hero button */
         font-size: 1.1rem;
-        display: inline-block; /* Make the wrapper block */
-    }
-    /* Style for the Clerk button inside the hero */
-    #hero-join-btn a {
-      background-color: var(--primary-blue); color: var(--white); padding: 1rem 2rem;
-      border: none; border-radius: 12px;
-      font-weight: 600; cursor: pointer;
-      transition: background-color 0.3s var(--transition-curve), transform 0.3s var(--transition-curve), box-shadow 0.3s var(--transition-curve);
-      text-decoration: none;
-      box-shadow: var(--shadow-md);
-      font-size: 1.1rem;
-    }
-    #hero-join-btn a:hover {
-      background-color: var(--dark-blue);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-lg);
     }
 
     /* --- General Section Styling --- */
@@ -265,12 +199,6 @@
     .bg-light {
       background-color: var(--gray-50);
       background-image: none; /* Removed gradient for cleaner look */
-    }
-    .loading-placeholder {
-      text-align: center;
-      color: var(--gray-600);
-      font-size: 1.1rem;
-      padding: 2rem;
     }
 
     /* --- ABOUT: Partner Callout & Logo Scroller --- */
@@ -322,10 +250,11 @@
       -webkit-mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
     }
     .logo-scroller-inner, .college-scroller-inner {
-      display: flex;
-      width: fit-content;
+      display: flex; /* Reverted to flex for scrolling */
+      width: fit-content; /* Reverted for scrolling */
     }
-    .college-scroller-inner { animation: scroll-college 55s linear infinite; }
+    /* .logo-scroller-inner { animation: scroll-company 65s linear infinite; } */ /* Industry logos removed */
+    .college-scroller-inner { animation: scroll-college 55s linear infinite; } /* Re-enabled animation */
 
     .logo-item {
       display: flex;
@@ -336,9 +265,9 @@
       white-space: nowrap;
     }
     .logo-item img {
-        height: 72px; 
-        max-width: 240px;
-        opacity: 0.7; 
+        height: 72px; /* Kept larger size */
+        max-width: 240px; /* Kept larger size */
+        opacity: 0.7; /* Slightly more subtle */
         transition: opacity 0.3s var(--transition-curve);
     }
     .logo-item:hover img {
@@ -662,94 +591,121 @@
         transform: translateY(0);
     }
     
-    /* --- NEW: Upcoming Events UI/UX --- */
-    #upcoming-events {
-      background-color: var(--gray-50); /* Set section to light */
-    }
-    
-    .upcoming-event-card-new {
-      display: grid;
-      grid-template-columns: 1fr 1.5fr; /* 40% image, 60% text */
-      background: var(--white);
+    /* --- Upcoming Events Enhancements --- */
+    .upcoming-event-card {
+      position: relative; 
+      overflow: hidden; 
+      background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+      color: var(--white);
+      padding: 3rem;
       border-radius: var(--radius);
-      box-shadow: var(--shadow-lg);
-      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      gap: 2.5rem;
+      align-items: center;
       max-width: 900px;
       margin: 0 auto;
+      border: none;
+      box-shadow: var(--shadow-lg);
       transition: transform 0.4s var(--transition-curve), box-shadow 0.4s var(--transition-curve);
     }
-    .upcoming-event-card-new:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-xl);
+    .upcoming-event-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 0 40px -5px rgba(0, 82, 204, 0.3), 0 8px 15px -6px rgba(0, 82, 204, 0.2);
     }
-    
-    .upcoming-event-image {
-      background-size: cover;
-      background-position: center;
-      min-height: 350px; /* Ensure height */
-    }
-    
-    .upcoming-event-info-new {
-      padding: 3rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    
-    .event-meta {
-      font-size: 0.9rem;
-      font-weight: 600;
+    .event-tag {
+      position: absolute;
+      top: 1.5rem;
+      right: -50px;
+      transform: rotate(45deg);
+      background: var(--white);
       color: var(--primary-blue);
+      padding: 0.3rem 3rem;
+      font-size: 0.9rem;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      white-space: nowrap;
     }
-    
-    .event-meta .event-tag-new {
-      background: var(--light-blue);
-      color: var(--primary-blue);
-      padding: 0.25rem 0.75rem;
-      border-radius: 6px;
+    .upcoming-event-date {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
-    
-    .upcoming-event-info-new h3 {
-      font-size: 2rem;
-      color: var(--dark-blue);
-      margin-bottom: 1rem;
-    }
-    
-    .upcoming-event-info-new .event-description-new {
+    .upcoming-event-date .month {
       font-size: 1.1rem;
-      color: var(--gray-600);
-      margin-bottom: 2rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+    }
+    .upcoming-event-date .day {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin: 0.25rem 0;
+      color: var(--white);
+    }
+    .upcoming-event-date .year {
+      font-size: 1.1rem;
+      opacity: 0.8;
+    }
+    .upcoming-event-info h3 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--white);
+    }
+    .upcoming-event-info p {
+      font-size: 1.15rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+    }
+    .upcoming-event-info .join-btn {
+        background-color: var(--white);
+        color: var(--primary-blue);
+        font-weight: 700;
+        box-shadow: none;
+        transition: background-color 0.3s var(--transition-curve), transform 0.3s var(--transition-curve);
+    }
+    .upcoming-event-info .join-btn:hover {
+        background-color: var(--gray-100);
+        color: var(--dark-blue);
+        transform: scale(1.03);
+        box-shadow: none;
     }
     
-    /* Style for the Clerk-injected button */
-    .upcoming-event-info-new .join-btn-wrapper a {
-      background-color: var(--primary-blue); color: var(--white); padding: 0.75rem 1.6rem;
-      border: none; border-radius: 12px;
-      font-weight: 600; cursor: pointer;
-      transition: background-color 0.3s var(--transition-curve), transform 0.3s var(--transition-curve), box-shadow 0.3s var(--transition-curve);
-      text-decoration: none; display: inline-block;
-      box-shadow: var(--shadow-md);
-      font-size: 1rem;
+    @media (max-width: 768px) {
+        .upcoming-event-card {
+            grid-template-columns: 1fr;
+            text-align: center;
+            padding: 2.5rem;
+        }
+        .upcoming-event-date {
+            max-width: 200px;
+            margin: 0 auto 1.5rem auto;
+            padding: 1rem;
+        }
+        .upcoming-event-date .day {
+            font-size: 2.8rem;
+        }
+        .upcoming-event-info h3 {
+            font-size: 1.6rem;
+        }
+        .event-tag {
+            top: 1rem;
+            right: -55px;
+            font-size: 0.8rem;
+        }
     }
-    .upcoming-event-info-new .join-btn-wrapper a:hover {
-      background-color: var(--dark-blue);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-lg);
-    }
-
     /* --- Responsive --- */
     @media (max-width: 968px) {
         .nav-links { display: none; }
         .hamburger { display: flex; }
-        #clerk-auth-signed-out { display: none; } /* Hide desktop auth button on mobile */
-        #clerk-auth-signed-in { display: none; }
-
+        .join-btn { display: none; }
         .mobile-menu .join-btn { display: block; text-align: center; margin-top: 1rem; }
         .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 3rem;}
         .hero-text { order: 2; }
@@ -767,20 +723,6 @@
         .cards-grid { grid-template-columns: 1fr; }
         .card p { min-height: 0; }
         .event-portfolio-grid { grid-template-columns: 1fr; }
-        
-        /* Responsive for new event card */
-        .upcoming-event-card-new {
-          grid-template-columns: 1fr; /* Stack image on top */
-        }
-        .upcoming-event-info-new {
-          padding: 2.5rem;
-          text-align: center;
-        }
-        .event-meta {
-          flex-direction: column;
-          gap: 0.5rem;
-          align-items: center;
-        }
     }
   </style>
 </head>
@@ -800,10 +742,7 @@
           <li><a href="gallery.html">Gallery</a></li> 
         </ul>
       </nav>
-      <!-- CLERK AUTH REPLACEMENT -->
-      <div id="clerk-auth-signed-out"></div>
-      <div id="clerk-auth-signed-in"></div>
-      <!-- END CLERK AUTH -->
+      <a href="loginstudent.html" class="join-btn">Login/Join Now</a>
       <div class="hamburger"><span></span><span></span><span></span></div>
     </div>
     <div class="mobile-menu">
@@ -814,9 +753,7 @@
       <a href="#mentors">Mentors</a>
       <a href="#faq">FAQs</a>
       <a href="gallery.html">Gallery</a>
-      <!-- CLERK AUTH REPLACEMENT (MOBILE) -->
-      <div id="clerk-auth-mobile-signed-out"></div>
-      <!-- END CLERK AUTH (MOBILE) -->
+      <a href="loginstudent.html" class="join-btn">Register</a>
     </div>
   </header>
 
@@ -826,11 +763,10 @@
             <div class="hero-text">
                 <h1>Empowering Student Innovation Across Indian Colleges</h1>
                 <p>A student-driven, mentor-supported startup creating standardized innovation frameworks for educational institutions nationwide.</p>
-                <!-- This div will be targeted by Clerk to mount a Sign In button -->
-                <div id="hero-join-btn" class="join-btn-container"></div>
+                <a href="loginstudent.html" class="join-btn">Get Started</a>
             </div>
             <div class="hero-image-container">
-            </div>
+                </div>
         </div>
     </section>
 
@@ -869,21 +805,17 @@
             <div class="scroller-container">
               <h3>Our Growing Network of Partner Institutions</h3>
               <div class="college-scroller">
-                <!-- This div will be populated by Supabase -->
-                <div id="college-scroller-inner" class="college-scroller-inner">
-                   <!-- Logos removed: nitrr.png, manit.png -->
+                <div class="college-scroller-inner">
                   <div class="logo-item"><img src="logos/jec.png" alt="JEC Jabalpur Logo"></div>
                   <div class="logo-item"><img src="logos/iitp.png" alt="IIT Patna Logo"></div>
                   <div class="logo-item"><img src="logos/iiitdmj.png" alt="IIITDM Jabalpur Logo"></div>
-                  
-                  <!-- Duplicates for scrolling effect -->
                   <div class="logo-item"><img src="logos/jec.png" alt="JEC Jabalpur Logo"></div>
                   <div class="logo-item"><img src="logos/iitp.png" alt="IIT Patna Logo"></div>
                   <div class="logo-item"><img src="logos/iiitdmj.png" alt="IIITDM Jabalpur Logo"></div>
-                   <div class="logo-item"><img src="logos/jec.png" alt="JEC Jabalpur Logo"></div>
+                  <div class="logo-item"><img src="logos/jec.png" alt="JEC Jabalpur Logo"></div>
                   <div class="logo-item"><img src="logos/iitp.png" alt="IIT Patna Logo"></div>
                   <div class="logo-item"><img src="logos/iiitdmj.png" alt="IIITDM Jabalpur Logo"></div>
-                </div>
+                  </div>
               </div>
             </div>
 
@@ -894,67 +826,98 @@
       <div class="section-content">
         <h2 class="section-title">Programs & Offerings</h2>
         <p class="section-subtitle">Comprehensive initiatives to foster innovation from the classroom to the marketplace.</p>
-        <!-- This div will be populated by Supabase -->
-        <div id="programs-grid" class="cards-grid">
-          <p id="programs-loading" class="loading-placeholder">Loading programs...</p>
+        <div class="cards-grid">
+            <div class="card animate-on-scroll"><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230052cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 3h20v14H2z'/%3E%3Cpath d='M8 21h8'/%3E%3Cpath d='M12 17v4'/%3E%3C/svg%3E" alt="Icon"><h3>Guest Lecture Series</h3><p>Gain insights on industry-academia synergy, IP commercialization, startup journeys, and cutting-edge research from expert leaders.</p></div>
+            <div class="card animate-on-scroll"><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230052cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'%3E%3C/path%3E%3Crect x='8' y='2' width='8' height='4' rx='1' ry='1'%3E%3C/rect%3E%3Cpath d='m9 14 2 2 4-4'%3E%3C/path%3E%3C/svg%3E" alt="Icon"><h3>Innovation Index</h3><p>Our annual scoring of college R&D, IP, and startup activity, driving healthy competition and national recognition for institutions.</p></div>
+            <div class="card animate-on-scroll"><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230052cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2'%3E%3C/path%3E%3Ccircle cx='9' cy='7' r='4'%3E%3C/circle%3E%3Cpath d='M23 21v-2a4 4 0 0 0-3-3.87'%3E%3C/path%3E%3Cpath d='M16 3.13a4 4 0 0 1 0 7.75'%3E%3C/path%3E%3C/svg%3E" alt="Icon"><h3>Mentor Connect</h3><p>A cross-college platform giving students direct access to a national network of industry mentors, research advisors, and investors.</p></div>
+            <div class="card animate-on-scroll"><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230052cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5'%3E%3C/path%3E%3Cpath d='M9 18h6'%3E%3C/path%3E%3Cpath d='M10 22h4'%3E%3C/path%3E%3C/svg%3E" alt="Icon"><h3>IP to Impact Bootcamps</h3><p>Specialized training to help students and faculty turn patents and research ideas into viable, market-ready ventures.</p></div>
+            <div class="card animate-on-scroll"><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230052cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5.7 13.3 3.4-3.4a1.5 1.5 0 0 0-2.1-2.1l-3.4 3.4c-.4.4-.6 1-.6 1.6 0 .6.2 1.2.6 1.6l3.4 3.4a1.5 1.5 0 0 0 2.1-2.1l-3.4-3.4c-.1-.1-.1-.1 0 0z'%3E%3C/path%3E%3Cpath d='m12.7 13.3 3.4-3.4a1.5 1.5 0 0 0-2.1-2.1l-3.4 3.4c-.4.4-.6 1-.6 1.6 0 .6.2 1.2.6 1.6l3.4 3.4a1.5 1.5 0 0 0 2.1-2.1l-3.4-3.4c-.1-.1-.1-.1 0 0z'%3E%3C/path%3E%3Cpath d='m18.7 13.3 3.4-3.4a1.5 1.5 0 0 0-2.1-2.1l-3.4 3.4c-.4.4-.6 1-.6 1.6 0 .6.2 1.2.6 1.6l3.4 3.4a1.5 1.5 0 0 0 2.1-2.1l-3.4-3.4c-.1-.1-.1-.1 0 0z'%3E%3C/path%3E%3C/svg%3E" alt="Icon"><h3>Startup Clinics</h3><p>Hands-on assistance with incubator partnerships, investor matchmaking, and corporate accelerator programs to get your venture funded.</p></div>
+            <div class="card animate-on-scroll"><img class="icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230052cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'%3E%3C/path%3E%3Cpolyline points='3.27 6.96 12 12.01 20.73 6.96'%3E%3C/polyline%3E%3Cline y1='12' x2='12' y2='22' x1='12'%3E%3C/line%3E%3C/svg%3E" alt="Icon"><h3>Scalable SIPE Model</h3><p>We deploy student chapters with dedicated cells for events, outreach, and fundraising, creating a sustainable innovation ecosystem on campus.</p></div>
         </div>
       </div>
     </section>
 
-    <!-- --- Upcoming Events Section --- -->
-    <section id="upcoming-events" class="section bg-light">
+    <section id="upcoming-events" class="section">
       <div class="section-content">
         <h2 class="section-title">Upcoming Events</h2>
         <p class="section-subtitle">Don't miss our next big event. Register now to secure your spot!</p>
         
-        <!-- This div will be populated by Supabase -->
-        <div id="upcoming-event-container">
-          <p id="events-loading" class="loading-placeholder">Loading upcoming events...</p>
+        <div class="upcoming-event-card animate-on-scroll">
+          <div class="event-tag">Online Event</div>
+          <div class="upcoming-event-date">
+            <div class="month">Nov</div>
+            <div class="day">04</div>
+            <div class="year">2025</div>
+          </div>
+          <div class="upcoming-event-info">
+            <h3>Inaugural Lecture Series Kick-off</h3>
+            <p>Join us for the first session of our Guest Lecture Series, featuring industry pioneers and academic visionaries.</p>
+            <a href="loginstudent.html" class="join-btn">Register Now</a> 
+          </div>
         </div>
 
       </div>
     </section>
-    <!-- --- End Upcoming Events Section --- -->
-
-    <section id="events" class="section">
+    <section id="events" class="section bg-light">
       <div class="section-content">
         <h2 class="section-title">Events Gallery</h2>
         <p class="section-subtitle">A visual journey through our workshops, lectures, and inaugural events. Click any event to see more.</p>
 
-        <!-- This div will be populated by Supabase -->
-        <div id="gallery-grid" class="event-portfolio-grid">
-          <p id="gallery-loading" class="loading-placeholder">Loading gallery...</p>
+        <div class="event-portfolio-grid">
+          <div class="event-card animate-on-scroll" data-gallery="gallery-1">
+            <img src="impactcon7.png" alt="ImpactCon Event" class="event-card-img"> 
+            <div class="event-card-overlay"><h3>Innaugural Ceremony</h3></div>
+          </div>
+          <div class="event-card animate-on-scroll" data-gallery="gallery-2">
+            <img src="SM1.png" alt="Lecture by Dr. Sudhir Mishra" class="event-card-img"> 
+            <div class="event-card-overlay"><h3>Lecture by Dr. Sudhir Mishra</h3></div>
+          </div>
+          <div class="event-card animate-on-scroll" data-gallery="gallery-4">
+            <img src="R1.png" alt="Robotics Workshop" class="event-card-img">
+            <div class="event-card-overlay"><h3>Robotics & Drive Systems Workshop</h3></div>
+          </div>
+          <div class="event-card animate-on-scroll" data-gallery="gallery-5">
+            <img src="T1.png" alt="T.I.M.E Jabalpur Session " class="event-card-img">
+            <div class="event-card-overlay"><h3>T.I.M.E Jabalpur Session</h3></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="mentors" class="section bg-light">
+    <section id="mentors" class="section">
       <div class="section-content">
         <h2 class="section-title">Our Esteemed Mentors</h2>
         <p class="section-subtitle">Learn from leaders and visionaries dedicated to nurturing the next generation of innovators.</p>
-        <!-- This div will be populated by Supabase -->
-        <div id="mentors-grid" class="cards-grid">
-          <p id="mentors-loading" class="loading-placeholder">Loading mentors...</p>
+        <div class="cards-grid">
+            
+            <div class="card person-card animate-on-scroll"><img src="DSC_0573.JPG"/><h4>Dr. Sudhir Mishra</h4><p>Ex. DG DRDO, CEO & MD<br/>BrahMos</p></div>
+            <div class="card person-card animate-on-scroll"><img src="ofb.png"/><h4>Mr. E R Sheikh</h4><p>Ex. Director General<br/>Ordinance Factory Board</p></div>
+            <div class="card person-card animate-on-scroll"><img src="skbhola.png"/><h4>Mr. Sanjeev Bhola</h4><p>Chief General Manager, AVNL<br/>Ministry of Defence</p></div>
+            <div class="card person-card animate-on-scroll"><img src="Atul Singh.png" alt="Mr. Atul Singh (IPS)"/><h4>Mr. Atul Singh (IPS)</h4><p>Deputy Inspector General <br/>Jabalpur Range</p></div>
+            <div class="card person-card animate-on-scroll"><img src="sipe.png" alt="Dr. Rajeev Chandak"/><h4>Dr. Rajeev Chandak</h4><p>Principal<br/>JEC Jabalpur</p></div>
+            <div class="card person-card animate-on-scroll"><img src="Prof. Bhartendu K Singh.jpg"/><h4>Prof. Bhartendu K Singh</h4><p>Director<br/>IIITDM Jabalpur</p></div>
+            
         </div>
       </div>
     </section>
 
-    <section id="join" class="section">
+    <section id="join" class="section bg-light">
       <div class="section-content" style="text-align: center;">
         <h2 class="section-title">Start Your Journey</h2>
         <p class="section-subtitle">Ready to join the innovation revolution? Become a part of our growing network today.</p>
-        <!-- This div will be targeted by Clerk to mount a Sign In button -->
-        <div id="footer-join-btn" class="join-btn-container"></div>
+        <a href="loginstudent.html" class="join-btn" style="font-size: 1.15rem; padding: 1rem 2.5rem;">Join Our Community</a>
       </div>
     </section>
 
-    <section id="faq" class="section bg-light">
+    <section id="faq" class="section">
       <div class="section-content">
         <h2 class="section-title">Frequently Asked Questions</h2>
         <p class="section-subtitle">Everything you need to know about SIPE</p>
-        <!-- This div will be populated by Supabase -->
-        <div id="faq-container" class="faq">
-           <p id="faq-loading" class="loading-placeholder">Loading FAQs...</p>
+        <div class="faq">
+            <div class="faq-item"><button class="faq-question">What is the primary goal of SIPE?</button><div class="faq-answer"><p>SIPE's main goal is to create a standardized, nationwide framework for fostering innovation and entrepreneurship within educational institutions by connecting students with industry mentors, resources, and real-world projects.</p></div></div>
+            <div class="faq-item"><button class="faq-question">Who is eligible to join the SIPE network?</button><div class="faq-answer"><p>Our program is designed for educational institutions across India. Once an institution partners with us, all of its students (UG, PG, and PhD) become eligible to join our chapters and access our complete range of programs and benefits.</p></div></div>
+            <div class="faq-item"><button class="faq-question">How does the mentorship program work?</button><div class="faq-answer"><p>We provide a cross-college Mentor Connect Platform that links students with experienced industry professionals, researchers (from DRDO, CSIR, etc.), and entrepreneurs based on their field of interest and project requirements for personalized guidance.</p></div></div>
+            <div class="faq-item"><button class="faq-question">How can our institution partner with SIPE?</button><div class="faq-answer"><p>To partner with us, please use the "Join Now" button to navigate to our registration portal and sign up as an institution. Our outreach team will then get in touch with you to finalize the partnership process and establish a SIPE chapter on your campus.</p></div></div>
         </div>
       </div>
     </section>
@@ -1005,415 +968,191 @@
     <button class="lightbox-next" id="lightbox-next">&#10095;</button>
   </div>
 
-  <!-- 
-    STEP 3: MAIN JAVASCRIPT LOGIC
-    This script connects to Supabase, fetches data, and populates the page.
-    It also initializes Clerk for authentication.
-  -->
-  <script type="module">
-    // --- Initialize Supabase Client ---
-    const { createClient } = supabase;
-    const supabaseClient = createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Gallery Data (will be populated from Supabase) ---
-    let allGalleries = {};
+        // --- Updated Gallery Data ---
+        const allGalleries = {
+            // ImpactCon Event
+            'gallery-1': [ 
+                'impactcon7.png', 'impactcon8.png', 'impactcon6.png', 
+                'impactcon9.png', 'impactcon5.png', 'impactcon4.png', 
+                'impactcon3.png', 'impactcon2.png', 'impactcon1.png' 
+            ],
+            // Sudhir Mishra Sir Visit
+            'gallery-2': [ 
+                'SM1.png', 'SM2.png', 'SM3.png', 'SM4.png' 
+            ],
+            // Praveen Sir Event
+            'gallery-3': [ 
+                'P1.jpeg', 'P2.jpeg' 
+            ],
+            // Robotics Workshop (Placeholder - Assuming 3 images R1, R2, R3)
+            'gallery-4': [ 
+                'R1.png', 'R2.png', 'R3.png', 
+            ],
+            // Times Jabalpur Event
+            'gallery-5': [
+                'T1.png', 'T2.png', 'T3.png'
+            ]
+        };
 
-    // --- Clerk Authentication Mounting ---
-    window.addEventListener("clerk-loaded", () => {
-      const clerk = window.Clerk;
-      
-      const clerkAuthSignedOut = document.getElementById("clerk-auth-signed-out");
-      const clerkAuthSignedIn = document.getElementById("clerk-auth-signed-in");
-      const clerkAuthMobileSignedOut = document.getElementById("clerk-auth-mobile-signed-out");
-      const heroJoinBtn = document.getElementById("hero-join-btn");
-      const footerJoinBtn = document.getElementById("footer-join-btn");
-
-      // Mount for desktop header
-      clerk.mountSignInButton(clerkAuthSignedOut, {
-        redirectUrl: "index.html",
-        appearance: { elements: { button: "join-btn" } }
-      });
-      clerk.mountUserButton(clerkAuthSignedIn);
-
-      // Mount for mobile menu
-      clerk.mountSignInButton(clerkAuthMobileSignedOut, {
-        redirectUrl: "index.html",
-        appearance: { elements: { button: "join-btn" } }
-      });
-
-      // Mount for Hero section
-      clerk.mountSignInButton(heroJoinBtn, {
-        redirectUrl: "index.html",
-        appearance: { elements: { button: "join-btn" } }
-      });
-
-      // Mount for Footer section
-      clerk.mountSignInButton(footerJoinBtn, {
-        redirectUrl: "index.html",
-        appearance: { elements: { button: "join-btn" } }
-      });
-
-      // Show/hide based on auth state
-      clerk.addListener(({ user }) => {
-        if (user) {
-          clerkAuthSignedOut.style.display = "none";
-          clerkAuthSignedIn.style.display = "block";
-          clerkAuthMobileSignedOut.style.display = "none";
-          heroJoinBtn.style.display = "none"; // Hide hero button if logged in
-          footerJoinBtn.style.display = "none"; // Hide footer button if logged in
-        } else {
-          clerkAuthSignedOut.style.display = "block";
-          clerkAuthSignedIn.style.display = "none";
-          clerkAuthMobileSignedOut.style.display = "block";
-          heroJoinBtn.style.display = "block";
-          footerJoinBtn.style.display = "block";
-        }
-      });
-    });
-
-    // --- Data Loading Functions ---
-
-    /**
-     * Loads programs from the 'programs' table in Supabase
-     */
-    async function loadPrograms() {
-      const grid = document.getElementById("programs-grid");
-      const loading = document.getElementById("programs-loading");
-      
-      const { data, error } = await supabaseClient
-        .from('programs')
-        .select('*')
-        .order('id', { ascending: true });
-
-      if (error) {
-        console.error("Error loading programs:", error);
-        loading.textContent = "Could not load programs.";
-        return;
-      }
-
-      grid.innerHTML = data.map(program => `
-        <div class="card animate-on-scroll">
-          <img class="icon" src="${program.icon_svg_url}" alt="Icon">
-          <h3>${program.title}</h3>
-          <p>${program.description}</p>
-        </div>
-      `).join('');
-      
-      // Re-observe for animations
-      observeDynamicContent(grid.querySelectorAll('.animate-on-scroll'));
-    }
-
-    /**
-     * Loads the single most recent upcoming event
-     */
-    async function loadUpcomingEvent() {
-      const container = document.getElementById("upcoming-event-container");
-      const loading = document.getElementById("events-loading");
-
-      const { data, error } = await supabaseClient
-        .from('upcoming_events')
-        .select('*')
-        .order('date', { ascending: false }) // Get the most recent one
-        .limit(1);
-
-      if (error || !data || data.length === 0) {
-        console.error("Error loading upcoming event:", error);
-        loading.textContent = "No upcoming events scheduled.";
-        return;
-      }
-
-      const event = data[0];
-      const eventDate = new Date(event.date);
-      // Format as "NOVEMBER 04, 2025"
-      const month = eventDate.toLocaleString('en-US', { month: 'long' }).toUpperCase();
-      const day = eventDate.getDate().toString().padStart(2, '0');
-      const year = eventDate.getFullYear();
-      const formattedDate = `${month} ${day}, ${year}`;
-      const placeholderImg = 'https://placehold.co/600x600/0052cc/white?text=SIPE+Event';
-
-      container.innerHTML = `
-        <div class="upcoming-event-card-new animate-on-scroll">
-          <div class="upcoming-event-image" style="background-image: url('${event.image_url || placeholderImg}')">
-            <!-- Image is a background -->
-          </div>
-          <div class="upcoming-event-info-new">
-            <p class="event-meta">
-              <span class="event-date-new">${formattedDate}</span>
-              ${event.is_online ? '<span class="event-tag-new">Online Event</span>' : ''}
-            </p>
-            <h3>${event.title}</h3>
-            <p class="event-description-new">${event.description}</p>
-            <div class="join-btn-wrapper" id="upcoming-event-join-btn"></div>
-          </div>
-        </div>
-      `;
-
-      // Mount a Clerk sign-in button
-      if (window.Clerk) {
-        window.Clerk.mountSignInButton(document.getElementById('upcoming-event-join-btn'), {
-          redirectUrl: "index.html",
-          appearance: { elements: { button: "" } } // Custom style is in CSS
-        });
-      } else {
-        // Fallback if Clerk hasn't loaded yet
-        window.addEventListener('clerk-loaded', () => {
-           window.Clerk.mountSignInButton(document.getElementById('upcoming-event-join-btn'), {
-            redirectUrl: "index.html",
-            appearance: { elements: { button: "" } } // Custom style is in CSS
-          });
-        });
-      }
-
-
-      observeDynamicContent(container.querySelectorAll('.animate-on-scroll'));
-    }
-
-    /**
-     * Loads gallery events and dynamically builds the lightbox data
-     */
-    async function loadGalleryAndLightbox() {
-      const grid = document.getElementById("gallery-grid");
-      const loading = document.getElementById("gallery-loading");
-
-      // 1. Fetch all gallery events (the covers)
-      const { data: events, error: eventsError } = await supabaseClient
-        .from('gallery_events')
-        .select('gallery_key, title, cover_image_url');
-
-      if (eventsError) {
-        console.error("Error loading gallery:", eventsError);
-        loading.textContent = "Could not load gallery.";
-        return;
-      }
-
-      // 2. Fetch all gallery images
-      const { data: images, error: imagesError } = await supabaseClient
-        .from('gallery_images')
-        .select('gallery_key, image_url');
-      
-      if (imagesError) {
-        console.error("Error loading gallery images:", imagesError);
-        loading.textContent = "Could not load gallery images.";
-        return;
-      }
-
-      // 3. Build the allGalleries object
-      allGalleries = {};
-      for (const img of images) {
-        if (!allGalleries[img.gallery_key]) {
-          allGalleries[img.gallery_key] = [];
-        }
-        allGalleries[img.gallery_key].push(img.image_url);
-      }
-
-      // 4. Populate the grid
-      grid.innerHTML = events.map(event => `
-        <div class="event-card animate-on-scroll" data-gallery="${event.gallery_key}">
-          <img src="${event.cover_image_url}" alt="${event.title}" class="event-card-img"> 
-          <div class="event-card-overlay"><h3>${event.title}</h3></div>
-        </div>
-      `).join('');
-
-      // 5. Re-attach click listeners for the new dynamic cards
-      initLightbox();
-      observeDynamicContent(grid.querySelectorAll('.animate-on-scroll'));
-    }
-
-    /**
-     * Loads mentors from the 'mentors' table
-     */
-    async function loadMentors() {
-      const grid = document.getElementById("mentors-grid");
-      const loading = document.getElementById("mentors-loading");
-
-      const { data, error } = await supabaseClient
-        .from('mentors')
-        .select('*')
-        .order('display_order', { ascending: true });
-
-      if (error) {
-        console.error("Error loading mentors:", error);
-        loading.textContent = "Could not load mentors.";
-        return;
-      }
-
-      grid.innerHTML = data.map(mentor => `
-        <div class="card person-card animate-on-scroll">
-          <img src="${mentor.image_url}" alt="${mentor.name}"/> 
-          <h4>${mentor.name}</h4>
-          <p>${mentor.title.replace('\\n', '<br/>')}</p>
-        </div>
-      `).join('');
-
-      observeDynamicContent(grid.querySelectorAll('.animate-on-scroll'));
-    }
-
-    /**
-     * Loads FAQs from the 'faqs' table
-     */
-    async function loadFAQs() {
-      const container = document.getElementById("faq-container");
-      const loading = document.getElementById("faq-loading");
-      
-      const { data, error } = await supabaseClient
-        .from('faqs')
-        .select('*')
-        .order('id', { ascending: true });
-
-      if (error) {
-        console.error("Error loading FAQs:", error);
-        loading.textContent = "Could not load FAQs.";
-        return;
-      }
-
-      container.innerHTML = data.map(faq => `
-        <div class="faq-item">
-          <button class="faq-question">${faq.question}</button>
-          <div class="faq-answer"><p>${faq.answer}</p></div>
-        </div>
-      `).join('');
-
-      // Re-attach event listeners for the new dynamic FAQs
-      initFAQAccordion();
-    }
-    
-
-    // --- Lightbox & Animation Helpers ---
-
-    /**
-     * Re-initializes FAQ accordion listeners for dynamic content
-     */
-    function initFAQAccordion() {
-      document.querySelectorAll('.faq-question').forEach(button => {
-        button.addEventListener('click', () => {
-          const answer = button.nextElementSibling;
-          const wasActive = button.classList.contains('active');
-          
-          // Close all others
-          document.querySelectorAll('.faq-question').forEach(q => {
-            q.classList.remove('active');
-            q.nextElementSibling.classList.remove('show');
-          });
-
-          // Toggle the clicked one
-          if (!wasActive) {
-            button.classList.add('active');
-            answer.classList.add('show');
-          }
-        });
-      });
-    }
-
-    /**
-     * Re-initializes Lightbox listeners for dynamic gallery
-     */
-    function initLightbox() {
+        // --- Lightbox Gallery Logic ---
+        const eventCards = document.querySelectorAll('.event-card');
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-image');
         const lightboxCounter = document.getElementById('lightbox-counter');
         const lightboxClose = document.getElementById('lightbox-close');
         const lightboxNext = document.getElementById('lightbox-next');
         const lightboxPrev = document.getElementById('lightbox-prev');
+
         let currentGallery = [];
         let currentIndex = 0;
 
         function updateLightboxImage() {
-          if (currentGallery.length > 0 && currentIndex >= 0 && currentIndex < currentGallery.length) {
-            lightboxImg.style.opacity = 0;
-            setTimeout(() => {
-                lightboxImg.src = currentGallery[currentIndex];
-                lightboxImg.style.opacity = 1;
-            }, 150);
-            lightboxCounter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
-          }
+            if (currentGallery.length > 0 && currentIndex >= 0 && currentIndex < currentGallery.length) {
+                const img = new Image();
+                img.onload = () => {
+                    lightboxImg.style.opacity = 0;
+                    setTimeout(() => {
+                        lightboxImg.src = img.src;
+                        lightboxImg.style.opacity = 1;
+                    }, 150); // Short delay for fade effect
+                    lightboxCounter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
+                };
+                img.onerror = () => { // Handle cases where an image might be missing
+                    console.error("Error loading image:", currentGallery[currentIndex]);
+                    lightboxImg.src = 'https://placehold.co/800x600/eeeeee/aaaaaa?text=Image+Not+Found'; // Placeholder
+                    lightboxImg.style.opacity = 1;
+                    lightboxCounter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
+                };
+                 try {
+                     img.src = currentGallery[currentIndex];
+                 } catch (e) {
+                     console.error("Invalid image source:", currentGallery[currentIndex], e);
+                     img.onerror(); // Trigger the error handler
+                 }
+            } else {
+                 console.error("Invalid gallery state:", currentGallery, currentIndex);
+                 lightboxImg.src = 'https://placehold.co/800x600/eeeeee/aaaaaa?text=Gallery+Error';
+                 lightboxImg.style.opacity = 1;
+                 lightboxCounter.textContent = `Error`;
+            }
         }
-        function openLightbox(galleryKey) {
-          if (allGalleries[galleryKey] && allGalleries[galleryKey].length > 0) {
-            currentGallery = allGalleries[galleryKey];
-            currentIndex = 0;
-            updateLightboxImage();
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-          } else {
-            console.warn("Gallery not found or empty:", galleryKey);
-          }
-        }
-        function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = 'auto'; }
-        function showNextImage() { currentIndex = (currentIndex + 1) % currentGallery.length; updateLightboxImage(); }
-        function showPrevImage() { currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length; updateLightboxImage(); }
 
-        document.querySelectorAll('.event-card').forEach(card => {
-          // Remove any existing listeners to avoid duplicates
-          card.replaceWith(card.cloneNode(true));
-        });
-        
-        document.querySelectorAll('.event-card').forEach(card => {
-          // Add the new listener
-          card.addEventListener('click', (e) => {
-            const galleryKey = e.currentTarget.dataset.gallery;
-            if (galleryKey) openLightbox(galleryKey);
-          });
+
+        function openLightbox(galleryKey) {
+            if (allGalleries[galleryKey] && allGalleries[galleryKey].length > 0) {
+                currentGallery = allGalleries[galleryKey];
+                currentIndex = 0;
+                updateLightboxImage();
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                 console.warn("Gallery not found or empty:", galleryKey);
+            }
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function showNextImage() {
+            if (currentGallery.length === 0) return;
+            currentIndex = (currentIndex + 1) % currentGallery.length;
+            updateLightboxImage();
+        }
+
+        function showPrevImage() {
+            if (currentGallery.length === 0) return;
+            currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+            updateLightboxImage();
+        }
+
+        eventCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                const galleryKey = e.currentTarget.dataset.gallery;
+                 if (galleryKey) {
+                    openLightbox(galleryKey);
+                 } else {
+                     console.error("Event card missing data-gallery attribute:", card);
+                 }
+            });
         });
 
         lightboxClose.addEventListener('click', closeLightbox);
         lightboxNext.addEventListener('click', showNextImage);
         lightboxPrev.addEventListener('click', showPrevImage);
-        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-        document.addEventListener('keydown', (e) => {
-          if (!lightbox.classList.contains('active')) return;
-          if (e.key === 'ArrowRight') showNextImage();
-          if (e.key === 'ArrowLeft') showPrevImage();
-          if (e.key === 'Escape') closeLightbox();
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) { closeLightbox(); }
         });
-    }
 
-    /**
-     * Initializes the IntersectionObserver for scroll animations
-     */
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          const delay = entry.target.dataset.delay || index * 50; 
-          entry.target.style.transitionDelay = `${delay}ms`;
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'ArrowRight') showNextImage();
+            if (e.key === 'ArrowLeft') showPrevImage();
+            if (e.key === 'Escape') closeLightbox();
+        });
 
-    function observeDynamicContent(elements) {
-      elements.forEach(el => observer.observe(el));
-    }
+        // --- Mobile Menu ---
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelectorAll('.mobile-menu a, .nav-links a'); // Include mobile links for closing
 
-    // --- Initial Page Load ---
-    document.addEventListener('DOMContentLoaded', () => {
-      // Load all dynamic content
-      loadPrograms();
-      loadUpcomingEvent();
-      loadGalleryAndLightbox();
-      loadMentors();
-      loadFAQs();
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.classList.toggle('mobile-menu-open');
+        });
 
-      // Init listeners for static content
-      const hamburger = document.querySelector('.hamburger');
-      const mobileMenu = document.querySelector('.mobile-menu');
-      const navLinks = document.querySelectorAll('.mobile-menu a, .nav-links a');
+        // Close menu when a link is clicked
+        navLinks.forEach(link => link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (mobileMenu.classList.contains('active') && (!href || href.startsWith('#') || href === 'gallery.html')) {
+                 hamburger.classList.remove('active');
+                 mobileMenu.classList.remove('active');
+                 document.body.classList.remove('mobile-menu-open');
+             }
+        }));
 
-      hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        document.body.classList.toggle('mobile-menu-open');
-      });
+        // --- FAQ Accordion ---
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const wasActive = button.classList.contains('active');
 
-      navLinks.forEach(link => link.addEventListener('click', () => {
-        if (mobileMenu.classList.contains('active')) {
-          hamburger.classList.remove('active');
-          mobileMenu.classList.remove('active');
-          document.body.classList.remove('mobile-menu-open');
-        }
-      }));
+                // Close all others first
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('show');
+                });
+
+                // Toggle the clicked one
+                if (!wasActive) {
+                    button.classList.add('active');
+                    answer.classList.add('show');
+                }
+            });
+        });
+
+        // --- Scroll Animations ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    const delay = entry.target.dataset.delay || index * 50; 
+                    entry.target.style.transitionDelay = `${delay}ms`;
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 }); // Trigger when 10% is visible
+
+        // Apply observer to all elements meant to animate on scroll
+        document.querySelectorAll('.animate-on-scroll, .card, .event-card').forEach(el => {
+            observer.observe(el);
+        });
     });
   </script>
 </body>
 </html>
-
