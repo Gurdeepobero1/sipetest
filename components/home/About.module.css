@@ -1,0 +1,96 @@
+.partnerCallout {
+  max-width: 1000px;
+  margin: 4.5rem auto;
+  text-align: left;
+  background: var(--white);
+  border-left: 6px solid var(--primary-blue);
+  box-shadow: var(--shadow-lg);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 3.5rem;
+}
+
+.partnerCallout h3 {
+  font-size: 1.7rem;
+  color: var(--dark-blue);
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.partnerBenefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2.5rem;
+}
+
+.partnerBenefit h4 {
+  color: var(--primary-blue);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.15rem;
+}
+
+.partnerBenefit h4 svg {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.partnerBenefit p {
+  color: var(--gray-700);
+  font-size: 1.05rem;
+}
+
+.scrollerContainer {
+  margin-top: 4rem;
+}
+
+.scrollerContainer h3 {
+  text-align: center;
+  color: var(--gray-700);
+  font-weight: 600;
+  margin-bottom: 3rem;
+  font-size: 1.2rem;
+}
+
+.collegeScroller {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, white 15%, white 85%, transparent);
+}
+
+.collegeScrollerInner {
+  display: flex;
+  width: fit-content;
+  animation: scroll-college 55s linear infinite;
+}
+
+.logoItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4rem;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.logoItem img {
+  height: 72px;
+  max-width: 240px;
+  width: auto;
+  opacity: 0.7;
+  transition: opacity 0.3s var(--transition-curve);
+}
+
+.logoItem:hover img {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .partnerBenefits {
+    grid-template-columns: 1fr;
+  }
+}

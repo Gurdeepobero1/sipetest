@@ -1,0 +1,25 @@
+.joinBtn {
+  font-size: 1.15rem;
+  padding: 1rem 2.5rem;
+  background-color: var(--primary-blue);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s var(--transition-curve), transform 0.3s var(--transition-curve), box-shadow 0.3s var(--transition-curve);
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: var(--shadow-md);
+}
+
+.joinBtn:hover {
+  background-color: var(--dark-blue);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.joinBtn:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: var(--shadow-sm);
+}

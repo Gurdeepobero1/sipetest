@@ -1,0 +1,128 @@
+:root {
+  --primary-blue: #0052cc;
+  --light-blue: #f0f6ff;
+  --dark-blue: #071d49;
+  --white: #ffffff;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-900: #111827;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -4px rgba(0, 0, 0, 0.06);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.07), 0 8px 10px -6px rgba(0, 0, 0, 0.07);
+
+  --radius: 16px;
+  --linkedin-blue: #0077b5;
+  --instagram-pink: #e4405f;
+  --transition-curve: cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--white);
+  color: var(--gray-900);
+  line-height: 1.75;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body.mobile-menu-open {
+  overflow: hidden;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+/* Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-pan {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
+@keyframes scroll-college {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Scroll animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s var(--transition-curve), transform 0.6s var(--transition-curve);
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Section styling */
+.section {
+  padding: 8rem 2rem;
+}
+
+.section-content {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: clamp(2.5rem, 4.5vw, 3.4rem);
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--dark-blue);
+  font-weight: 800;
+}
+
+.section-subtitle {
+  font-size: 1.3rem;
+  text-align: center;
+  color: var(--gray-600);
+  margin-bottom: 5rem;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bg-light {
+  background-color: var(--gray-50);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    font-size: 17px;
+  }
+  .section {
+    padding: 5rem 1.5rem;
+  }
+}
