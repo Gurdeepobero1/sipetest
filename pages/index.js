@@ -1,12 +1,34 @@
+import dynamic from 'next/dynamic';
 import Layout from '../components/Layout';
 import Hero from '../components/home/Hero';
 import About from '../components/home/About';
-import Programs from '../components/home/Programs';
-import Events from '../components/home/Events';
-import Mentors from '../components/home/Mentors';
-import FAQ from '../components/home/FAQ';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
+
+// Lazy load below-the-fold components for better performance
+const Programs = dynamic(() => import('../components/home/Programs'), {
+  loading: () => <div style={{ minHeight: '400px' }} />,
+});
+
+const Partners = dynamic(() => import('../components/home/Partners'), {
+  loading: () => <div style={{ minHeight: '400px' }} />,
+});
+
+const Events = dynamic(() => import('../components/home/Events'), {
+  loading: () => <div style={{ minHeight: '400px' }} />,
+});
+
+const Gallery = dynamic(() => import('../components/home/Gallery'), {
+  loading: () => <div style={{ minHeight: '400px' }} />,
+});
+
+const Mentors = dynamic(() => import('../components/home/Mentors'), {
+  loading: () => <div style={{ minHeight: '400px' }} />,
+});
+
+const FAQ = dynamic(() => import('../components/home/FAQ'), {
+  loading: () => <div style={{ minHeight: '400px' }} />,
+});
 
 export default function Home() {
   return (
@@ -14,7 +36,9 @@ export default function Home() {
       <Hero />
       <About />
       <Programs />
+      <Partners />
       <Events />
+      <Gallery />
       <Mentors />
       <section id="join" className="section bg-light">
         <div className="section-content" style={{ textAlign: 'center' }}>
