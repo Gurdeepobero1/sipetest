@@ -1,12 +1,37 @@
+import dynamic from 'next/dynamic';
 import Layout from '../components/Layout';
 import Hero from '../components/home/Hero';
 import About from '../components/home/About';
-import Programs from '../components/home/Programs';
-import Events from '../components/home/Events';
-import Mentors from '../components/home/Mentors';
-import FAQ from '../components/home/FAQ';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
+
+// Loading placeholder for lazy-loaded components
+const LoadingPlaceholder = () => <div style={{ minHeight: '400px' }} />;
+
+// Lazy load below-the-fold components for better performance
+const Programs = dynamic(() => import('../components/home/Programs'), {
+  loading: LoadingPlaceholder,
+});
+
+const Partners = dynamic(() => import('../components/home/Partners'), {
+  loading: LoadingPlaceholder,
+});
+
+const Events = dynamic(() => import('../components/home/Events'), {
+  loading: LoadingPlaceholder,
+});
+
+const Gallery = dynamic(() => import('../components/home/Gallery'), {
+  loading: LoadingPlaceholder,
+});
+
+const Mentors = dynamic(() => import('../components/home/Mentors'), {
+  loading: LoadingPlaceholder,
+});
+
+const FAQ = dynamic(() => import('../components/home/FAQ'), {
+  loading: LoadingPlaceholder,
+});
 
 export default function Home() {
   return (
@@ -14,7 +39,9 @@ export default function Home() {
       <Hero />
       <About />
       <Programs />
+      <Partners />
       <Events />
+      <Gallery />
       <Mentors />
       <section id="join" className="section bg-light">
         <div className="section-content" style={{ textAlign: 'center' }}>
