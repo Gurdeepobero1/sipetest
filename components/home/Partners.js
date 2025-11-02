@@ -21,8 +21,8 @@ export default function Partners() {
           Collaborating with leading institutions and organizations to drive innovation
         </p>
         <div className={styles.partnersGrid}>
-          {partners.map((partner, index) => (
-            <div key={index} className={styles.partnerCard}>
+          {partners.map((partner) => (
+            <div key={partner.src} className={styles.partnerCard}>
               <Image
                 src={partner.src}
                 alt={partner.alt}

@@ -20,8 +20,8 @@ export default function Gallery() {
           Explore moments from our workshops, lectures, and networking events
         </p>
         <div className={styles.galleryGrid}>
-          {featuredImages.map((image, index) => (
-            <div key={index} className={styles.galleryCard}>
+          {featuredImages.map((image) => (
+            <div key={image.src} className={styles.galleryCard}>
               <Image
                 src={image.src}
                 alt={image.alt}
