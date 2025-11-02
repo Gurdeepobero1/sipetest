@@ -5,29 +5,32 @@ import About from '../components/home/About';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 
+// Loading placeholder for lazy-loaded components
+const LoadingPlaceholder = () => <div style={{ minHeight: '400px' }} />;
+
 // Lazy load below-the-fold components for better performance
 const Programs = dynamic(() => import('../components/home/Programs'), {
-  loading: () => <div style={{ minHeight: '400px' }} />,
+  loading: LoadingPlaceholder,
 });
 
 const Partners = dynamic(() => import('../components/home/Partners'), {
-  loading: () => <div style={{ minHeight: '400px' }} />,
+  loading: LoadingPlaceholder,
 });
 
 const Events = dynamic(() => import('../components/home/Events'), {
-  loading: () => <div style={{ minHeight: '400px' }} />,
+  loading: LoadingPlaceholder,
 });
 
 const Gallery = dynamic(() => import('../components/home/Gallery'), {
-  loading: () => <div style={{ minHeight: '400px' }} />,
+  loading: LoadingPlaceholder,
 });
 
 const Mentors = dynamic(() => import('../components/home/Mentors'), {
-  loading: () => <div style={{ minHeight: '400px' }} />,
+  loading: LoadingPlaceholder,
 });
 
 const FAQ = dynamic(() => import('../components/home/FAQ'), {
-  loading: () => <div style={{ minHeight: '400px' }} />,
+  loading: LoadingPlaceholder,
 });
 
 export default function Home() {
